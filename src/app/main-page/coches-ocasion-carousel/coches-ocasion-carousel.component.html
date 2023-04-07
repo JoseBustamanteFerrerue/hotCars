@@ -1,0 +1,13 @@
+<article>
+    <h3 class="encuentraMarca">Coches de ocasión</h3>
+    <div style="display: flex!important;" class="row">
+        <div class="cochesOcasion col-12 col-xs-6 col-sm-6 col-lg-6 col-xl-3" *ngFor="let cars of resultados">
+            <div class="card ">
+                <img src="{{cars.img}}" alt="" class="card-img-top">
+                <div class="card-body">
+                    <span>{{cars.nameMark}}</span>
+                </div>               
+            </div>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,46 @@
+   <main class="container-fluid">
+        <section>
+            <article id="portada" class="row">
+                <div class="col-12 portadon">
+                    <h3 id="portadaTitulo">Los mejores coches en calidad precio</h3>
+                    <form class="d-flex buscador" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Busca por marca o modelo"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success buscar" type="submit">Search</button>
+                    </form>
+                    <span class="spanPortada">El concesionario más querido por todos sus usuarios</span>
+                    <span class="spanPortada amplia">La mejor amplia gama de coches de calle y deportivos</span>
+                    <div class="botonesPortada">
+                        <button><a href="php/comprar.php">Comprar</a></button>
+                        <button><a href="php/vender.php">Vender</a></button>
+                    </div>
+                    <span class="spanPortada">Patricinador Heineken</span>
+                    <img id="heineken" src="./assets/imgs/logoHeineken.png" alt="logo Heineken" width="200">
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <app-carousel></app-carousel>
+            <app-coches-aelegir></app-coches-aelegir>
+        </section>
+
+        <section>
+            <app-info></app-info>
+            
+            <article class="patroFondo hero">
+                <div class="patronFondo row d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
+                    <h3 class="col-12">HotCars & Heineken</h3>
+                    <span class="col-12">¡Patrocinador Heineken!</span>
+                    <span class="col-12">¡Mediante nuestro patrocinador, podrás tener un mes de financiación gratis!</span>
+                    <span class="col-12">Gracias a una compra de 5 cajas de cerveza, podrá obtener un mes de financiación gratis</span>
+                    <span class="col-12">Lea sobre más información aquí abajo.</span>
+                    <button><a href="https://www.heineken.com/es/es/agegateway?gclid=Cj0KCQjw27mhBhC9ARIsAIFsETHJXAQqNi25ZhfoGOfmUXEgqPwVRz-ae6AeFcl2moEN0iS7ZDlDNt4aAkroEALw_wcB&gclsrc=aw.ds&returnurl=%2fes%2fes%2fhome?gclid%3dCj0KCQjw27mhBhC9ARIsAIFsETHJXAQqNi25ZhfoGOfmUXEgqPwVRz-ae6AeFcl2moEN0iS7ZDlDNt4aAkroEALw_wcB%26gclsrc%3daw.ds">Más información</a></button>
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <app-coches-ocasion-carousel></app-coches-ocasion-carousel>
+        </section>
+    </main>

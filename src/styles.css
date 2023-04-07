@@ -1,0 +1,350 @@
+body {
+    text-align: center!important;
+}
+
+#cambioTextoHeader {
+    padding: 3px;
+    background-color: rgb(138, 48, 45);
+    color: white;
+    transition: all 1s;
+}
+
+nav {
+    background-color: rgb(255, 251, 245);    
+}
+
+.navbar-brand img {
+    width: 100%;
+    height: 130px;
+}
+
+.navbar {
+    background-color: rgb(255, 251, 245);  
+    text-align: center ;
+    padding: 0px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.bg-body-tertiary {
+    background-color: rgb(255, 251, 245)!important;  
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.collapse {
+    justify-content: center;
+}
+
+/* Portada */
+
+#portada {
+    background-image: url("assets/imgs/portada.jpg");
+    height: 700px;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#portadaTitulo {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.buscar {
+    color: white;
+    border-color: rgb(138, 48, 45);
+}
+
+.buscar:hover {
+    background-color: rgb(138, 48, 45);
+}
+
+.buscador {
+    width: 70%;
+}
+
+.portadon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.spanPortada {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.amplia {
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.botonesPortada {
+    display: flex;
+    gap: 10px;
+}
+
+.botonesPortada button{
+    background-color: rgb(138, 48, 45);
+    border: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.3rem;
+}
+
+.botonesPortada button a {
+    text-decoration: none;
+    color: white;
+}
+
+.botonesPortada button:hover {
+    background-color: rgb(34, 133, 34);
+    transition: all 0.5s;
+}
+
+.carousel {
+    margin-top: 5%;
+    padding-bottom: 100px;
+}
+
+.carousel-control-next-icon {
+    background-image: url("assets/imgs/flechaNext.png");
+}
+
+.carousel-control-prev-icon {
+    background-image: url("assets/imgs/flechaPrevious.webp");
+}
+
+.carousel-item {
+    transition: all 1s;
+}
+
+.carousel-indicators {
+    position:absolute;
+    top: 80%;
+}
+
+.carousel-indicators button {
+    background-color: red!important;
+}
+
+.flechaIzquierda {
+    position: absolute;
+}
+
+.flechaDerecha {
+    position: absolute;
+    
+}
+
+.cochesAelegir {
+    margin-top: 5%;
+    background-color: rgb(94, 35, 33);
+    color: white;
+    font-weight: bold;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.encuentraMarca {
+    margin-top: 2.5%;
+}
+
+.carrusel {
+    display: flex;
+    justify-content: center;
+}
+
+.cuadriculaCoches {
+    display: flex;
+    justify-content: center;
+}
+
+.tipos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tipos img {
+    width: 60%;
+}
+
+.tipos img:hover {
+    filter: grayscale(40%);
+    transition: all 0.5s;
+}
+
+.tipos a {
+    width: 80%;
+    text-decoration: none;
+    color: white;
+}
+
+.tipos a:hover {
+    color: brown;
+    transition: all 0.5s;
+}
+
+/* Información */
+
+.informacion {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 5%;
+}
+
+.info {
+    background-color: beige;
+    box-shadow: 1px 1px 15px 1px;
+    border-radius: 5px;
+    padding: 50px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.info img {
+    width: 60%;
+}
+
+.info span {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgb(19, 46, 37);
+    font-weight: bold;
+}
+
+/* Patrocinador */
+
+.patroFondo {
+    background-image: url("assets/imgs/heinekenFondo.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    margin-top: 5%;
+
+}
+
+.patroFondo h3 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.patroFondo span {
+    
+    font-size: 1.2rem;
+}
+
+.patronFondo {
+    width: 40%;
+     display: flex;
+    flex-direction: column;
+    /*
+    width: 40%;
+    
+    text-align: center;
+    
+    padding-top: 200px; */
+    color: white;
+    gap: 40px;
+}
+
+.patronFondo button {
+    width: 60%;
+    align-self: center;
+    background-color: rgb(138, 48, 45);
+    border: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.3rem;
+}
+
+.patronFondo button a {
+    text-decoration: none;
+    color: white;
+}
+
+.patronFondo button:hover {
+    background-color: rgb(34, 133, 34);
+    transition: all 0.5s;
+}
+
+#linea {
+    border: 10px solid;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 5%;
+    background-color: rgb(15, 39, 58);
+    padding: 40px;
+    color: white;
+}
+
+.primerFooter {
+    display: flex;
+    justify-content:space-around;
+}
+
+
+.primerFoot img {
+    width: 20%;
+}
+
+/* Carrusel Ocasion */
+
+.cochesOcasion {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.ocasiones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid black;
+    margin-top: 3%;
+    border-radius: 10px;
+}
+
+.ocasiones img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.navbar {
+    justify-content: space-around!important;
+}
+
+@media (max-width: 770px){
+    .patroFondo {
+        background-image: none;
+        display: none;
+    }
+}
