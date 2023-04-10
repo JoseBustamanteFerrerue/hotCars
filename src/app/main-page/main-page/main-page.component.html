@@ -44,5 +44,22 @@
 
         <section>
             <app-coches-ocasion-carousel></app-coches-ocasion-carousel>
+
+            <form (ngSubmit)="conseguir()">
+                <input 
+                    type="text" 
+                    placeholder="Nombre"
+                    name="Marca"
+                    [(ngModel)] = "nuevo.carName"
+                    >
+            
+                <input 
+                    type="text" 
+                    placeholder="Poder"
+                    name="Modelo"
+                    [(ngModel)] = "nuevo.nameModel"
+                    >
+                <button type="submit">Agregar</button>
+            </form>
         </section>
     </main>

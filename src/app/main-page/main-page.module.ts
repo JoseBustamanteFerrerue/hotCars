@@ -5,6 +5,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CochesAelegirComponent } from './coches-aelegir/coches-aelegir.component';
 import { InfoComponent } from './info/info.component';
 import { CochesOcasionCarouselComponent } from './coches-ocasion-carousel/coches-ocasion-carousel.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { CochesOcasionCarouselComponent } from './coches-ocasion-carousel/coches
     CarouselComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class MainPageModule { }

@@ -10,7 +10,7 @@ body {
 }
 
 nav {
-    background-color: rgb(255, 251, 245);    
+    background-color: rgb(255, 251, 245);
 }
 
 .navbar-brand img {
@@ -19,7 +19,7 @@ nav {
 }
 
 .navbar {
-    background-color: rgb(255, 251, 245);  
+    background-color: rgb(212, 212, 212)!important;  
     text-align: center ;
     padding: 0px;
     font-size: 1.5rem;
@@ -298,7 +298,6 @@ nav {
 /* Footer */
 
 footer {
-    margin-top: 5%;
     background-color: rgb(15, 39, 58);
     padding: 40px;
     color: white;
@@ -341,6 +340,16 @@ footer {
 .navbar {
     justify-content: space-around!important;
 }
+
+#sidebar {
+    height: 100%;
+    min-height: 100vh;
+    min-width: 280px;
+    height: auto;
+    color: black;
+    background-color: rgb(212, 212, 212);
+}
+
 
 @media (max-width: 770px){
     .patroFondo {

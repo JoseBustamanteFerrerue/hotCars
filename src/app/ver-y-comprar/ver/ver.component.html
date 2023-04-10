@@ -1,0 +1,23 @@
+
+<div id="sidebar">
+    <hr class="text-black">
+    <h3 class="text-black">
+        Filtros
+    </h3>
+    <hr class="text-black">
+    <div class="col-10">
+        <form>
+            <label for="periodo" class="text-black">Marca</label>
+            <select name="marca" class="form-select" (change)="cambio()" [(ngModel)]="valorMarca" style="color: black!important;">
+                <option class="dropdown-item" disabled selected>{{valorMarca}}</option>
+                <option [value]="item" *ngFor="let item of desplegableMarca" >{{item}}</option>
+            </select>
+
+            <select name="modelo" class="form-select" [disabled]="hayMarca" [(ngModel)]="valorModelo">
+                <option disabled [selected]="true">{{valorModelo}}</option>
+                <option [value]="item" *ngFor="let item of desplegableModelo" >{{item}}</option>
+            </select>
+        </form>           
+    </div>
+</div>
+
