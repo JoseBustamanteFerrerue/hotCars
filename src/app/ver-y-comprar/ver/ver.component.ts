@@ -12,8 +12,10 @@ export class VerComponent {
   seleccionado:string = '';
   hayMarca:boolean = true;
 
-  valorMarca:any = 'Seleccione una Marca';
-  valorModelo:any = 'Seleccione un modelo';
+  filtrar = {
+    carName: 'Seleccione una Marca',
+    nameModel: 'Seleccione un modelo'
+  }
 
   get desplegableMarca () {
     return this.verYcomprar.desplegableMarca
@@ -31,13 +33,12 @@ export class VerComponent {
 
   cambio () {
     this.hayMarca = false;
-    this.valorModelo = 'Seleccione un modelo'
-    this.verYcomprar.desplegableModelos(this.valorMarca)
+    this.filtrar.nameModel = 'Seleccione un modelo'
+    this.verYcomprar.desplegableModelos(this.filtrar.carName)
   }
  
-  buscarFiltrando (item:any) {
-    console.log('estas bobo')
-    console.log(item)
+  buscarFiltrando () {
+    this.verYcomprar.filtrar(this.filtrar)
   }
 
   clean () {

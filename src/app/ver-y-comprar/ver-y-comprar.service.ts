@@ -54,4 +54,23 @@ export class VerYComprarService {
         this.desplegableModelo = array
       })
   }
+
+  filtrar (item:any) {
+    let consulta = ''
+    if (item.carName != '' && item.carName != 'Seleccione una Marca') {
+      consulta += 'carName='+ item.carName + '&&'
+    }
+
+    if (item.nameModel != '' && item.nameModel != 'Seleccione un modelo') {
+      console.log('es aqui ' + item.nameModel)
+      consulta += 'nameModel='+ item.nameModel + '&&'
+    }
+
+    this.http.get<any>('http://localhost/rest/post.php?' + consulta)
+      .subscribe( (resp) => {
+        this.resp = resp
+    })
+
+    consulta = ''
+  }
 }

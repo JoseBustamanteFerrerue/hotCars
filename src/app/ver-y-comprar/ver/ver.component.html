@@ -1,20 +1,20 @@
 
 <div id="sidebar">
-    <hr class="text-black">
-    <h3 class="text-black">
+    <h3 class="text-black filtros">
         Filtros
     </h3>
     <hr class="text-black">
-    <div class="col-10">
-        <form>
-            <label for="periodo" class="text-black">Marca</label>
-            <select name="marca" class="form-select" (change)="cambio()" [(ngModel)]="valorMarca" style="color: black!important;">
-                <option class="dropdown-item" disabled selected>{{valorMarca}}</option>
+    <div class="col">
+        <form class="d-flex formFilters" (change)="buscarFiltrando()">
+            <label for="marca" class="text-black">Marca</label>
+            <select name="marca" id="marca" class="form-select form-control" (change)="cambio()" [(ngModel)]="filtrar.carName" style="color: black!important;">
+                <option class="dropdown-item" disabled selected>{{filtrar.carName}}</option>
                 <option [value]="item" *ngFor="let item of desplegableMarca" >{{item}}</option>
             </select>
 
-            <select name="modelo" class="form-select" [disabled]="hayMarca" [(ngModel)]="valorModelo">
-                <option disabled [selected]="true">{{valorModelo}}</option>
+            <label for="modelo" class="text-black">Modelo</label>
+            <select name="modelo" id="modelo" class="form-select" [disabled]="hayMarca" [(ngModel)]="filtrar.nameModel">
+                <option disabled [selected]="true">{{filtrar.nameModel}}</option>
                 <option [value]="item" *ngFor="let item of desplegableModelo" >{{item}}</option>
             </select>
         </form>           
