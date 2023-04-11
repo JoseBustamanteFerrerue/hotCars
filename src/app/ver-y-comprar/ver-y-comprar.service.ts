@@ -18,7 +18,7 @@ export class VerYComprarService {
   ngOnInit(): void {
     
   }
-  api() {
+  api():any {
     this.http.get<any>('http://localhost/rest/post.php')
       .subscribe( (resp) => {
         this.resp = resp
@@ -62,10 +62,17 @@ export class VerYComprarService {
     }
 
     if (item.nameModel != '' && item.nameModel != 'Seleccione un modelo') {
-      console.log('es aqui ' + item.nameModel)
       consulta += 'nameModel='+ item.nameModel + '&&'
     }
 
+    if (item.price != 0) {
+      consulta += 'price='+ item.price + '&&'
+    }
+
+    if (item.km != 0) {
+      consulta += 'km='+ item.km + '&&'
+    }
+    console.log(consulta)
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)
       .subscribe( (resp) => {
         this.resp = resp

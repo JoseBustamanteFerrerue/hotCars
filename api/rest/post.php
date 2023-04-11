@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
    desplegableMarcas($dbConn);
   } else if (isset($_GET["desplegableModelo"])) {
     desplegableModelo($dbConn);
+  } else if(isset($_GET["limit"])) {
+    getAllLimit4($dbConn);
   } else {
     conseguirPorNombres($dbConn);
   }

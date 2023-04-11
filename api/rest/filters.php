@@ -3,7 +3,7 @@
 function getAll ($dbConn) {
     //Mostrar lista de post
     $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo FROM cars INNER JOIN mark ON cars.carName = mark.id;");
+    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id;");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
@@ -11,6 +11,16 @@ function getAll ($dbConn) {
     exit();
 }
 
+function getAllLimit4 ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
+    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id limit 0,3;");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
 
 
 function conseguirPorNombres ($dbConn) {
@@ -42,10 +52,10 @@ function conseguirPorNombres ($dbConn) {
                 $consulta .= $nameVersion."=".":$key" . $hayVarios;
                 break;
             case $key == 'km':               
-                $consulta .= $km."=".":$key" . $hayVarios;
+                $consulta .= $km."<=".":$key" . $hayVarios;
                 break;
             case $key == 'price':               
-                $consulta .= $price."=".":$key" . $hayVarios;
+                $consulta .= $price."<=".":$key" . $hayVarios;
                 break;
             case $key == 'stateCar':               
                 $consulta .= $stateCar."=".":$key" . $hayVarios;
@@ -57,7 +67,7 @@ function conseguirPorNombres ($dbConn) {
         $i++;
     }
     $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo FROM cars INNER JOIN mark ON cars.carName = mark.id WHERE ". $consulta.";");
+    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id WHERE ". $consulta.";");
     // Realizar la preparación de la consulta a la base de datos
     foreach ($_GET as $key => $value) {
         $sql->bindValue(':'.$key, $value);

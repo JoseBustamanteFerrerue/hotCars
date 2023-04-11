@@ -19,7 +19,6 @@ nav {
 }
 
 .navbar {
-    background-color: rgb(212, 212, 212)!important;  
     text-align: center ;
     padding: 0px;
     font-size: 1.5rem;
@@ -83,11 +82,29 @@ nav {
 }
 
 .spanPortada {
-    color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 0;
     margin: 0;
+    color:black; 
+    background-color: white; 
+    border-radius: 10px; 
+    padding: 2px;
+}
+
+.pat {
+    color: white;
+    background-color: transparent;
+}
+
+.precio-rango {
+    display: flex;
+    justify-content: space-between;
+}
+.rango-izquierdo {
+text-align: left;
+}
+.rango-derecho {
+text-align: right;
 }
 
 .amplia {
@@ -342,11 +359,10 @@ footer {
 }
 
 #sidebar {
-    height: 100%;
     min-height: 100vh;
-    height: auto;
+    height: 100%;
     color: black;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(236, 236, 236);
 }
 
 .text-black {
@@ -379,6 +395,10 @@ footer {
 
 .form-select:disabled {
     background-color: rgb(204, 204, 204);
+}
+
+.carta {
+    box-shadow: 1px 1px 15px 1px black;
 }
 
 @media (max-width: 770px){

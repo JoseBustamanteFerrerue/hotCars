@@ -11,7 +11,7 @@ export class MainServiceService implements OnInit{
   ngOnInit(): void {
   }
   api() {
-    this.http.get<any>('http://localhost/rest/post.php')
+    this.http.get<any>('http://localhost/rest/post.php?limit')
       .subscribe( (resp) => {
         this.resp = resp
         console.log(this.resp)

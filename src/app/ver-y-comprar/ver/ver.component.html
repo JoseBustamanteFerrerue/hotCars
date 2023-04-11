@@ -17,6 +17,22 @@
                 <option disabled [selected]="true">{{filtrar.nameModel}}</option>
                 <option [value]="item" *ngFor="let item of desplegableModelo" >{{item}}</option>
             </select>
+
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <ng5-slider [(value)]="value" [options]="options" name="precio" (userChangeEnd)="buscarFiltrando()"></ng5-slider>
+                <div class="precio-rango">
+                  <span class="rango-izquierdo">{{ formatCurrency(value, 'EUR') }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Kilometros</label>
+                <ng5-slider [(value)]="valueKm" [options]="optionsKm" name="kilometros" (userChangeEnd)="buscarFiltrando()"></ng5-slider>
+                <div class="precio-rango">
+                  <span class="rango-izquierdo">{{ valueKm | number}}</span>
+                </div>
+            </div>
         </form>           
     </div>
 </div>
