@@ -1,8 +1,11 @@
 
 <div id="sidebar">
-    <h3 class="text-black filtros">
-        Filtros
-    </h3>
+    <div class="d-flex ">
+        <h3 class="text-black filtros col-6">
+            Filtros
+        </h3>
+        <button class="col-6 buttonClean" (click)="clean()">Limpiar</button>
+    </div>
     <hr class="text-black">
     <div class="col">
         <form class="d-flex formFilters" (change)="buscarFiltrando()">

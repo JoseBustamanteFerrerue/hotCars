@@ -1,0 +1,9 @@
+.buttonClean {
+    height: 50%;
+    align-self: center;
+}
+
+.buttonClean:hover {
+    background-color: brown;
+    color: white;
+}

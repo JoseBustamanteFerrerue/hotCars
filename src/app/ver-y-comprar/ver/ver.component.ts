@@ -22,8 +22,6 @@ export class VerComponent {
     price: this.value,
     km: this.valueKm
   }
-
-  
   
   options: any = {
     floor: 0,
@@ -77,7 +75,20 @@ export class VerComponent {
     this.verYcomprar.filtrar(this.filtrar)
   }
 
+  // Limpiar filtros
   clean () {
-
+    this.seleccionado = '';
+    this.hayMarca = true;
+    this.maxValue= 0;
+    this.value = 0;
+    this.valueKm = 0;
+  
+    this.filtrar = {
+      carName: 'Seleccione una Marca',
+      nameModel: 'Seleccione un modelo',
+      price: this.value,
+      km: this.valueKm
+    }
+    this.buscarFiltrando()
   }
 }
