@@ -9,10 +9,12 @@ export class VerYComprarService {
   public resp: any[] = []
   public desplegableMarca: any[] = []
   public desplegableModelo: any[] = []
+  public desplegableCombustible: any[] = []
 
   constructor (private http: HttpClient) {
     this.api(); 
     this.desplegableMarcas();
+    this.desplegableCombustibles();
   }
 
   ngOnInit(): void {
@@ -55,6 +57,22 @@ export class VerYComprarService {
       })
   }
 
+  desplegableCombustibles () {
+    this.http.get<any>('http://localhost/rest/post.php?combustibles')
+      .subscribe( (resp) => {
+        // Para que no se dupliquen
+        let array:any = []
+        for (const item of resp) {
+          if (!array.includes(item.combustible)) {
+            array.push(item.combustible)
+          } 
+        }
+        console.log(array)
+        this.desplegableCombustible = array
+      })
+  }
+
+
   filtrar (item:any) {
     let consulta = ''
     if (item.carName != '' && item.carName != 'Seleccione una Marca') {
@@ -72,11 +90,19 @@ export class VerYComprarService {
     if (item.km != 0) {
       consulta += 'km='+ item.km + '&&'
     }
+
+    if (item.combustible != '' && item.combustible != 'Seleccione un combustible') {
+      consulta += 'combustible='+ item.combustible + '&&'
+    }
+
+/*     if (item.cajaDeCambios != '') {
+      consulta += 'caja='+ item.cajaDeCambios + '&&'
+    } */
     console.log(consulta)
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)
       .subscribe( (resp) => {
-        this.resp = resp
-    })
+          this.resp = resp
+      })
 
     consulta = ''
   }

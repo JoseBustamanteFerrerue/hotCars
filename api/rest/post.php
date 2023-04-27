@@ -11,16 +11,35 @@ $dbConn =  connect($db);
 
 // Recibir datos
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  if (number_format(count($_GET)) == 0) {
-    getAll($dbConn);
-  } else if(isset($_GET["desplegableMarcas"])){
-   desplegableMarcas($dbConn);
-  } else if (isset($_GET["desplegableModelo"])) {
-    desplegableModelo($dbConn);
-  } else if(isset($_GET["limit"])) {
-    getAllLimit4($dbConn);
-  } else {
-    conseguirPorNombres($dbConn);
+  $a = 'hola';
+  switch ($a) {
+    case number_format(count($_GET)) == 0: 
+      getAll ($dbConn);
+      break;
+    case isset($_GET["desplegableMarcas"]):
+      desplegableMarcas($dbConn);
+      break;
+    case isset($_GET["desplegableModelo"]):
+      desplegableModelo($dbConn);
+      break;
+    case isset($_GET["limit"]):
+      getAllLimit4($dbConn);
+      break; 
+    case isset($_GET["combustibles"]):
+      desplegableCombustible($dbConn);
+      break; 
+    case isset($_GET["desplegableCarroceria"]):
+      desplegableCarroceria ($dbConn);
+      break;
+    case isset($_GET["limit"]):
+      getAllLimit4 ($dbConn);
+      break; 
+    case isset($_GET["num_plazas"]):
+      num_plazas ($dbConn);
+      break; 
+    default:
+    filters($dbConn);
+    break;
   }
 }
 

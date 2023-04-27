@@ -36,6 +36,16 @@
                   <span class="rango-izquierdo">{{ valueKm | number}}</span>
                 </div>
             </div>
+
+            <label for="combustibles" class="text-black">Combustibles</label>
+            <select name="combustibles" id="combustibles" class="form-select form-control" [(ngModel)]="filtrar.combustible" style="color: black!important;">
+                <option class="dropdown-item" disabled selected>{{filtrar.combustible}}</option>
+                <option [value]="item" *ngFor="let item of desplegableCombustible" >{{item}}</option>
+            </select>
+
+            <label for="cajaDeCambios" class="text-black">Seleccione la caja de cambios</label>
+            <button (click)="cajaDeCambios('manual')" (click)="buscarFiltrando()">Manual</button>
+            <button (click)="cajaDeCambios('automatico')" (click)="buscarFiltrando()">Automático</button>
         </form>           
     </div>
 </div>

@@ -23,7 +23,7 @@ function getAllLimit4 ($dbConn) {
 }
 
 
-function conseguirPorNombres ($dbConn) {
+function filters ($dbConn) {
     $carName = 'mark.nameMark';
     $nameModel = 'mark.nameModel';
     $nameVersion = 'mark.nameVersion';
@@ -31,6 +31,8 @@ function conseguirPorNombres ($dbConn) {
     $price = 'cars.price';
     $stateCar = 'cars.stateCar';
     $anyo = 'cars.anyo';
+    $combustible = 'cars.combustible';
+    // $caja = 'cars.caja_de_cambios';
     $consulta = '';
     $gets = number_format(count($_GET));
     $i = 1;
@@ -93,6 +95,36 @@ function desplegableModelo ($dbConn) {
     //Mostrar lista de post
     $sql = $dbConn->prepare("SELECT mark.nameModel FROM cars INNER JOIN mark ON cars.carName = mark.id WHERE mark.nameMark = :nameMark;");
     $sql->bindValue(':nameMark', $_GET['nameMark']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function desplegableCombustible ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT combustible FROM cars");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function desplegableCarroceria ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT carroceria FROM cars");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function num_plazas ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT combustible FROM cars");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");

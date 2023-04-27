@@ -20,7 +20,9 @@ export class VerComponent {
     carName: 'Seleccione una Marca',
     nameModel: 'Seleccione un modelo',
     price: this.value,
-    km: this.valueKm
+    km: this.valueKm,
+    combustible: 'Seleccione un combustible',
+    // cajaDeCambios: ''
   }
   
   options: any = {
@@ -61,7 +63,20 @@ export class VerComponent {
     return this.verYcomprar.resp
   }
 
+  get desplegableCombustible () {
+    return this.verYcomprar.desplegableCombustible
+  }
+
   constructor (private http: HttpClient, private verYcomprar: VerYComprarService) {}
+
+  cajaDeCambios (caja: string) {
+    if (caja === 'manual') { 
+      console.log(caja)
+      // this.filtrar.cajaDeCambios = 'manual'
+    } else {
+      // this.filtrar.cajaDeCambios = 'automatico'
+    }
+  }
 
   cambio () {
     this.hayMarca = false;
@@ -87,8 +102,11 @@ export class VerComponent {
       carName: 'Seleccione una Marca',
       nameModel: 'Seleccione un modelo',
       price: this.value,
-      km: this.valueKm
+      km: this.valueKm,
+      combustible: 'Seleccione un combustible',
+      // cajaDeCambios: ''
     }
+    console.log(this.filtrar.combustible)
     this.buscarFiltrando()
   }
 }
