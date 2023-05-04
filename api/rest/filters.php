@@ -32,7 +32,7 @@ function filters ($dbConn) {
     $stateCar = 'cars.stateCar';
     $anyo = 'cars.anyo';
     $combustible = 'cars.combustible';
-    // $caja = 'cars.caja_de_cambios';
+    $caja = 'cars.caja_de_cambios';
     $consulta = '';
     $gets = number_format(count($_GET));
     $i = 1;
@@ -64,7 +64,14 @@ function filters ($dbConn) {
                 break;
             case $key == 'anyo':               
                 $consulta .= $anyo."=".":$key" . $hayVarios;
+               break;
+            case $key == 'combustible':               
+            $consulta .= $combustible."=".":$key" . $hayVarios;
+            break;
+            case $key == 'caja':               
+                $consulta .= $caja."=".":$key" . $hayVarios;
                 break;
+
         }
         $i++;
     }
