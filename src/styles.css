@@ -399,7 +399,61 @@ footer {
 
 .carta {
     box-shadow: 1px 1px 15px 1px black;
+    padding: 5px;
 }
+
+.carta:hover {
+    box-shadow: 1px 1px 30px 1px black;
+    cursor: pointer;
+}
+
+.subscribe-form {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .subscribe-form h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .subscribe-form p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .subscribe-form form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .subscribe-form .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .subscribe-form .form-control {
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    padding: 0 20px;
+    font-size: 18px;
+    width: 100%;
+  }
+  
+  .subscribe-form .btn {
+    height: 50px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0 30px;
+    margin-left: 20px;
+  }
+  
 
 @media (max-width: 770px){
     .patroFondo {

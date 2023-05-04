@@ -95,9 +95,10 @@ export class VerYComprarService {
       consulta += 'combustible='+ item.combustible + '&&'
     }
 
-/*     if (item.cajaDeCambios != '') {
+    if (item.cajaDeCambios != '') {
       consulta += 'caja='+ item.cajaDeCambios + '&&'
-    } */
+    }
+    
     console.log(consulta)
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)
       .subscribe( (resp) => {

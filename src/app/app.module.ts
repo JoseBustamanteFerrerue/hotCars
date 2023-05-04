@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { MainPageModule } from './main-page/main-page.module';
 import { SharedModule } from './shared/shared.module';
 import { VerYComprarModule } from './ver-y-comprar/ver-y-comprar.module';
+import { VenderComponent } from './vender/vender.component';
 
 registerLocaleData (localeEs, 'es');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VenderComponent
   ],
   imports: [
     BrowserModule,

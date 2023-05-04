@@ -22,7 +22,7 @@ export class VerComponent {
     price: this.value,
     km: this.valueKm,
     combustible: 'Seleccione un combustible',
-    // cajaDeCambios: ''
+    cajaDeCambios: ''
   }
   
   options: any = {
@@ -71,10 +71,9 @@ export class VerComponent {
 
   cajaDeCambios (caja: string) {
     if (caja === 'manual') { 
-      console.log(caja)
-      // this.filtrar.cajaDeCambios = 'manual'
+      this.filtrar.cajaDeCambios = 'manual'
     } else {
-      // this.filtrar.cajaDeCambios = 'automatico'
+      this.filtrar.cajaDeCambios = 'automatico'
     }
   }
 
@@ -104,7 +103,7 @@ export class VerComponent {
       price: this.value,
       km: this.valueKm,
       combustible: 'Seleccione un combustible',
-      // cajaDeCambios: ''
+      cajaDeCambios: ''
     }
     console.log(this.filtrar.combustible)
     this.buscarFiltrando()

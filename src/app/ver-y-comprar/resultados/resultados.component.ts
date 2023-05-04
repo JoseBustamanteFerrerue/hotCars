@@ -13,9 +13,11 @@ export class ResultadosComponent implements OnInit {
   pageSize = 9;
   pages: number[] = [];
 
+  constructor (private http: HttpClient, private verYcomprar: VerYComprarService) {}
+
   ngOnInit () {
   }
-
+  
   get currentItems() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
@@ -37,6 +39,10 @@ export class ResultadosComponent implements OnInit {
   get resultado () {
     return this.verYcomprar.resp
   }
+  // Cambiar a ver página del coche elegido
+  cambiarAcocheSeleccionado(item: any) {
+    window.location.href = 'verYcomprar:item.id'
+  }
 
-  constructor (private http: HttpClient, private verYcomprar: VerYComprarService) {}
+  
 }
