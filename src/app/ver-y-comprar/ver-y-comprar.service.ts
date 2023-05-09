@@ -116,7 +116,7 @@ export class VerYComprarService {
       consulta += 'caja='+ item.cajaDeCambios + '&&'
     }
     
-    if (item.carroceria != '') {
+    if (item.carroceria != '' && item.carroceria != 'Seleccione una carroceria') {
       consulta += 'carroceria='+ item.carroceria + '&&'
     }
     
