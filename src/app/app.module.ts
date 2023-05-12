@@ -11,14 +11,13 @@ import { AppComponent } from './app.component';
 import { MainPageModule } from './main-page/main-page.module';
 import { SharedModule } from './shared/shared.module';
 import { VerYComprarModule } from './ver-y-comprar/ver-y-comprar.module';
-import { VenderComponent } from './vender/vender.component';
+import { VenderModule } from './vender/vender.module';
 
 registerLocaleData (localeEs, 'es');
 
 @NgModule({
   declarations: [
     AppComponent,
-    VenderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,7 @@ registerLocaleData (localeEs, 'es');
     SharedModule,
     HttpClientModule,
     VerYComprarModule,
+    VenderModule,
     FormsModule,
     Ng5SliderModule   
   ],

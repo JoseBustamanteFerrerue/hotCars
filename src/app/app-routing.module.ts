@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { VerComprarPageComponent } from './ver-y-comprar/ver-comprar-page/ver-comprar-page.component';
-import { VenderComponent } from './vender/vender.component';
+import { VenderPageComponent } from './vender/vender-page/vender-page.component';
+
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'vender',
-    component: VenderComponent,
+    component: VenderPageComponent,
   },  
 
 ];
