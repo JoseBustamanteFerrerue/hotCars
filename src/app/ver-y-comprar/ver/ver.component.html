@@ -46,6 +46,13 @@
             <label for="cajaDeCambios" class="text-black">Seleccione la caja de cambios</label>
             <button (click)="cajaDeCambios('manual')" (click)="buscarFiltrando()">Manual</button>
             <button (click)="cajaDeCambios('automatico')" (click)="buscarFiltrando()">Automático</button>
+
+            <label for="carroceria" class="text-black">Carroceria</label>
+            <select name="carroceria" id="carroceria" class="form-select form-control" [(ngModel)]="filtrar.carroceria" style="color: black!important;">
+                <option class="dropdown-item" disabled selected>{{filtrar.carroceria}}</option>
+                <option [value]="item" *ngFor="let item of desplegableCarroceria" >{{item}}</option>
+            </select>
+
         </form>           
     </div>
 </div>

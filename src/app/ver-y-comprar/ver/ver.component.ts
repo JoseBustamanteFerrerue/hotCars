@@ -22,7 +22,8 @@ export class VerComponent {
     price: this.value,
     km: this.valueKm,
     combustible: 'Seleccione un combustible',
-    cajaDeCambios: ''
+    cajaDeCambios: '',
+    carroceria: 'Seleccione una carroceria'
   }
   
   options: any = {
@@ -67,6 +68,10 @@ export class VerComponent {
     return this.verYcomprar.desplegableCombustible
   }
 
+  get desplegableCarroceria () {
+    return this.verYcomprar.desplegableCarroceria
+  }
+
   constructor (private http: HttpClient, private verYcomprar: VerYComprarService) {}
 
   cajaDeCambios (caja: string) {
@@ -103,9 +108,9 @@ export class VerComponent {
       price: this.value,
       km: this.valueKm,
       combustible: 'Seleccione un combustible',
-      cajaDeCambios: ''
+      cajaDeCambios: '',
+      carroceria: 'Seleccione una carroceria'
     }
-    console.log(this.filtrar.combustible)
     this.buscarFiltrando()
   }
 }
