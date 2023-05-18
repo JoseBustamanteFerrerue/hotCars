@@ -37,6 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     case isset($_GET["num_plazas"]):
       num_plazas ($dbConn);
       break; 
+    case isset($_GET['favoritos']):
+      getFavorites($dbConn);
+      break;
+    case isset($_GET['favoritosAndCars']):
+      getFavoritesAndCars($dbConn);
+    case isset($_GET['concesionarios']):
+      getConcesionarios($dbConn);
+    case isset($_GET['citas']):
+      getCitas($dbConn);
     default:
     filters($dbConn);
     break;

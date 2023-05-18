@@ -2,7 +2,7 @@
 
 function getAll ($dbConn) {
     //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
+    $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
     cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id;");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -22,6 +22,52 @@ function getAllLimit4 ($dbConn) {
     exit();
 }
 
+function getFavorites ($dbConn) {
+    $sql = $dbConn->prepare("SELECT idCar FROM favoritos INNER JOIN users ON favoritos.idUser = users.id WHERE favoritos.idUser = :id;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':id', $_GET['favoritos']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode(  $sql->fetchAll()  );
+    exit();
+}
+
+function getFavoritesAndCars ($dbConn) {
+    $sql = $dbConn->prepare("SELECT cars.id, mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
+    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios 
+    FROM cars INNER JOIN favoritos ON cars.id = favoritos.idCar INNER JOIN mark ON cars.carName = mark.id WHERE favoritos.idUser = :id;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':id', $_GET['favoritosAndCars']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode(  $sql->fetchAll()  );
+    exit();
+}
+
+function getCitas ($dbConn) {
+    $sql = $dbConn->prepare("SELECT cars.id, mark.nameMark, mark.nameModel, mark.nameVersion, fecha_cita, motivo, name, primerApellido
+    FROM cita INNER JOIN users ON cita.idUser = users.id INNER JOIN cars ON cita.idCar = cars.id INNER JOIN mark ON cars.carName = mark.id
+    WHERE cita.idUser = :id;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':id', $_GET['citas']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode(  $sql->fetchAll()  );
+    exit();
+}
+
+function getConcesionarios ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT name FROM concesionarios;");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
 
 function filters ($dbConn) {
     $carName = 'mark.nameMark';
@@ -33,7 +79,6 @@ function filters ($dbConn) {
     $anyo = 'cars.anyo';
     $combustible = 'cars.combustible';
     $caja = 'cars.caja_de_cambios';
-    $carroceria = 'cars.carroceria';
     $consulta = '';
     $gets = number_format(count($_GET));
     $i = 1;
@@ -69,9 +114,6 @@ function filters ($dbConn) {
             case $key == 'combustible':               
             $consulta .= $combustible."=".":$key" . $hayVarios;
             break;
-            case $key == 'carroceria':               
-                $consulta .= $carroceria."=".":$key" . $hayVarios;
-                break;
             case $key == 'caja':               
                 $consulta .= $caja."=".":$key" . $hayVarios;
                 break;

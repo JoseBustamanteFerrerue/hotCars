@@ -1,3 +1,5 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 body {
     text-align: center!important;
 }
@@ -453,8 +455,26 @@ footer {
     padding: 0 30px;
     margin-left: 20px;
   }
+
+  .card {
+    border: 1px solid #808080; /* Borde gris de la tarjeta */
+    padding: 20px;
+  }
+  
+  .star-icon {
+    font-size: 20px; /* Ajusta el tamaño de la estrella según tus necesidades */
+    color: #808080; /* Color del borde gris de la estrella */
+    cursor: pointer;
+  }
+  
+  .star-selected {
+    color: #000000; /* Color negro de la estrella seleccionada */
+  }
+  
+  
   
 
+  
 @media (max-width: 770px){
     .patroFondo {
         background-image: none;

@@ -12,6 +12,13 @@ export class ResultadosComponent implements OnInit {
   page = 1;
   pageSize = 9;
   pages: number[] = [];
+  isStarred: boolean = false;
+
+  
+  toggleStar(): void {
+   // this.resultado.isStarred = !this.resultado.isStarred;
+  }
+  
 
   constructor (private http: HttpClient, private verYcomprar: VerYComprarService) {}
 

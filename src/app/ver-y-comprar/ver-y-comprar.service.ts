@@ -16,7 +16,7 @@ export class VerYComprarService {
     this.api(); 
     this.desplegableMarcas();
     this.desplegableCombustibles();
-    this.desplegableCarrocerias();
+    this.desplegableCarrocerias();   
   }
 
   ngOnInit(): void {
@@ -26,6 +26,7 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php')
       .subscribe( (resp) => {
         this.resp = resp
+        this.conseguirFavoritos();
       })
   }
 
@@ -44,7 +45,6 @@ export class VerYComprarService {
   }
 
   desplegableModelos (item:any) {
-    console.log(item)
     this.http.get<any>('http://localhost/rest/post.php?desplegableModelo&&nameMark='+ item)
       .subscribe( (resp) => {
         console.log(resp)
@@ -57,6 +57,19 @@ export class VerYComprarService {
         }
         this.desplegableModelo = array
       })
+  }
+
+  conseguirFavoritos () {
+    this.http.get<any>('http://localhost/rest/post.php?favoritos=1')
+    .subscribe( (response) => {
+      // console.log(response)
+      this.resp = this.resp.map(function (item) {
+        item.idCar = response
+        item.isStarred = false
+        return item
+      })
+      console.log(this.resp)
+    })
   }
 
   desplegableCombustibles () {
