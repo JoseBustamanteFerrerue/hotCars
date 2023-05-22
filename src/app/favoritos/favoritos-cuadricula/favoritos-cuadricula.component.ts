@@ -1,27 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { VerYComprarService } from '../ver-y-comprar.service';
+import { Component } from '@angular/core';
+import { FavoritosServiceService } from '../favoritos-service.service';
 
 
 @Component({
-  selector: 'app-resultados',
-  templateUrl: './resultados.component.html',
-  styleUrls: ['./resultados.component.css']
+  selector: 'app-favoritos-cuadricula',
+  templateUrl: './favoritos-cuadricula.component.html',
+  styleUrls: ['./favoritos-cuadricula.component.css']
 })
-export class ResultadosComponent implements OnInit {
+export class FavoritosCuadriculaComponent {
   page = 1;
   pageSize = 9;
   pages: number[] = [];
-  isStarred: boolean = false;
 
-  constructor (private verYcomprar: VerYComprarService) {}
+  constructor (private favoritosService: FavoritosServiceService) {}
 
-  ngOnInit () {
-  }
-
-  toggleStar(): void {
-   // this.resultado.isStarred = !this.resultado.isStarred;
-  }
-  
   get currentItems() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
@@ -41,12 +33,10 @@ export class ResultadosComponent implements OnInit {
   }
 
   get resultado () {
-    return this.verYcomprar.resp
+    return this.favoritosService.resp
   }
   // Cambiar a ver página del coche elegido
   cambiarAcocheSeleccionado(item: any) {
     window.location.href = 'verYcomprar:item.id'
   }
-
-  
 }

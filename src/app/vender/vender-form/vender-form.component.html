@@ -1,27 +1,86 @@
 <div class="row rowFullForm">
     <div class="col-md-6 offset-md-3">
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6  formularioVender">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+      <form (ngSubmit)="mostrarForms = mostrarForms + 1">
+        <div *ngIf="mostrarForms == 0">
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="nombre" class="text-black">Matrícula:</label>
+              <input type="text" class="form-control" id="nombre" placeholder="1234ABC">
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="apellido" class="text-black">Kilómetros:</label>
+              <input type="text" class="form-control" id="apellido" placeholder="20000">
+            </div>
           </div>
-          <div class="form-group col-md-6  formularioVender">
-            <label for="apellido">Apellido:</label>
-            <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido">
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="anyoMatriculacion" class="text-black">Año de matriculación</label>
+            <select name="anyoMatriculacion" id="anyoMatriculacion" class="form-select form-control" style="color: black!important;">
+                <option value="" disabled selected>Seleccione un año</option>
+                <option value="2022">2022</option>
+            </select>
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="accidente" class="text-black">Tuvo un accidente grave?</label>
+              <select name="accidente" id="accidente" class="form-select form-control" style="color: black!important;">
+                <option value="Si">Si</option>
+                <option value="No" selected>No</option>
+              </select>
+            </div>
           </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
-        <div class="row">
-          <div class="form-group col-md-6  formularioVender">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+
+        <div *ngIf="mostrarForms == 1">
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="nombre">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido">
+            </div>
           </div>
-          <div class="form-group col-md-6  formularioVender">
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono">
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="telefono">Teléfono:</label>
+              <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono">
+            </div>
           </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
+
+        <div *ngIf="mostrarForms == 2">
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="coche" class="text-black">Tuvo un accidente grave?</label>
+              <select name="coche" id="coche" class="form-select form-control" style="color: black!important;">
+                <option value="Si">Si</option>
+                <option value="No" selected>No</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6  formularioVender">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="telefono">Teléfono:</label>
+              <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono">
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="enviarDatosForm()">Enviar</button>
+        </div>
       </form>
     </div>
   </div>

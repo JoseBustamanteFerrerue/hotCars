@@ -12,6 +12,9 @@ import { MainPageModule } from './main-page/main-page.module';
 import { SharedModule } from './shared/shared.module';
 import { VerYComprarModule } from './ver-y-comprar/ver-y-comprar.module';
 import { VenderModule } from './vender/vender.module';
+import { FavoritosPageComponent } from './favoritos/favoritos-page/favoritos-page.component';
+import { FavoritosModule } from './favoritos/favoritos.module';
+import { ContactoModule } from './contacto/contacto.module';
 
 registerLocaleData (localeEs, 'es');
 
@@ -27,6 +30,8 @@ registerLocaleData (localeEs, 'es');
     HttpClientModule,
     VerYComprarModule,
     VenderModule,
+    ContactoModule,
+    FavoritosModule,
     FormsModule,
     Ng5SliderModule   
   ],

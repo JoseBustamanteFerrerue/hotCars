@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderServiceService } from './header-service.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   textoCambiado: string = ''
+
+  constructor (private headerService: HeaderServiceService) {}
 
   ngOnInit() {
     this.cambioTexto()
@@ -23,5 +26,10 @@ export class HeaderComponent implements OnInit {
       i++
       this.textoCambiado = textos[i]
     }, 5000);   
+  }
+
+  get concesionarios () {
+    console.log(this.headerService.resp)
+    return this.headerService.resp
   }
 }

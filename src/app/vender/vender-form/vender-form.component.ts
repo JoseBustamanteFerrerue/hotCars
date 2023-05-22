@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./vender-form.component.css']
 })
 export class VenderFormComponent {
+  mostrarForms: number = 0;
 
+
+  enviarDatosForm() {
+    
+  }
 }

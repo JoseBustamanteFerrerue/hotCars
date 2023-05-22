@@ -27,24 +27,19 @@
                 <a class="nav-link" href="vender">Vender</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
+                <a class="nav-link" href="contacto">Contacto</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     Concesionarios
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">PhP</a></li>
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul class="dropdown-menu" *ngFor="let item of concesionarios">
+                    <li><a class="dropdown-item" href="{{item.localizacion}}">{{item.name}}</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="fav.php">Favoritos</a>
+                <a class="nav-link" href="favoritos">Favoritos</a>
             </li>
         </ul>
     </div>

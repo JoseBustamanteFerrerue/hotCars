@@ -61,7 +61,7 @@ function getCitas ($dbConn) {
 
 function getConcesionarios ($dbConn) {
     //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT name FROM concesionarios;");
+    $sql = $dbConn->prepare("SELECT name, localizacion FROM concesionarios;");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
