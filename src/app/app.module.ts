@@ -12,9 +12,9 @@ import { MainPageModule } from './main-page/main-page.module';
 import { SharedModule } from './shared/shared.module';
 import { VerYComprarModule } from './ver-y-comprar/ver-y-comprar.module';
 import { VenderModule } from './vender/vender.module';
-import { FavoritosPageComponent } from './favoritos/favoritos-page/favoritos-page.component';
 import { FavoritosModule } from './favoritos/favoritos.module';
 import { ContactoModule } from './contacto/contacto.module';
+import { LoginRegisterModule } from './login-register/login-register.module';
 
 registerLocaleData (localeEs, 'es');
 
@@ -32,6 +32,7 @@ registerLocaleData (localeEs, 'es');
     VenderModule,
     ContactoModule,
     FavoritosModule,
+    LoginRegisterModule,
     FormsModule,
     Ng5SliderModule   
   ],

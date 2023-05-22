@@ -2,8 +2,11 @@
 include "config.php";
 include "utils.php";
 include "filters.php";
+include "inserts.php";
+
 
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: http://localhost:4200');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
@@ -55,22 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Crear un nuevo post
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    $input = $_POST;
-    $sql = "INSERT INTO posts
-          (title, status, content, user_id)
-          VALUES
-          (:title, :status, :content, :user_id)";
-    $statement = $dbConn->prepare($sql);
-    bindAllValues($statement, $input);
-    $statement->execute();
-    $postId = $dbConn->lastInsertId();
-    if($postId)
-    {
-      $input['id'] = $postId;
-      header("HTTP/1.1 200 OK");
-      echo json_encode($input);
-      exit();
-	 }
+  $requestUri = $_SERVER['REQUEST_URI'];
+  $jsonData = file_get_contents('php://input');
+  $data = json_decode($jsonData); 
+
+  if ($requestUri === '/rest/post.php/registro') {
+    postRegistro($dbConn, $data);
+  }
+
 }
 
 //Borrar

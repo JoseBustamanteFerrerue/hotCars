@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
   }
 
   get concesionarios () {
-    console.log(this.headerService.resp)
     return this.headerService.resp
   }
 }
