@@ -55,6 +55,16 @@ nav {
     gap: 10px;
 }
 
+.fondoLogin {
+    margin-top: 1px;
+    background-image: url("assets/imgs/portada.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    height: 90vh;
+    position: relative;
+}
+
 #portadaTitulo {
     color: white;
     font-size: 3rem;
