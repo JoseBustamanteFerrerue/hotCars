@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="container" *ngIf="!registrarse">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+          <div *ngIf="email?.hasError('required')">El email es requerido.</div>
+          <div *ngIf="email?.errors?.['email']">El email debe tener un formato válido.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+          <div *ngIf="password?.hasError('required')">La contraseña es requerida.</div>
+        </div>
+      </div>
+        <div class="row">
+            <a (click)="registrarse = true" class="col-6">Registrate</a>
+            <a (click)="registrarse = true" class="col-6">¿Has olvidado tu contraseña?</a>
+        </div>
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid" style="margin-top: 3%;">Iniciar sesión</button>
+    </form>
+</div>
+<app-register *ngIf="registrarse"></app-register>

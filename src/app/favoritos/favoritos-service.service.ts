@@ -11,7 +11,10 @@ export class FavoritosServiceService {
    }
    // MODIFICAR PARA CUANDO SE INICIE SESION
    getFavoritos():any {
-    this.http.get<any>('http://localhost/rest/post.php?favoritosAndCars=1')
+    const usuarioString = localStorage.getItem('usuario');
+    const usuarioObject = JSON.parse(usuarioString!);
+    const idUsuario = usuarioObject.id
+    this.http.get<any>('http://localhost/rest/post.php?favoritosAndCars=' + idUsuario)
       .subscribe( (resp) => {
         this.resp = resp
       })

@@ -8,11 +8,17 @@ import { HeaderServiceService } from './header-service.service';
 })
 export class HeaderComponent implements OnInit {
   textoCambiado: string = ''
+  usuario: any;
 
   constructor (private headerService: HeaderServiceService) {}
 
   ngOnInit() {
-    this.cambioTexto()
+    this.cambioTexto();
+
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuario = JSON.parse(usuario);
+    } 
   }
 
   cambioTexto() {
@@ -30,5 +36,10 @@ export class HeaderComponent implements OnInit {
 
   get concesionarios () {
     return this.headerService.resp
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem('usuario');
+    window.location.href = '';
   }
 }

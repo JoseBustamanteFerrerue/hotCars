@@ -9,6 +9,7 @@ import { ContactoServiceService } from '../contacto-service.service';
 })
 export class ContactoFormComponent implements OnInit {
   userForm!: FormGroup;
+  usuario: any;
 
   constructor(private formBuilder: FormBuilder, private contactoService: ContactoServiceService) { }
 
@@ -21,6 +22,15 @@ export class ContactoFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuario = JSON.parse(usuario);
+      console.log('Usuario autenticado:', this.usuario);
+    } else {
+      // El usuario no ha iniciado sesión
+      console.log('Usuario no autenticado');
+    }
   }
 
   onSubmit() {

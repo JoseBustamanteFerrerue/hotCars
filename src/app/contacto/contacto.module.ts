@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactoPageComponent } from './contacto-page/contacto-page.component';
 import { ContactoFormComponent } from './contacto-form/contacto-form.component';
+import { LoginRegisterModule } from '../login-register/login-register.module';
 
 
 
@@ -21,7 +22,8 @@ import { ContactoFormComponent } from './contacto-form/contacto-form.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginRegisterModule
   ]
 })
 export class ContactoModule { }

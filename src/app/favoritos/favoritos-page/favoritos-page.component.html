@@ -3,7 +3,7 @@
         <h1>Tus coches favoritos</h1>
         <article>
             <h2 *ngIf="false">Tus coches favoritos</h2>
-            <app-favoritos-cuadricula></app-favoritos-cuadricula>
+            <app-favoritos-cuadricula *ngIf="usuario"></app-favoritos-cuadricula>
         </article>
     </section>
 </main>
