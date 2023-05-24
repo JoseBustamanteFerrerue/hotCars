@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginRegisterServiceService } from '../login-register-service.service';
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit{
   ngOnInit() {
     this.userForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6), this.passwordValidator]]
     });
   }
 
@@ -25,6 +25,20 @@ export class LoginComponent implements OnInit{
 
     this.loginService.inicioSesion(this.userForm.value)
   }
+
+  passwordValidator(control: FormControl) {
+    const value = control.value;
+
+    // Aquí puedes definir tu propia lógica de validación de contraseña
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+    if (value && !pattern.test(value)) {
+      return { invalidPassword: true };
+    }
+
+    return null;
+  }
+  
   get email() { return this.userForm.get('email'); }
   get password() { return this.userForm.get('password'); }
 }

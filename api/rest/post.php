@@ -66,6 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     postRegistro($dbConn, $data);
   }
 
+  if ($requestUri === '/rest/post.php/login') {
+    login($dbConn, $data);
+  }
+
+  if ($requestUri === '/rest/post.php/comprobarEmail') {
+    comprobarEmail($dbConn, $data);
+  }
+
 }
 
 //Borrar

@@ -1,5 +1,56 @@
 
-<div class="fondoLogin">
-  <app-login *ngIf="usuario == undefined"></app-login>
+<div class="fondoLogin" *ngIf="usuario == undefined">
+  <app-login></app-login>
 </div>
-<div *ngIf="usuario">Hola</div>
+<div *ngIf="usuario"  class="fondoContacto">
+  <div class="contactos">
+    <h1>Contacto</h1>
+    <p>En HotCars contamos con 30 concesionarios a nivel nacional. 
+      En todos ellos, nuestro equipo de profesionales estará a tu lado para todo lo que necesites</p>
+  </div>
+</div>
+<main class="container-xl login" *ngIf="usuario">
+    
+  <div class="row align-items-center">
+      <div class="col-12 col-xs-12 col-sm-4 col-lg-4 col-xl-4 informacionContacto">
+        <div class="text-black">
+          <h1>Contacto</h1>
+          <p>En HotCars contamos con 30 concesionarios a nivel nacional. 
+            En todos ellos, nuestro equipo de profesionales estará a tu lado para todo lo que necesites</p>
+        </div>
+      </div>
+      <div class="col-12 col-xs-12 col-sm-8 col-lg-8 col-xl-8">
+          <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate class="row d-flex justify-content-center">
+              <h2 class="col-12">¿En qué podemos ayudarte?</h2>
+              <div class="form-group col-12 mt-3">
+                <label for="message" *ngIf="false">Mensaje:</label>
+                <textarea id="message" class="form-control" formControlName="message" rows="4" minlength="5" required placeholder="Escriba aquí el motivo de su consulta">
+                </textarea>
+                <div *ngIf="message?.invalid && (message?.dirty || message?.touched)"
+                  class="text-danger">
+                  <p *ngIf="message?.hasError('required')">Este campo es obligatorio.</p>
+                  <p *ngIf="message?.errors?.['minlength']">El mensaje debe tener al menos 5 caracteres.</p>
+                </div>
+              </div>
+          
+              <div class="form-group col-12">
+                <div class="form-check form-check-lg">
+                  <input class="form-check-input" type="checkbox" formControlName="terms" id="terms" required>
+                  <label class="form-check-label" for="terms">Acepto los términos y condiciones</label>
+                </div>
+                <div *ngIf="terms?.invalid && (terms?.dirty || terms?.touched)"
+                  class="text-danger">
+                  <p *ngIf="terms?.hasError('required')">Debes aceptar los términos y condiciones.</p>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary col-8 mt-3" [disabled]="userForm.invalid" style="margin-top: 3%;">Enviar consulta</button>
+          </form>      
+      </div>
+  </div>
+</main>
+<div *ngIf="usuario"  class="fondoContactoEncuentra">
+  <div class="contactos">
+    <h1>Hot Cars: Cerca de ti</h1>
+    <button class="btn mt-4" onclick="window.location.href='ver'">Encuentra tu vehiculo</button>
+  </div>
+</div>
