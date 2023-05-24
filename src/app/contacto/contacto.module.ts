@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContactoPageComponent } from './contacto-page/contacto-page.component';
 import { ContactoFormComponent } from './contacto-form/contacto-form.component';
 import { LoginRegisterModule } from '../login-register/login-register.module';
-
+import { ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
