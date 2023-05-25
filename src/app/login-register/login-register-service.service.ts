@@ -48,11 +48,10 @@ export class LoginRegisterServiceService {
     const jsonData = JSON.stringify(data);
     this.http.post<any>('http://localhost/rest/post.php/login', jsonData).subscribe(
       response => {
-        console.log('hola')
-        console.log(response[0].id)
         const usuario = {
           id: response[0].id,
-          email: data.email
+          email: data.email,
+          rol: response[0].rol
         }
 
         // Almacenar el estado de inicio de sesión en localStorage

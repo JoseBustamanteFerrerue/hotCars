@@ -49,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getConcesionarios($dbConn);
     case isset($_GET['citas']):
       getCitas($dbConn);
+    case isset($_GET['consultas']):
+      getConsultas($dbConn);
     default:
     filters($dbConn);
     break;
@@ -72,6 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   if ($requestUri === '/rest/post.php/comprobarEmail') {
     comprobarEmail($dbConn, $data);
+  }
+
+  if ($requestUri === '/rest/post.php/consulta') {
+    consulta($dbConn, $data);
   }
 
 }

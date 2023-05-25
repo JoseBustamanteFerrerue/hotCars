@@ -22,11 +22,7 @@ export class ContactoFormComponent implements OnInit {
     const usuario = localStorage.getItem('usuario');
     if (usuario) {
       this.usuario = JSON.parse(usuario);
-      console.log('Usuario autenticado:', this.usuario);
-    } else {
-      // El usuario no ha iniciado sesión
-      console.log('Usuario no autenticado');
-    }
+    } 
   }
 
   onSubmit() {
@@ -40,5 +36,9 @@ export class ContactoFormComponent implements OnInit {
 
   get message() { return this.userForm.get('message'); }
   get terms() { return this.userForm.get('terms'); }
+
+  get consultas () {
+    return this.contactoService.resp
+  }
 }
 

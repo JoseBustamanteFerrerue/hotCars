@@ -2,14 +2,14 @@
 <div class="fondoLogin" *ngIf="usuario == undefined">
   <app-login></app-login>
 </div>
-<div *ngIf="usuario"  class="fondoContacto">
+<div *ngIf="usuario && usuario.rol == 'user'"  class="fondoContacto">
   <div class="contactos">
     <h1>Contacto</h1>
     <p>En HotCars contamos con 30 concesionarios a nivel nacional. 
       En todos ellos, nuestro equipo de profesionales estará a tu lado para todo lo que necesites</p>
   </div>
 </div>
-<main class="container-xl login" *ngIf="usuario">
+<main class="container-xl login" *ngIf="usuario && usuario.rol == 'user'">
     
   <div class="row align-items-center">
       <div class="col-12 col-xs-12 col-sm-4 col-lg-4 col-xl-4 informacionContacto">
@@ -48,9 +48,40 @@
       </div>
   </div>
 </main>
-<div *ngIf="usuario"  class="fondoContactoEncuentra">
+<div *ngIf="usuario && usuario.rol == 'user'"  class="fondoContactoEncuentra">
   <div class="contactos">
     <h1>Hot Cars: Cerca de ti</h1>
     <button class="btn mt-4" onclick="window.location.href='ver'">Encuentra tu vehiculo</button>
+  </div>
+</div>
+
+<div *ngIf="usuario && usuario.rol == 'admin'"  class="tablasAdmin mt-5 mb-5">
+  <div class="container-xl">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Primer Apellido</th>
+          <th>Segundo Apellido</th>
+          <th>Fecha de nacimiento</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Motivo</th>
+          <th>Fecha Consulta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let item of consultas">
+          <td>{{ item.name }}</td>
+          <td>{{ item.primerApellido }}</td>
+          <td>{{ item.segundoApellido }}</td>
+          <td>{{ item.fecha_nacimiento }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.telefono }}</td>
+          <td class="text-start">{{ item.motivo }}</td>
+          <td>{{ item.fecha_consulta }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

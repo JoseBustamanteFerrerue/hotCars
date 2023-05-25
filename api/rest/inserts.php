@@ -25,7 +25,7 @@ function postRegistro($dbConn, $data) {
 }
 
 function login($dbConn, $data) {
-    $sql = $dbConn->prepare("SELECT id as id, password FROM users WHERE email = :email;");
+    $sql = $dbConn->prepare("SELECT id as id, password, rol FROM users WHERE email = :email;");
     // Realizar la preparación de la consulta a la base de datos
     $sql->bindValue(':email', $data->email);
     $sql->execute();
@@ -70,4 +70,16 @@ function comprobarEmail($dbConn, $data) {
     header("HTTP/1.1 200 OK");
     echo json_encode($result);
     exit(); 
+}
+
+function consulta($dbConn, $data) {
+    $sql = $dbConn->prepare("INSERT consultas (idUser, motivo, fecha_consulta)
+     VALUES (:idUser, :motivo, NOW());");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idUser', $data->idUser);
+    $sql->bindValue(':motivo', $data->message);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    exit();
 }

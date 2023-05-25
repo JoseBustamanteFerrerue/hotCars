@@ -69,6 +69,17 @@ function getConcesionarios ($dbConn) {
     exit();
 }
 
+function getConsultas ($dbConn) {
+    $sql = $dbConn->prepare("SELECT name, primerApellido, segundoApellido, fecha_nacimiento, email, motivo, fecha_consulta
+    FROM consultas INNER JOIN users ON consultas.idUser = users.id;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode(  $sql->fetchAll()  );
+    exit();
+}
+
 function filters ($dbConn) {
     $carName = 'mark.nameMark';
     $nameModel = 'mark.nameModel';

@@ -34,7 +34,7 @@ registerLocaleData (localeEs, 'es');
     FavoritosModule,
     LoginRegisterModule,
     FormsModule,
-    Ng5SliderModule   
+    Ng5SliderModule
   ],
   providers: [{
     provide: LOCALE_ID,
