@@ -6,6 +6,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { VerComponent } from './ver/ver.component';
 import { VerComprarPageComponent } from './ver-comprar-page/ver-comprar-page.component';
 import { ResultadosComponent } from './resultados/resultados.component';
+import { ComprarComponent } from './comprar/comprar.component';
 
 
 
@@ -13,7 +14,8 @@ import { ResultadosComponent } from './resultados/resultados.component';
   declarations: [
    VerComponent,
    VerComprarPageComponent,
-   ResultadosComponent
+   ResultadosComponent,
+   ComprarComponent
   ],
 exports: [
   VerComprarPageComponent

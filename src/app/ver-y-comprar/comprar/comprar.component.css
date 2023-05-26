@@ -1,0 +1,30 @@
+.imgCompra {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.textInfoCar {
+    color: black;
+}
+
+.textInfoCar span {
+    background-color: rgb(226, 226, 226);
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.tituloCavallosVersion {
+    font-size: 1.5rem;
+    color: brown;
+}
+
+.textoPrecio {
+    background-color: rgb(226, 226, 226);
+    border-radius: 10px;
+}
+
+.precioFinanciado {
+    border-right: 1px solid gray;
+}

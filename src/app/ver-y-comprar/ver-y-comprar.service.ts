@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,7 @@ export class VerYComprarService {
   public desplegableModelo: any[] = []
   public desplegableCombustible: any[] = []
   public desplegableCarroceria: any[] = []
+  public carPorId: any[] = []
 
   constructor (private http: HttpClient) {
     this.api(); 
@@ -100,6 +101,10 @@ export class VerYComprarService {
         console.log(array)
         this.desplegableCarroceria = array
       })
+  }
+
+  getCarPorId(item: any): Observable<any> {
+    return this.http.get<any>('http://localhost/rest/post.php?carPorId=' + item);
   }
 
 

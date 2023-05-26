@@ -5,6 +5,7 @@ import { VerComprarPageComponent } from './ver-y-comprar/ver-comprar-page/ver-co
 import { VenderPageComponent } from './vender/vender-page/vender-page.component';
 import { FavoritosPageComponent } from './favoritos/favoritos-page/favoritos-page.component';
 import { ContactoPageComponent } from './contacto/contacto-page/contacto-page.component';
+import { ComprarComponent } from './ver-y-comprar/comprar/comprar.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'favoritos',
     component: FavoritosPageComponent,
+  }, 
+  {
+    path: 'comprar/:id',
+    component: ComprarComponent,
   },    
 
 ];

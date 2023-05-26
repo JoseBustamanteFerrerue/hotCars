@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VerYComprarService } from '../ver-y-comprar.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ResultadosComponent implements OnInit {
   pages: number[] = [];
   isStarred: boolean = false;
 
-  constructor (private verYcomprar: VerYComprarService) {}
+  constructor (private verYcomprar: VerYComprarService, private router: Router) {}
 
   ngOnInit () {
   }
@@ -45,7 +46,7 @@ export class ResultadosComponent implements OnInit {
   }
   // Cambiar a ver página del coche elegido
   cambiarAcocheSeleccionado(item: any) {
-    window.location.href = 'verYcomprar:item.id'
+    this.router.navigate(['/comprar', item.id]);
   }
 
   
