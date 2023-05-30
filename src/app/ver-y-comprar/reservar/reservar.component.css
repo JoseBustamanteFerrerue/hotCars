@@ -1,0 +1,70 @@
+.textInfoCar {
+    color: black;
+}
+
+.textInfoCar span {
+    background-color: rgb(226, 226, 226);
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.textoGarantias {
+    color: black;
+    font-size: 0.8rem;
+}
+
+.gratis {
+    font-weight: bold;
+}
+
+.tick {
+    color: green;
+    font-size: 1.1rem;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.borderIzquierda {
+    border-left: 1px solid rgb(209, 209, 209);
+}
+
+.gastos {
+    font-size: 0.8rem;
+}
+
+.numbers {
+    display: flex;
+    padding: 10px;
+    border: 3px solid brown;
+    border-radius: 5px;
+    width: 37.55px;
+    color: brown;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.spanNumbers {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgb(15, 15, 71);
+    text-align: start;
+}
+
+.titulos {
+    color: rgb(15, 15, 71);
+    font-size: 1.6rem;
+}
+
+.botones {
+    background-color: brown;
+    border: 0px;
+    font-size: 1.3rem;
+}
+
+.botones:hover {
+    background-color: rgb(83, 33, 33);
+    transition: 1s ease;
+}

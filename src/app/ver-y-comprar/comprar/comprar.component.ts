@@ -1,5 +1,5 @@
 import { Component, ElementRef  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VerYComprarService } from '../ver-y-comprar.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -16,7 +16,8 @@ export class ComprarComponent {
   cuota: any;
   sanitizedUrl: any;
 
-  constructor(private route: ActivatedRoute, private verYcomprar: VerYComprarService, private elementRef: ElementRef, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private verYcomprar: VerYComprarService, 
+    private elementRef: ElementRef, private sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -52,6 +53,14 @@ export class ComprarComponent {
   scrollToSection() {
     const section = this.elementRef.nativeElement.querySelector('#seccionCuota');
     section.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  reservar (id: any) {
+    this.router.navigate(['/reservar', id]);
+  }
+
+  pedirCita () {
+    window.location.href = 'contacto'
   }
   
 }

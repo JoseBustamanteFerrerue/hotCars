@@ -24,7 +24,7 @@
               <h2 class="col-12">¿En qué podemos ayudarte?</h2>
               <div class="form-group col-12 mt-3">
                 <label for="message" *ngIf="false">Mensaje:</label>
-                <textarea id="message" class="form-control" formControlName="message" rows="4" minlength="5" required placeholder="Escriba aquí el motivo de su consulta">
+                <textarea id="message" class="form-control" formControlName="message" rows="4" minlength="5" required placeholder="Escriba aquí el motivo de su consulta o cita">
                 </textarea>
                 <div *ngIf="message?.invalid && (message?.dirty || message?.touched)"
                   class="text-danger">

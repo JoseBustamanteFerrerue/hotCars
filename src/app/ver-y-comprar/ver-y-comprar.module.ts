@@ -7,6 +7,7 @@ import { VerComponent } from './ver/ver.component';
 import { VerComprarPageComponent } from './ver-comprar-page/ver-comprar-page.component';
 import { ResultadosComponent } from './resultados/resultados.component';
 import { ComprarComponent } from './comprar/comprar.component';
+import { ReservarComponent } from './reservar/reservar.component';
 
 
 
@@ -15,7 +16,8 @@ import { ComprarComponent } from './comprar/comprar.component';
    VerComponent,
    VerComprarPageComponent,
    ResultadosComponent,
-   ComprarComponent
+   ComprarComponent,
+   ReservarComponent
   ],
 exports: [
   VerComprarPageComponent

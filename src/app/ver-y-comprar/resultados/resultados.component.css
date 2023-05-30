@@ -19,3 +19,14 @@
 .estrella {
     color: white;
 }
+
+.reservado {
+    background-color: gray;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 40%;
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+}

@@ -43,6 +43,9 @@ export class ResultadosComponent implements OnInit {
   }
   // Cambiar a ver página del coche elegido
   cambiarAcocheSeleccionado(item: any) {
+    if (item.estadoReserva > 0) {
+      return
+    }
     this.router.navigate(['/comprar', item.id]);
   }
 

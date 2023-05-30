@@ -236,4 +236,66 @@ export class VerYComprarService {
         });
       })
   }
+
+  reservar (item:any) {
+    const usuarioString = localStorage.getItem('usuario');
+    let usuario: any;
+    if (usuarioString) {
+      usuario = JSON.parse(usuarioString);
+    } else {
+      Swal.fire({
+        title: '¡Inicie sesión!',
+        text: '¡Por favor, inicie sesión para poder añadir favoritos!',
+        icon: 'error',
+        showConfirmButton: true,
+        allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+        allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'contacto'
+          return
+        }
+      });
+    }
+
+    const paramsObject = {
+      idUser: usuario.id,
+      idCar:  item.id
+    }
+
+    const params = JSON.stringify(paramsObject);
+
+    this.http.post<any>('http://localhost/rest/post.php/reservar', params).subscribe(
+      response => {
+        this.api() 
+        Swal.fire({
+          title: '¡Su reserva ha sido exitosa!',
+          text: 'El vehículo se ha reservado correctamente, un comercial se pondrá pronto en contacto con usted.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = 'ver'
+          }
+          return 0
+        });   
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su reserva ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
+  }
 }
