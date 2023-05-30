@@ -2,8 +2,11 @@
 
 function getAll ($dbConn) {
     //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id;");
+    $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
+    cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 
+    cars.caja_de_cambios, cars.medida_largo, cars.medida_ancho, cars.medida_altura, cars.peso, cars.deposito, cars.maletero, cars.idConcesionario,
+    concesionarios.name, concesionarios.localizacion
+    FROM cars INNER JOIN mark ON cars.carName = mark.id INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id;");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
@@ -13,8 +16,11 @@ function getAll ($dbConn) {
 
 function getAllLimit4 ($dbConn) {
     //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id limit 0,3;");
+    $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
+    cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 
+    cars.caja_de_cambios, cars.medida_largo, cars.medida_ancho, cars.medida_altura, cars.peso, cars.deposito, cars.maletero, cars.idConcesionario,
+    concesionarios.name, concesionarios.localizacion
+    FROM cars INNER JOIN mark ON cars.carName = mark.id INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id limit 0,3;");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
@@ -34,9 +40,13 @@ function getFavorites ($dbConn) {
 }
 
 function getFavoritesAndCars ($dbConn) {
-    $sql = $dbConn->prepare("SELECT cars.id, mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios 
-    FROM cars INNER JOIN favoritos ON cars.id = favoritos.idCar INNER JOIN mark ON cars.carName = mark.id WHERE favoritos.idUser = :id;");
+    $sql = $dbConn->prepare("SELECT cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
+    cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 
+    cars.caja_de_cambios, cars.medida_largo, cars.medida_ancho, cars.medida_altura, cars.peso, cars.deposito, cars.maletero, cars.idConcesionario,
+    concesionarios.name, concesionarios.localizacion
+    FROM cars INNER JOIN mark ON cars.carName = mark.id INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id
+    INNER JOIN favoritos ON favoritos.idCar = cars.id
+    WHERE favoritos.idUser = :id;");
     // Realizar la preparación de la consulta a la base de datos
     $sql->bindValue(':id', $_GET['favoritosAndCars']);
     $sql->execute();
@@ -78,6 +88,21 @@ function getConsultas ($dbConn) {
     header("HTTP/1.1 200 OK");
     echo json_encode(  $sql->fetchAll()  );
     exit();
+}
+
+function getCarPorId ($dbConn) {
+     $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
+     cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 
+     cars.caja_de_cambios, cars.medida_largo, cars.medida_ancho, cars.medida_altura, cars.peso, cars.deposito, cars.maletero, cars.idConcesionario,
+     concesionarios.name, concesionarios.localizacion
+     FROM cars INNER JOIN mark ON cars.carName = mark.id INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id
+     WHERE cars.id = :id;");
+     $sql->bindValue(':id', $_GET['carPorId']);
+     $sql->execute();
+     $sql->setFetchMode(PDO::FETCH_ASSOC);
+     header("HTTP/1.1 200 OK");
+     echo json_encode( $sql->fetchAll());
+     exit();
 }
 
 function filters ($dbConn) {
@@ -132,8 +157,12 @@ function filters ($dbConn) {
         }
         $i++;
     }
-    $sql = $dbConn->prepare("SELECT  mark.nameMark, mark.nameModel, mark.nameVersion, cars.img, cars.carName, cars.matricula, cars.km, cars.price, 
-    cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, cars.caja_de_cambios FROM cars INNER JOIN mark ON cars.carName = mark.id WHERE ". $consulta.";");
+    $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
+    cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 
+    cars.caja_de_cambios, cars.medida_largo, cars.medida_ancho, cars.medida_altura, cars.peso, cars.deposito, cars.maletero, cars.idConcesionario,
+    concesionarios.name, concesionarios.localizacion
+    FROM cars INNER JOIN mark ON cars.carName = mark.id INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id
+    WHERE ". $consulta.";");
     // Realizar la preparación de la consulta a la base de datos
     foreach ($_GET as $key => $value) {
         $sql->bindValue(':'.$key, $value);

@@ -51,8 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getCitas($dbConn);
     case isset($_GET['consultas']):
       getConsultas($dbConn);
+    case isset($_GET['carPorId']):
+      getCarPorId($dbConn);
     default:
-    filters($dbConn);
+      filters($dbConn);
     break;
   }
 }
@@ -80,17 +82,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     consulta($dbConn, $data);
   }
 
+  if ($requestUri === '/rest/post.php/anyadirFavorito') {
+    anyadirFavorito($dbConn, $data);
+  }
+
 }
 
 //Borrar
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 {
-	$id = $_GET['id'];
-  $statement = $dbConn->prepare("DELETE FROM posts where id=:id");
-  $statement->bindValue(':id', $id);
-  $statement->execute();
-	header("HTTP/1.1 200 OK");
-	exit();
+
+  if ($_GET['idUser']) {
+    deleteFavorito($dbConn);
+  }
 }
 
 //Actualizar

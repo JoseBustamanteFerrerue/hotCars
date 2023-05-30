@@ -1,6 +1,6 @@
 .imgCompra {
-    width: 100%;
-    height: 500px;
+    width: 90%;
+    height: 600px;
     border-radius: 10px;
 }
 
@@ -21,10 +21,296 @@
 }
 
 .textoPrecio {
-    background-color: rgb(226, 226, 226);
+    background-color: rgb(235, 235, 235);
     border-radius: 10px;
+    padding: 10px;
 }
 
 .precioFinanciado {
-    border-right: 1px solid gray;
+    border-right: 1px solid rgb(185, 185, 185);
+}
+
+.precioFinancia {
+    padding-left: 20px;
+}
+
+.precioFinancia span {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.precioFinanciaSpan {
+    font-size: 2rem;
+    color: brown;
+}
+
+.textoCuadrado {
+    font-size: 1.2rem;
+    color: gray;
+    font-weight: 500;
+}
+
+#calcularCuota {
+    cursor: pointer;
+    color: brown;
+    font-size: 1.2rem;
+}
+
+#calcularCuota:hover {
+    color: rgb(83, 25, 25);
+    transition: 1s ease;
+}
+
+.tick-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.tick-wrapper .text-success {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.tick-wrapper .text-success:nth-child(2) {
+    margin-left: 15px;
+}
+
+.textoGarantias {
+    color: black;
+    font-size: 0.8rem;
+}
+
+.gratis {
+    font-weight: bold;
+}
+
+.tick {
+    color: green;
+    font-size: 1.1rem;
+}
+
+.gastos {
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+.meInteresa {
+    background-color: brown;
+    border: 0px;
+    font-size: 1.3rem;
+}
+
+.meInteresa:hover {
+    background-color: rgb(83, 33, 33);
+    transition: 1s ease;
+}
+
+.cuadriculaDatosBasicos {
+    background-color: rgb(233, 233, 233);
+    border-left: 10px solid white;
+    border-bottom: 10px solid white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.cuadriculaDatosBasicos h2 {
+    font-size: 1.5rem;
+
+}
+
+.car-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 50px;
+  }
+  
+  .car-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .car-width-line {
+    position: absolute;
+    bottom: -10px; /* Ajusta el valor para la posición de la línea */
+    left: 0%; /* Ajusta el valor para la posición horizontal de la línea */
+    width: 100%; /* Ajusta el valor para el ancho de la línea */
+    border-bottom: 1px solid black; /* Estilo de la línea */
+  }
+  
+  .car-width-line::before,
+  .car-width-line::after {
+    content: "";
+    position: absolute;
+    top: -20px; /* Ajusta el valor para la posición vertical de las líneas */
+    width: 1px; /* Ajusta el grosor de las líneas */
+    height: 20px; /* Ajusta la longitud de las líneas */
+    background-color: black; /* Color de las líneas */
+  }
+  
+  .car-width-line::before {
+    left: 0px; /* Ajusta el valor para la posición horizontal de la línea izquierda */
+  }
+  
+  .car-width-line::after {
+    right: 0px; /* Ajusta el valor para la posición horizontal de la línea derecha */
+  }
+
+  .car-width-line-derecha {
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 1px;
+    height: 100%;
+    background-color: black;
+  }
+  
+  .car-width-line-derecha {
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 1px;
+    height: 100%;
+    background-color: black;
+  }
+  
+  .car-width-line-derecha::before,
+.car-width-line-derecha::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 10px;
+  height: 1px;
+  background-color: black;
+}
+
+.car-width-line-derecha::before {
+  transform: translateY(-50%);
+}
+
+.car-width-line-derecha::after {
+  top: 0;
+  transform: translateY(-50%);
+}
+
+.car-width-line-derecha span {
+    padding-left: 10px;
+}
+
+.iconos {
+    width: 20%;
+    position: absolute;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(233, 233, 233);
+    
+    right: 42.5%;
+    top: -30px;
+}
+
+.pesos {
+    position: relative;
+    padding-top: 2%;
+    color: rgb(116, 116, 116);
+    border: 50px solid white;
+}
+
+.pesos span {
+    color: black;
+}
+
+.financiacion {
+    background-color: rgb(231, 231, 231);
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+
+.cuadrosFinancia {
+    background-color: white;
+    margin-left: 1%;
+    width: 10%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 1px 1px 5px 1px black;
+    cursor: pointer;
+}
+
+.financiacion h1 {
+    font-size: 1.5rem;
+    padding-top: 10px;
+    color: rgb(19, 19, 73);
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.cuadrosFinancia:hover {
+    box-shadow: 1px 1px 4px 1px black;
+}
+
+.entra {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.cuotas {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: start;
+    box-shadow: 1px 1px 10px 1px black;
+}
+
+.textoPequeño {
+    font-size: 0.8rem;
+}
+
+#entradaInicial {
+    box-shadow: 1px 1px 10px 1px black;
+}
+
+.botonSeleccionado {
+    border: 2px solid brown;
+}
+
+.numbers {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    background-color: rgb(10, 10, 71);
+    border-radius: 100px;
+    color: white;
+    text-align: center;
+}
+
+.textoReservarInfo {
+    text-align: justify;
+}
+
+.tituloInfoReservar {
+    color: rgb(10, 10, 71);
+}
+
+.textosContacto {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+#lugarConcesionario {
+    text-decoration: none;
+    color: brown;
+}
+
+#lugarConcesionario:hover {
+    color: rgb(66, 17, 17);
+    transition: 1s ease;
 }

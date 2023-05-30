@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -61,12 +62,17 @@ export class VerYComprarService {
   }
 
   conseguirFavoritos () {
-    this.http.get<any>('http://localhost/rest/post.php?favoritos=1')
+    const usuarioString = localStorage.getItem('usuario');
+    let usuario: any;
+    if (usuarioString) {
+      usuario = JSON.parse(usuarioString);
+    } else {
+      return
+    }
+    this.http.get<any>('http://localhost/rest/post.php?favoritos=' + usuario.id)
     .subscribe( (response) => {
-      // console.log(response)
       this.resp = this.resp.map(function (item) {
         item.idCar = response
-        item.isStarred = false
         return item
       })
       console.log(this.resp)
@@ -143,8 +149,91 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)
       .subscribe( (resp) => {
           this.resp = resp
+          this.conseguirFavoritos();
       })
+      
 
     consulta = ''
+  }
+
+  anyadirFavorito (item: any) {
+    const usuarioString = localStorage.getItem('usuario');
+    let usuario: any;
+    if (usuarioString) {
+      usuario = JSON.parse(usuarioString);
+    } else {
+      Swal.fire({
+        title: '¡Inicie sesión!',
+        text: '¡Por favor, inicie sesión para poder añadir favoritos!',
+        icon: 'error',
+        showConfirmButton: true,
+        allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+        allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'contacto'
+          return
+        }
+      });
+    }
+
+    const paramsObject = {
+      idUser: usuario.id,
+      idCar:  item.id
+    }
+
+    const params = JSON.stringify(paramsObject);
+
+    this.http.post<any>('http://localhost/rest/post.php/anyadirFavorito', params).subscribe(
+      response => {
+        this.api()
+        return 1     
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
+  }
+
+  deleteFavorito (item: any) {
+    const usuarioString = localStorage.getItem('usuario');
+    let usuario: any;
+    if (usuarioString) {
+      usuario = JSON.parse(usuarioString);
+    }
+    
+    this.http.delete<any>('http://localhost/rest/post.php?idUser=' + usuario.id + '&&idCar=' + item.id).subscribe(
+      response => {
+        this.api()
+        return 1     
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
   }
 }

@@ -13,14 +13,11 @@ export class ResultadosComponent implements OnInit {
   pageSize = 9;
   pages: number[] = [];
   isStarred: boolean = false;
+  favoritos: any;
 
   constructor (private verYcomprar: VerYComprarService, private router: Router) {}
 
   ngOnInit () {
-  }
-
-  toggleStar(): void {
-   // this.resultado.isStarred = !this.resultado.isStarred;
   }
   
   get currentItems() {
@@ -49,5 +46,21 @@ export class ResultadosComponent implements OnInit {
     this.router.navigate(['/comprar', item.id]);
   }
 
+  anyadirFavorito(item: any) {
+    let yaExiste = false
+    for (const it of item.idCar) {
+        if (it.idCar == item.id) {
+          yaExiste = true;
+        }
+    }
+    
+    if (yaExiste) {
+      
+    } else {
+      this.verYcomprar.anyadirFavorito(item)
+    }
+    
+    
+  }
   
 }

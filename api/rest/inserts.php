@@ -83,3 +83,15 @@ function consulta($dbConn, $data) {
     header("HTTP/1.1 200 OK");
     exit();
 }
+
+function anyadirFavorito ($dbConn, $data) {
+    $sql = $dbConn->prepare("INSERT favoritos (idUser, idCar)
+     VALUES (:idUser, :idCar);");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idUser', $data->idUser);
+    $sql->bindValue(':idCar', $data->idCar);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    exit();
+}

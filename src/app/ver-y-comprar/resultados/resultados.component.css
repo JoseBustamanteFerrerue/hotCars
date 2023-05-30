@@ -1,0 +1,21 @@
+.divEstrella {
+    background-color: gray;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 25px;
+    position: absolute;
+    left: 80%;
+    top: 8%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.divEstrella:hover {
+    color: white;
+}
+
+.estrella {
+    color: white;
+}

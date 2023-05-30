@@ -1,6 +1,6 @@
 <div class="container-xl">
     <div class="row d-flex justify-content-center mt-3" *ngFor="let item of car">
-    
+
         <div class="col-8">
             <!-- Aquí ira el carrusel -->
             <img src="{{item.img}}" [alt]="item.nameMark" class="imgCompra">
@@ -16,10 +16,10 @@
                 <div class="col-12">
                     <h3 class="tituloCavallosVersion">{{ item.cv + ' CV ' + item.nameVersion}}</h3>
                 </div>
-            </div>          
+            </div>
             <div class="row text-start">
                 <div class="col-12 textInfoCar mt-3">
-                    <span class="bg-gray">{{item.anyo + ' '}}</span> 
+                    <span class="bg-gray">{{item.anyo + ' '}}</span>
                     <span class="bg-gray">{{item.km | number}} km </span>
                     <span class="bg-gray">{{item.combustible + ' '}}</span>
                     <span class="bg-gray">{{item.caja_de_cambios + ' '}}</span>
@@ -29,15 +29,334 @@
             <div class="row text-start">
                 <div class="col-12 textoPrecio mt-3">
                     <div class="row">
-                        <div class="col-6 precioFinanciado">
-                            d
+                        <div class="col-6 precioFinanciado row">
+                            <div class="textoCuadrado col-12">
+                                Desde
+                                <p class="precioFinanciaSpan">{{calcularCuota(item.price - 1000, plazo) |
+                                    currency:'EUR'}}</p>
+                            </div>
+                            <div class="textoCuadrado col-12">
+                                <a (click)="scrollToSection()" id="calcularCuota">Calcular cuota <i
+                                        class="fas fa-arrow-right"></i></a>
+
+                            </div>
                         </div>
-                        <div class="col-6">
-                            d
+                        <div class="col-6 row precioFinancia">
+                            <div class="col-12 textoCuadrado">
+                                Precio financiado
+                                <span>{{item.price - 1000 | currency:'EUR'}}</span>
+                            </div>
+                            <div class="col-12 textoCuadrado">
+                                Precio al contado
+                                <span>{{item.price | currency:'EUR'}}</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-12 mt-3 row">
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                            <img src="./assets/imgs/hotCars.png" width="100" height="100" alt="gfsdg">
+                        </div>
+                        <div class="col-8 row">
+                            <span class="textoGarantias col-12">
+                                <span class="tick">
+                                    <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                                    </svg>
+                                </span>
+                                <span class="gratis">Gratis</span> revisión 250 puntos
+                            </span>
+                            <span class="textoGarantias col-12">
+                                <span class="tick">
+                                    <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                                    </svg>
+                                </span>
+                                <span class="gratis">Gratis</span> garantía legal 1 año
+                            </span>
+                            <span class="textoGarantias col-12">
+                                <span class="tick">
+                                    <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                                    </svg>
+                                </span>
+                                <span class="gratis">Gratis</span> certificación de estado
+                            </span>
+                            <span class="textoGarantias col-12">
+                                <span class="tick">
+                                    <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                                    </svg>
+                                </span>
+                                <span class="gratis">Gratis</span> 15 días o 1000km de prueba
+                            </span>
+                        </div>
+
+                        <div class="col-12 mt-3 gastos text-">
+                            <span>Gastos de gestión y logística 390 €*.</span>
+                            <p>*Consulta condiciones con tu asesor comercial.
+                                Importante: si entregas <span class="gratis">tu vehículo a cambio</span>, el importe
+                                acordado <span class="gratis">se descontará del precio total.</span></p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success meInteresa col-12">Me interesa</button>
                 </div>
             </div>
         </div>
+        <div class="row mt-5">
+            <h1>Datos básicos</h1>
+            <div class="col-12 mt-3 row">
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Matriculación</h2>
+                    <span>{{item.anyo}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Kilometraje</h2>
+                    <span>{{item.km + ' KM'}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Combustible</h2>
+                    <span>{{item.combustible}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Transmisión</h2>
+                    <span>{{item.caja_de_cambios}}</span>
+                </div>
+                <!--  -->
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Potencia</h2>
+                    <span>{{item.cv + ' CV'}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Estado del coche</h2>
+                    <span>{{item.stateCar}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Distintivo</h2>
+                    <span>{{item.distintivo_ambiental}}</span>
+                </div>
+                <div class="col-3 cuadriculaDatosBasicos">
+                    <h2>Carroceria</h2>
+                    <span>{{item.carroceria}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
+                <div class="car-container">
+                    <img src="./assets/imgs/coche-lateral.webp" alt="Coche" class="car-image">
+                    <div class="car-width-line">
+                    </div>
+                    <span>
+                        {{item.medida_largo + ' metros'}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="car-container">
+                    <img src="./assets/imgs/coche-frontal.webp" alt="Coche" class="car-image">
+                    <div class="car-width-line">
+                    </div>
+                    <div class="car-width-line-derecha d-flex align-items-center">
+                        <span>{{item.medida_altura + 'm'}}</span>
+                    </div>
+                    <span>
+                        {{item.medida_ancho + ' metros'}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-4 cuadriculaDatosBasicos pesos">
+                <div class="iconos">
+                    <i class="fas fa-weight-hanging fa-2x" style="color: red;"></i>
+                </div>
+                <h2>Peso del vehiculo</h2>
+                <span>{{item.peso + 'kg'}}</span>
+            </div>
+            <div class="col-4 cuadriculaDatosBasicos pesos">
+                <div class="iconos">
+                    <i class="fas fa-gas-pump fa-2x" style="color: red;"></i>
+                </div>
+                <h2>Depósito de combustible</h2>
+                <span>{{item.deposito + ' litros'}}</span>
+            </div>
+            <div class="col-4 cuadriculaDatosBasicos pesos">
+                <div class="iconos">
+                    <i class="fas fa-car-side fa-2x" style="color: red;"></i>
+                </div>
+                <h2>Maletero</h2>
+                <span>{{item.maletero + ' litros'}}</span>
+            </div>
+        </div>
+
+        <div class="row mt-5 financiacion" id="seccionCuota">
+            <h1>Financiación</h1>
+            <div class="col-12 mt-3">
+                <form class="row">
+                    <div class="row col-5">
+                        <label for="entradaInicial" class="text-start entra">Entrada inicial</label>
+                        <input type="number" class="form-control mt-1" id="entradaInicial" [(ngModel)]="entradaInicial"
+                            name="entradaInicial" placeholder="0€">
+                    </div>
+                    <div class="row col-7">
+                        <label for="plazos" class="text-start entra">Plazos (meses)</label>
+                        <button class="col-1 disabled cuadrosFinancia mt-1">
+                            24
+                        </button>
+                        <button class="col-1 cuadrosFinancia mt-1" (click)="plazo = 36"
+                            [ngClass]="{'botonSeleccionado': plazo === 36}">
+                            36
+                        </button>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 48"
+                            [ngClass]="{'botonSeleccionado': plazo === 48}">
+                            48
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 60"
+                            [ngClass]="{'botonSeleccionado': plazo === 60}">
+                            60
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 72"
+                            [ngClass]="{'botonSeleccionado': plazo === 72}">
+                            72
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 84"
+                            [ngClass]="{'botonSeleccionado': plazo === 84}">
+                            84
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 96"
+                            [ngClass]="{'botonSeleccionado': plazo === 96}">
+                            96
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 108"
+                            [ngClass]="{'botonSeleccionado': plazo === 108}">
+                            108
+                        </div>
+                        <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 120"
+                            [ngClass]="{'botonSeleccionado': plazo === 120}">
+                            120
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 row justify-content-center align-items-center mt-5">
+                <h3>Cuota</h3>
+                <div class="row col-6 bg-white cuotas">
+                    <div class="col-6 fs-3 fw-bold">
+                        {{ calcularCuota(item.price - 1000, plazo)| currency:'EUR' }}/mes
+                        <div class="col-12 fw-bold fs-5">
+                            TIN 7,99 %
+                        </div>
+                    </div>
+                    <div
+                        class="col-6 bg-success d-flex text-white align-items-center justify-content-center fs-4 fw-bold">
+                        Super ventas
+                    </div>
+                    <div class="col-12 row mt-2">
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+                            <p class=""><i class="fas fa-solid fa-check text-success"></i> 1 año de garantía premium</p>
+                            <p class=""><i class="fas fa-solid fa-check text-success"></i> Sin permanencia</p>
+                            <p class=""><i class="fas fa-solid fa-check text-success"></i> Coche de sustitución</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 textoPequeño mt-4">
+                <p>Entrada inicial {{entradaInicial || 0}} €. Duración {{plazo}} meses. Cuota mensual {{cuota}} €. TIN
+                    7,99 %.
+                    Cantidad a financiar {{item.price - 1000}} €, incluido 1 año de Garantía Premium.
+                    Las cuotas incluyen la comisión de apertura y seguro de crédito.
+                    Amortización desde el primer día con penalización del 1% sobre la cantidad a amortizar (3% para
+                    empresas).
+                </p>
+            </div>
+            <button type="button" class="btn btn-success meInteresa col-12">Quiero esta financiación</button>
+        </div>
+        <div class="row mt-5 textoReservarInfo">
+            <h2 class="text-center tituloInfoReservar">El proceso de compra de un coche en HotCars</h2>
+            <div class="col-3">
+                <span class="numbers fs-2">1</span>
+                <p>Reserva el coche que se ajuste a ti. Puedes hacerlo de manera online o acudir a cualquiera de
+                    nuestros
+                    concesionarios. En cualquiera de las dos opciones, un comercial te ayudará para guiarte en un
+                    proceso de
+                    compra ágil y sencillo.</p>
+            </div>
+            <div class="col-3">
+                <span class="numbers fs-2">2</span>
+                <p>Elige la forma de pago: puedes abonarlo al contado o financiarlo directamente con nosotros a tu
+                    medida,
+                    incluso sin entrada. Además, podrás añadir hasta 4 años de garantía, la cobertura más amplia del
+                    mercado; un seguro de crédito y un seguro de siniestro total y robo.</p>
+            </div>
+            <div class="col-3">
+                <span class="numbers fs-2">3</span>
+                <p>Acude a uno de nuestros concesionarios para ver y probar tu nuevo coche o recíbelo directamente en tu
+                    casa. Te damos el mejor periodo de prueba: tienes 15 días o 1.000 kilómetros.</p>
+            </div>
+            <div class="col-3">
+                <span class="numbers fs-2">4</span>
+                <p>¡Ya puedes disfrutar de tu nuevo coche!</p>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <h2 class="text-center tituloInfoReservar">Puedes encontrar este vehículo en </h2>
+            <div class="col-6 mt-4">
+                <h3 class="text-start tituloInfoReservar">HotCars {{item.name}}</h3>
+                <span class="text-start textosContacto fw-bold">
+                    <i class="fas fa-regular fa-phone text-start text-danger"></i>
+                    967 439 021
+                </span>
+                <span class="text-start textosContacto fw-bold">
+                    <i class="fas fa-brands fa-whatsapp text-start text-danger"></i>
+                    677 539 231
+                </span>
+                <span class="text-start textosContacto fw-bold">
+                    <i class="fas fa-solid fa-map text-start text-danger"></i>
+                    <a href="{{item.localizacion}}" alt="lugar del concesionario" id="lugarConcesionario"> Pulsa para abrir
+                        google maps</a>
+                </span>
+
+                <table class="table table-striped table-hover ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Lunes a viernes</th>
+                            <th scope="col">Sábado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09:00 a 14:00</td>
+                            <td>10:00 a 14:00</td>
+                        </tr>
+                        <tr>
+                            <td>16:00 a 20:00</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success meInteresa col-12">Quiero pedir una cita</button>
+            </div>
+            <div class="col-6 mt-4">
+                <iframe
+                    [src]="sanitizedUrl"
+                    width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
     </div>
+
+</div>
