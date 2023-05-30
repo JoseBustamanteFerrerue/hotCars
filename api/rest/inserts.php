@@ -95,3 +95,23 @@ function anyadirFavorito ($dbConn, $data) {
     header("HTTP/1.1 200 OK");
     exit();
 }
+
+function reservar ($dbConn, $data) {
+    $sql = $dbConn->prepare("INSERT reservas (idUser, idCar, fecha_reserva)
+    VALUES (:idUser, :idCar, NOW());");
+   // Realizar la preparación de la consulta a la base de datos
+   $sql->bindValue(':idUser', $data->idUser);
+   $sql->bindValue(':idCar', $data->idCar);
+   $sql->execute();
+   $sql->setFetchMode(PDO::FETCH_ASSOC);
+   header("HTTP/1.1 200 OK");
+
+   // Actualizar estado del coche
+   $sql = $dbConn->prepare("UPDATE cars SET estadoReserva = 1 WHERE id = :idCar;");
+   // Realizar la preparación de la consulta a la base de datos
+   $sql->bindValue(':idCar', $data->idCar);
+   $sql->execute();
+   $sql->setFetchMode(PDO::FETCH_ASSOC);
+   header("HTTP/1.1 200 OK");
+   exit();
+}

@@ -75,6 +75,16 @@ export class VerYComprarService {
         item.idCar = response
         return item
       })
+
+      this.resp = this.resp.map(function (item) {
+        for (const ite of item.idCar) {
+          
+          if (ite.idCar === item.id) {
+            item.esFavorito = true;
+          }
+        }
+        return item
+      })
       console.log(this.resp)
     })
   }
@@ -89,7 +99,6 @@ export class VerYComprarService {
             array.push(item.combustible)
           } 
         }
-        console.log(array)
         this.desplegableCombustible = array
       })
   }
@@ -104,7 +113,6 @@ export class VerYComprarService {
             array.push(item.carroceria)
           } 
         }
-        console.log(array)
         this.desplegableCarroceria = array
       })
   }
@@ -213,6 +221,7 @@ export class VerYComprarService {
     if (usuarioString) {
       usuario = JSON.parse(usuarioString);
     }
+    console.log(usuario.id + ' ' + item.id)
     
     this.http.delete<any>('http://localhost/rest/post.php?idUser=' + usuario.id + '&&idCar=' + item.id).subscribe(
       response => {

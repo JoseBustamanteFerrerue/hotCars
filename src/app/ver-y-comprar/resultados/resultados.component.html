@@ -4,13 +4,14 @@
         <i class="fas fa-thin fa-star" (click)="anyadirFavorito(item)" id="{{item.id}}"></i>
       </div> -->
 
-      <div class="divEstrella" *ngFor="let fav of item.idCar">
-        <i class="fas fa-thin fa-star" (click)="anyadirFavorito(item)" [ngClass]="{'estrella': fav.idCar == item.id}"></i>
+      <div class="divEstrella" [ngClass]="item.esFavorito ? 'divEstrella estrella' : 'divEstrella'" (click)="anyadirFavorito(item)">
+        <i class="fas fa-thin fa-star"></i>
       </div>
       
-      <div class="divEstrella" *ngIf="!item.idCar">
+      
+     <!--  <div class="divEstrella" *ngIf="!item.idCar || item.idCar.length === 0">
         <i class="fas fa-thin fa-star" (click)="anyadirFavorito(item)"></i>
-      </div>
+      </div> -->
 
         <div class="card carta" (click)="cambiarAcocheSeleccionado(item)">      
             <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div>   
@@ -29,7 +30,7 @@
                         <p class="card-text">{{item.nameVersion}}</p>
                     </div>
                     <div class="col-6">
-                        <p class="card-text"><small>{{item.price / 56 | currency:'EUR'}}/MES</small></p>
+                        <p class="card-text"><small>{{ calcularCuota(item.price - 1000, plazo)| currency:'EUR' }}/mes</small></p>
                     </div>
                 </div>
                 

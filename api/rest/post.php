@@ -3,12 +3,22 @@ include "config.php";
 include "utils.php";
 include "filters.php";
 include "inserts.php";
+include "deletes.php";
 
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+  // Las solicitudes OPTIONS se utilizan para verificar si el servidor permite la solicitud CORS
+  header('Access-Control-Allow-Origin: http://localhost:4200');
+  header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+  header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+  header('HTTP/1.1 200 OK');
+  exit;
+}
 
 $dbConn =  connect($db);
 
@@ -84,6 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   if ($requestUri === '/rest/post.php/anyadirFavorito') {
     anyadirFavorito($dbConn, $data);
+  }
+
+  if ($requestUri === '/rest/post.php/reservar') {
+    reservar($dbConn, $data);
   }
 
 }

@@ -14,10 +14,15 @@ export class ResultadosComponent implements OnInit {
   pages: number[] = [];
   isStarred: boolean = false;
   favoritos: any;
+  entradaInicial: any;
+  plazo: number = 120;
+  cuota: any;
+  selectedItem: number | null = null;
 
   constructor (private verYcomprar: VerYComprarService, private router: Router) {}
 
   ngOnInit () {
+    this.esFavorito()
   }
   
   get currentItems() {
@@ -56,14 +61,36 @@ export class ResultadosComponent implements OnInit {
           yaExiste = true;
         }
     }
-    
+
     if (yaExiste) {
-      
+      this.verYcomprar.deleteFavorito(item)
+      item.esFavorito = false;
     } else {
       this.verYcomprar.anyadirFavorito(item)
-    }
-    
-    
+      item.esFavorito = true
+    } 
   }
-  
+
+  esFavorito () {
+
+  }
+
+  calcularCuota(item: any, plazo: any): number {
+    const interestRate = 0.08 / 12;
+    const numPayments = plazo;
+    const principal = item;
+    if (this.entradaInicial) {
+      let principalConEntrada = principal - this.entradaInicial;
+
+      const cuota = (principalConEntrada * interestRate * Math.pow(1 + interestRate, numPayments)) /
+                  (Math.pow(1 + interestRate, numPayments) - 1);
+      this.cuota = cuota
+      return cuota;
+    }
+
+    const cuota = (principal * interestRate * Math.pow(1 + interestRate, numPayments)) /
+                  (Math.pow(1 + interestRate, numPayments) - 1);
+    this.cuota = cuota
+    return cuota;
+  } 
 }
