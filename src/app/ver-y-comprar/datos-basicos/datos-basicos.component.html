@@ -1,0 +1,88 @@
+<div class="row mt-5">
+    <h1>Datos básicos</h1>
+    <div class="col-12 mt-3 row">
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Matriculación</h2>
+            <span>{{item.anyo}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Kilometraje</h2>
+            <span>{{item.km + ' KM'}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Combustible</h2>
+            <span>{{item.combustible}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Transmisión</h2>
+            <span>{{item.caja_de_cambios}}</span>
+        </div>
+        <!--  -->
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Potencia</h2>
+            <span>{{item.cv + ' CV'}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Estado del coche</h2>
+            <span>{{item.stateCar}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Distintivo</h2>
+            <span>{{item.distintivo_ambiental}}</span>
+        </div>
+        <div class="col-3 cuadriculaDatosBasicos">
+            <h2>Carroceria</h2>
+            <span>{{item.carroceria}}</span>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-6">
+        <div class="car-container">
+            <img src="./assets/imgs/coche-lateral.webp" alt="Coche" class="car-image">
+            <div class="car-width-line">
+            </div>
+            <span>
+                {{item.medida_largo + ' metros'}}
+            </span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="car-container">
+            <img src="./assets/imgs/coche-frontal.webp" alt="Coche" class="car-image">
+            <div class="car-width-line">
+            </div>
+            <div class="car-width-line-derecha d-flex align-items-center">
+                <span>{{item.medida_altura + 'm'}}</span>
+            </div>
+            <span>
+                {{item.medida_ancho + ' metros'}}
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-5">
+    <div class="col-4 cuadriculaDatosBasicos pesos">
+        <div class="iconos">
+            <i class="fas fa-weight-hanging fa-2x" style="color: red;"></i>
+        </div>
+        <h2>Peso del vehiculo</h2>
+        <span>{{item.peso + 'kg'}}</span>
+    </div>
+    <div class="col-4 cuadriculaDatosBasicos pesos">
+        <div class="iconos">
+            <i class="fas fa-gas-pump fa-2x" style="color: red;"></i>
+        </div>
+        <h2>Depósito de combustible</h2>
+        <span>{{item.deposito + ' litros'}}</span>
+    </div>
+    <div class="col-4 cuadriculaDatosBasicos pesos">
+        <div class="iconos">
+            <i class="fas fa-car-side fa-2x" style="color: red;"></i>
+        </div>
+        <h2>Maletero</h2>
+        <span>{{item.maletero + ' litros'}}</span>
+    </div>
+</div>

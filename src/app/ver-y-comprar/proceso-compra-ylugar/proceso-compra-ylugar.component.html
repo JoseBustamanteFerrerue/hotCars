@@ -1,0 +1,74 @@
+<div class="row mt-5 textoReservarInfo">
+    <h2 class="text-center tituloInfoReservar">El proceso de compra de un coche en HotCars</h2>
+    <div class="col-3">
+        <span class="numbers fs-2">1</span>
+        <p>Reserva el coche que se ajuste a ti. Puedes hacerlo de manera online o acudir a cualquiera de
+            nuestros
+            concesionarios. En cualquiera de las dos opciones, un comercial te ayudará para guiarte en un
+            proceso de
+            compra ágil y sencillo.</p>
+    </div>
+    <div class="col-3">
+        <span class="numbers fs-2">2</span>
+        <p>Elige la forma de pago: puedes abonarlo al contado o financiarlo directamente con nosotros a tu
+            medida,
+            incluso sin entrada. Además, podrás añadir hasta 4 años de garantía, la cobertura más amplia del
+            mercado; un seguro de crédito y un seguro de siniestro total y robo.</p>
+    </div>
+    <div class="col-3">
+        <span class="numbers fs-2">3</span>
+        <p>Acude a uno de nuestros concesionarios para ver y probar tu nuevo coche o recíbelo directamente en tu
+            casa. Te damos el mejor periodo de prueba: tienes 15 días o 1.000 kilómetros.</p>
+    </div>
+    <div class="col-3">
+        <span class="numbers fs-2">4</span>
+        <p>¡Ya puedes disfrutar de tu nuevo coche!</p>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <h2 class="text-center tituloInfoReservar">Puedes encontrar este vehículo en </h2>
+    <div class="col-6 mt-4">
+        <h3 class="text-start tituloInfoReservar">HotCars {{item.item.name}}</h3>
+        <span class="text-start textosContacto fw-bold">
+            <i class="fas fa-regular fa-phone text-start text-danger"></i>
+            967 439 021
+        </span>
+        <span class="text-start textosContacto fw-bold">
+            <i class="fas fa-brands fa-whatsapp text-start text-danger"></i>
+            677 539 231
+        </span>
+        <span class="text-start textosContacto fw-bold">
+            <i class="fas fa-solid fa-map text-start text-danger"></i>
+            <a href="{{item.item.localizacionLink}}" alt="lugar del concesionario" id="lugarConcesionario"> 
+                Pulsa para abrir google maps
+            </a>
+        </span>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th scope="col">Lunes a viernes</th>
+                    <th scope="col">Sábado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00 a 14:00</td>
+                    <td>10:00 a 14:00</td>
+                </tr>
+                <tr>
+                    <td>16:00 a 20:00</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-success meInteresa col-12" (click)="pedirCita()">Quiero pedir una cita</button>
+    </div>
+    <div class="col-6 mt-4">
+        <iframe
+            [src]="item.sanitizedUrl"
+            width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>

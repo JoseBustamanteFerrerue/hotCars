@@ -1,0 +1,109 @@
+<div class="col-8">
+    <!-- Aquí ira el carrusel -->
+    <img src="{{item.img}}" [alt]="item.nameMark" class="imgCompra">
+</div>
+<div class="col-4">
+    <div class="row text-start">
+        <div class="col-12">
+            <h2 class="">{{item.nameMark + ' ' + item.nameModel}}</h2>
+            <h2 class="">{{ item.nameVersion }}</h2>
+        </div>
+    </div>
+    <div class="row text-start">
+        <div class="col-12">
+            <h3 class="tituloCavallosVersion">{{ item.cv + ' CV ' + item.nameVersion}}</h3>
+        </div>
+    </div>
+    <div class="row text-start">
+        <div class="col-12 textInfoCar mt-3">
+            <span class="bg-gray">{{item.anyo + ' '}}</span>
+            <span class="bg-gray">{{item.km | number}} km </span>
+            <span class="bg-gray">{{item.combustible + ' '}}</span>
+            <span class="bg-gray">{{item.caja_de_cambios + ' '}}</span>
+            <span class="bg-gray">{{item.num_plazas + ' plazas'}}</span>
+        </div>
+    </div>
+    <div class="row text-start">
+        <div class="col-12 textoPrecio mt-3">
+            <div class="row">
+                <div class="col-6 precioFinanciado row">
+                    <div class="textoCuadrado col-12">
+                        Desde
+                        <p class="precioFinanciaSpan">{{calcularCuota(item.price - 1000, plazo) |
+                            currency:'EUR'}}</p>
+                    </div>
+                    <div class="textoCuadrado col-12">
+                        <a (click)="scrollToSection()" id="calcularCuota">Calcular cuota <i
+                                class="fas fa-arrow-right"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-6 row precioFinancia">
+                    <div class="col-12 textoCuadrado">
+                        Precio financiado
+                        <span>{{item.price - 1000 | currency:'EUR'}}</span>
+                    </div>
+                    <div class="col-12 textoCuadrado">
+                        Precio al contado
+                        <span>{{item.price | currency:'EUR'}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-3 row">
+                <div class="col-4 d-flex justify-content-center align-items-center">
+                    <img src="./assets/imgs/hotCars.png" width="100" height="100" alt="gfsdg">
+                </div>
+                <div class="col-8 row">
+                    <span class="textoGarantias col-12">
+                        <span class="tick">
+                            <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                            </svg>
+                        </span>
+                        <span class="gratis">Gratis</span> revisión 250 puntos
+                    </span>
+                    <span class="textoGarantias col-12">
+                        <span class="tick">
+                            <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                            </svg>
+                        </span>
+                        <span class="gratis">Gratis</span> garantía legal 1 año
+                    </span>
+                    <span class="textoGarantias col-12">
+                        <span class="tick">
+                            <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                            </svg>
+                        </span>
+                        <span class="gratis">Gratis</span> certificación de estado
+                    </span>
+                    <span class="textoGarantias col-12">
+                        <span class="tick">
+                            <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12.783 4.04a.25.25 0 0 1 0 .354l-6.5 6.5a.25.25 0 0 1-.354 0l-3.5-3.5a.25.25 0 0 1 .354-.354l3.146 3.147 6.146-6.147a.25.25 0 0 1 .354 0z" />
+                            </svg>
+                        </span>
+                        <span class="gratis">Gratis</span> 15 días o 1000km de prueba
+                    </span>
+                </div>
+
+                <div class="col-12 mt-3 gastos text-">
+                    <span>Gastos de gestión y logística 390 €*.</span>
+                    <p>*Consulta condiciones con tu asesor comercial.
+                        Importante: si entregas <span class="gratis">tu vehículo a cambio</span>, el importe
+                        acordado <span class="gratis">se descontará del precio total.</span></p>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success meInteresa col-12" (click)="reservar(item.id)">Me interesa</button>
+        </div>
+    </div>
+</div>

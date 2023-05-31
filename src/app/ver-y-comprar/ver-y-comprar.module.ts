@@ -8,7 +8,10 @@ import { VerComprarPageComponent } from './ver-comprar-page/ver-comprar-page.com
 import { ResultadosComponent } from './resultados/resultados.component';
 import { ComprarComponent } from './comprar/comprar.component';
 import { ReservarComponent } from './reservar/reservar.component';
-
+import { InfoPrincipalComponent } from './info-principal/info-principal.component';
+import { DatosBasicosComponent } from './datos-basicos/datos-basicos.component';
+import { ProcesoCompraYlugarComponent } from './proceso-compra-ylugar/proceso-compra-ylugar.component';
+import { FinanciacionComponent } from './financiacion/financiacion.component';
 
 
 @NgModule({
@@ -17,9 +20,13 @@ import { ReservarComponent } from './reservar/reservar.component';
    VerComprarPageComponent,
    ResultadosComponent,
    ComprarComponent,
-   ReservarComponent
+   ReservarComponent,
+   InfoPrincipalComponent,
+   DatosBasicosComponent,
+   ProcesoCompraYlugarComponent,
+   FinanciacionComponent
   ],
-exports: [
+  exports: [
   VerComprarPageComponent
   ],
   imports: [

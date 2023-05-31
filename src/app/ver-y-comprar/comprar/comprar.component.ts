@@ -11,10 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ComprarComponent {
   car: any;
-  entradaInicial: any;
-  plazo: number = 120;
-  cuota: any;
   sanitizedUrl: any;
+  data: Object = {};
 
   constructor(private route: ActivatedRoute, private verYcomprar: VerYComprarService, 
     private elementRef: ElementRef, private sanitizer: DomSanitizer, private router: Router) { }
@@ -26,41 +24,17 @@ export class ComprarComponent {
         .subscribe(resp => {
           this.car = resp;
           this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.car[0].localizacion);
+          this.data = {
+            item: this.car[0],
+            sanitizedUrl: this.sanitizedUrl
+          }
         });
     });
     
   }
 
-  calcularCuota(item: any, plazo: any): number {
-    const interestRate = 0.08 / 12;
-    const numPayments = plazo;
-    const principal = item;
-    if (this.entradaInicial) {
-      let principalConEntrada = principal - this.entradaInicial;
-
-      const cuota = (principalConEntrada * interestRate * Math.pow(1 + interestRate, numPayments)) /
-                  (Math.pow(1 + interestRate, numPayments) - 1);
-      this.cuota = cuota
-      return cuota;
-    }
-
-    const cuota = (principal * interestRate * Math.pow(1 + interestRate, numPayments)) /
-                  (Math.pow(1 + interestRate, numPayments) - 1);
-    this.cuota = cuota
-    return cuota;
-  }
-
-  scrollToSection() {
-    const section = this.elementRef.nativeElement.querySelector('#seccionCuota');
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-
   reservar (id: any) {
     this.router.navigate(['/reservar', id]);
-  }
-
-  pedirCita () {
-    window.location.href = 'contacto'
   }
   
 }

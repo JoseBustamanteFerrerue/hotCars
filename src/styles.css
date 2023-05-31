@@ -508,11 +508,7 @@ footer {
   
   .star-selected {
     color: #000000; /* Color negro de la estrella seleccionada */
-  }
-  
-  
-  
-
+  } 
   
 @media (max-width: 770px){
     .patroFondo {

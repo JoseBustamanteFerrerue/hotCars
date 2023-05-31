@@ -1,0 +1,86 @@
+<div class="row mt-5 financiacion" id="seccionCuota">
+    <h1>Financiación</h1>
+    <div class="col-12 mt-3">
+        <form class="row">
+            <div class="row col-5">
+                <label for="entradaInicial" class="text-start entra">Entrada inicial</label>
+                <input type="number" class="form-control mt-1" id="entradaInicial" [(ngModel)]="entradaInicial"
+                    name="entradaInicial" placeholder="0€">
+            </div>
+            <div class="row col-7">
+                <label for="plazos" class="text-start entra">Plazos (meses)</label>
+                <button class="col-1 disabled cuadrosFinancia mt-1">
+                    24
+                </button>
+                <button class="col-1 cuadrosFinancia mt-1" (click)="plazo = 36"
+                    [ngClass]="{'botonSeleccionado': plazo === 36}">
+                    36
+                </button>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 48"
+                    [ngClass]="{'botonSeleccionado': plazo === 48}">
+                    48
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 60"
+                    [ngClass]="{'botonSeleccionado': plazo === 60}">
+                    60
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 72"
+                    [ngClass]="{'botonSeleccionado': plazo === 72}">
+                    72
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 84"
+                    [ngClass]="{'botonSeleccionado': plazo === 84}">
+                    84
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 96"
+                    [ngClass]="{'botonSeleccionado': plazo === 96}">
+                    96
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 108"
+                    [ngClass]="{'botonSeleccionado': plazo === 108}">
+                    108
+                </div>
+                <div class="col-1 cuadrosFinancia mt-1" (click)="plazo = 120"
+                    [ngClass]="{'botonSeleccionado': plazo === 120}">
+                    120
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 row justify-content-center align-items-center mt-5">
+        <h3>Cuota</h3>
+        <div class="row col-6 bg-white cuotas">
+            <div class="col-6 fs-3 fw-bold">
+                {{ calcularCuota(item.price - 1000, plazo)| currency:'EUR' }}/mes
+                <div class="col-12 fw-bold fs-5">
+                    TIN 7,99 %
+                </div>
+            </div>
+            <div
+                class="col-6 bg-success d-flex text-white align-items-center justify-content-center fs-4 fw-bold">
+                Super ventas
+            </div>
+            <div class="col-12 row mt-2">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6">
+                    <p class=""><i class="fas fa-solid fa-check text-success"></i> 1 año de garantía premium</p>
+                    <p class=""><i class="fas fa-solid fa-check text-success"></i> Sin permanencia</p>
+                    <p class=""><i class="fas fa-solid fa-check text-success"></i> Coche de sustitución</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 textoPequeño mt-4">
+        <p>Entrada inicial {{entradaInicial || 0}} €. Duración {{plazo}} meses. Cuota mensual {{cuota}} €. TIN
+            7,99 %.
+            Cantidad a financiar {{item.price - 1000}} €, incluido 1 año de Garantía Premium.
+            Las cuotas incluyen la comisión de apertura y seguro de crédito.
+            Amortización desde el primer día con penalización del 1% sobre la cantidad a amortizar (3% para
+            empresas).
+        </p>
+    </div>
+    <button type="button" class="btn btn-success meInteresa col-12">Quiero esta financiación</button>
+</div>
