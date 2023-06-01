@@ -1,62 +1,146 @@
-<div class="row rowFullForm">
-    <div class="col-md-6 offset-md-3">
-      <form (ngSubmit)="mostrarForms = mostrarForms + 1">
-        <div *ngIf="mostrarForms == 0">
-          <div class="row">
+<div class="fondo" id="tasar">
+  <div class="container fondoContainer d-flex justify-content-center align-items-center">
+    <div class="row">
+      <h1 class="text-white fs-1 fw-bold">Vender mi coche</h1>
+      <p class="text-white fw-bold fs-4">Descubre cuánto vale tu coche con nuestro simulador online o en cualquiera de
+        nuestros concesionarios. En HotCars
+        te ofrecemos la mejor tasación y nos encargamos de todos los trámites.</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row rowFullForm">
+    <div class="col-12 columnas">
+      <h2>¿Cuánto vale mi coche?</h2>
+      <span>Tasa tu coche gratis, nosotros nos encargamos de todos los trámites en la venta.</span>
+      <p id="pasos" class="mt-3">Paso {{ mostrarForms }} de 3</p>
+      <div class="progresoPadre">
+        <div class="progress progreso mt-1">
+          <div class="progress-bar" [style.width.%]="progress">
+            <span class="progress-label text-white">{{ progress }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="mostrarForms == 1">
+        <form (ngSubmit)="siguienteForm()" novalidate [formGroup]="myForm">
+          <div class="row mt-5">
             <div class="form-group col-md-6  formularioVender">
-              <label for="nombre" class="text-black">Matrícula:</label>
-              <input type="text" class="form-control" id="nombre" placeholder="1234ABC">
+              <label for="matricula">Matricula:</label>
+              <input type="text" class="form-control input100" id="matricula" formControlName="matricula" required
+                placeholder="1234HLJ">
+              <div *ngIf="matricula?.invalid && (matricula?.dirty || matricula?.touched)" class="text-danger">
+                <div *ngIf="matricula?.hasError('required')">La matrícula es requerida.</div>
+                <div *ngIf="matricula?.hasError('pattern')">La matrícula debe tener un formato válido.</div>
+              </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
-              <label for="apellido" class="text-black">Kilómetros:</label>
-              <input type="text" class="form-control" id="apellido" placeholder="20000">
+              <label for="kilometros" class="text-black">Kilómetros:</label>
+              <input type="number" class="form-control" id="kilometros" placeholder="20000" formControlName="kilometros"
+                required>
+              <div *ngIf="kilometros?.invalid && (kilometros?.dirty || kilometros?.touched)" class="text-danger">
+                <div *ngIf="kilometros?.hasError('required')">Los kilómetros son requeridos.</div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-6  formularioVender">
               <label for="anyoMatriculacion" class="text-black">Año de matriculación</label>
-            <select name="anyoMatriculacion" id="anyoMatriculacion" class="form-select form-control" style="color: black!important;">
+              <select name="anyoMatriculacion" id="anyoMatriculacion" class="form-select form-control"
+                style="color: black!important;" formControlName="anyoMatriculacion" required>
                 <option value="" disabled selected>Seleccione un año</option>
                 <option value="2022">2022</option>
-            </select>
+              </select>
+              <div *ngIf="anyoMatriculacion?.invalid && (anyoMatriculacion?.dirty || anyoMatriculacion?.touched)"
+                class="text-danger">
+                <div *ngIf="anyoMatriculacion?.hasError('required')">El año de matriculación es requerido.</div>
+              </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
-              <label for="accidente" class="text-black">Tuvo un accidente grave?</label>
-              <select name="accidente" id="accidente" class="form-select form-control" style="color: black!important;">
+              <label for="siniestroTotal" class="text-black">Tuvo un siniestro total?</label>
+              <select name="siniestroTotal" id="siniestroTotal" class="form-select form-control"
+                style="color: black!important;" formControlName="siniestroTotal" required>
+                <option value="" disabled selected>Seleccione una opción</option>
                 <option value="Si">Si</option>
                 <option value="No" selected>No</option>
               </select>
+              <div *ngIf="siniestroTotal?.invalid && (siniestroTotal?.dirty || siniestroTotal?.touched)"
+                class="text-danger">
+                <div *ngIf="siniestroTotal?.hasError('required')">Esta opción es requerida.</div>
+              </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
+          <button type="submit" class="btn btn-primary botones fs-5 fw-bold"
+            [disabled]="myForm.invalid">Siguiente</button>
+        </form>
+      </div>
 
-        <div *ngIf="mostrarForms == 1">
-          <div class="row">
+      <div *ngIf="mostrarForms == 2">
+        <form (ngSubmit)="siguienteForm()" novalidate [formGroup]="myForm2">
+          <div class="row mt-5">
             <div class="form-group col-md-6  formularioVender">
-              <label for="nombre">Nombre:</label>
-              <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+              <label for="name">Nombre:</label>
+              <input type="text" class="form-control input100" id="name" formControlName="name" required
+                placeholder="Su nombre" name="name">
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                <div *ngIf="name?.hasError('required')">El nombre es requerido.</div>
+                <div *ngIf="name?.errors?.['minlength']">El nombre debe tener al menos 4 caracteres.</div>
+                <div *ngIf="name?.errors?.['sinSignos']">El nombre no debe contener signos.</div>
+              </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
-              <label for="apellido">Apellido:</label>
-              <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido">
-            </div>
+              <label for="primerApellido" class="text-black">Año de matriculación</label>
+              <input type="text" class="form-control" id="primerApellido" placeholder="Su primer apellido" formControlName="primerApellido"
+              required>
+              <div *ngIf="primerApellido?.invalid && (primerApellido?.dirty || primerApellido?.touched)"
+                class="text-danger">
+                <div *ngIf="primerApellido?.hasError('required')">El primer apellido es requerido.</div>
+                <div *ngIf="primerApellido?.errors?.['minlength']">El nombre debe tener al menos 4 caracteres.</div>
+                <div *ngIf="primerApellido?.errors?.['sinSignos']">El nombre no debe contener signos.</div>
+              </div>
+            </div>          
           </div>
           <div class="row">
             <div class="form-group col-md-6  formularioVender">
-              <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+              <label for="email" class="text-black">Kilómetros:</label>
+              <input type="email" class="form-control" id="email" placeholder="20000" formControlName="email"
+                required>
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+                <div *ngIf="email?.hasError('required')">El email es requerido.</div>
+                <div *ngIf="email?.errors?.['email']">El email debe tener un formato válido.</div>
+              </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
-              <label for="telefono">Teléfono:</label>
-              <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono">
+              <label for="fecha_nacimiento" class="text-black">Tuvo un siniestro total?</label>
+              <input type="date" class="form-control" id="fecha_nacimiento" formControlName="fecha_nacimiento" required>
+              <div *ngIf="fecha_nacimiento?.invalid && (fecha_nacimiento?.dirty || fecha_nacimiento?.touched)"
+                class="text-danger">
+                <div *ngIf="fecha_nacimiento?.hasError('required')">Esta opción es requerida.</div>
+              </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
+          <div class="row"  *ngFor="let item of desplegableProvincias">
+            <div class="form-group col-12 formularioVender">
+              <label for="provincia" class="text-black">un siniestro total?</label>
+              <select name="provincia" id="provincia" class="form-select form-control"
+                style="color: black!important;" formControlName="provincia" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="{{item.provincia}}">{{ item.provincia }}</option>
+              </select>
+              <div *ngIf="myForm.controls?.['provincia']?.invalid && (myForm.controls?.['provincia']?.dirty || myForm.controls?.['provincia']?.touched)"
+                class="text-danger">
+                <div *ngIf="myForm.controls?.['provincia']?.hasError('required')">Esta opción es requerida.</div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary botones fs-5 fw-bold"
+            [disabled]="myForm2.invalid">Siguiente</button>
+        </form>
+      </div>
 
-        <div *ngIf="mostrarForms == 2">
-          <div class="row">
+      <div *ngIf="mostrarForms == 3">
+        <form (ngSubmit)="siguienteForm()" novalidate [formGroup]="myForm3">
+          <div class="row mt-5">
             <div class="form-group col-md-6  formularioVender">
               <label for="coche" class="text-black">Tuvo un accidente grave?</label>
               <select name="coche" id="coche" class="form-select form-control" style="color: black!important;">
@@ -79,9 +163,171 @@
               <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono">
             </div>
           </div>
-          <button type="button" class="btn btn-primary" (click)="enviarDatosForm()">Enviar</button>
+          <button type="button" class="btn btn-primary botones fs-5 fw-bold" (click)="enviarDatosForm()">Enviar</button>
+        </form>
+      </div>
+
+      <div class="row mt-5">
+        <p class="col-12 text-start textoNormal">Requisitos mínimos que debe tener el coche para poder ser valorado por
+          el departamento: Vehículos del 2009 en
+          adelante. Con menos de 180.000 kms. Que no hayan sufrido ningún golpe estructural. Todo el mantenimiento
+          realizado como marca el fabricante. No haya sufrido averías importantes. Si no cumples los requisitos mínimos
+          pero compras un coche a cambio, ¡Tasamos y compramos tu coche!
+        </p>
+        <p class="col-12 text-start textoPequenyo">*(solo se valorarán aquellos vehículos que no hayan sufrido ningún
+          golpe estructural,
+          o que no hayan sufrido averías importantes y/o manipulaciones mecánicas)
+        </p>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <h3 class="col-12">¿Quieres vender tu coche y conseguir el mejor precio?</h3>
+        <span class="col-12">Pide cita en uno de nuestros concesionarios y te compramos el coche al momento.</span>
+        <button type="button" class="btn btn-primary botones fs-5 fw-bold col-2 mt-3">Pedir cita</button>
+      </div>
+      <!--  -->
+      <div class="row justify-content-center align-items-center mt-5">
+        <h3 class="mt-3">Ventajas de vender tu coche en HotCars</h3>
+        <div class="col-4">
+          <div class="imgs">
+            <img src="./assets/imgs/pagoActo.webp" alt="gfsdg">
+          </div>
+          <span class="fs-4 fw-bold">Pago en el acto</span>
         </div>
-      </form>
+        <div class="col-4">
+          <div class="imgs">
+            <img src="./assets/imgs/tasacion-nivel-nacional.webp" alt="españa">
+          </div>
+          <span class="fs-4 fw-bold">Tasación en todo el territorio nacional</span>
+        </div>
+        <div class="col-4">
+          <div class="imgs">
+            <img src="./assets/imgs/transparencia-seguridad.webp" alt="transparencia">
+          </div>
+          <span class="fs-4 fw-bold">Transparencia y seguridad</span>
+        </div>
+      </div>
+
     </div>
   </div>
-  
+</div>
+
+<!--  -->
+<div class="container-fluid venderDonde">
+  <div class="container">
+    <div class="row mt-5 venderDondeHijo">
+      <h3 class="fw-bold fs-2">¿Dónde vender mi coche?</h3>
+      <p class="text-black fw-bold mt-3">¿Pensando en vender tu coche? Hazlo en HotCars. Tasamos tu vehículo en tan
+        solo 30 minutos con la mejor
+        valoración asegurada. Realiza tu tasación de forma online o en cualquiera de nuestros centros. Siempre hay uno
+        cerca de ti. Además, realizamos el pago y hacemos el cambio de titularidad en el acto. Incluso si todavía te
+        queda pagar alguna cuota de tu antiguo coche, gestionamos la reserva de dominio directamente con la
+        financiera. Y si quieres comprar uno de nuestros coches de ocasión, sobrevaloramos tu vehículo como parte del
+        pago.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container-xl">
+  <div class="row mt-5">
+    <h3 class="titulos">Todo lo que necesitas saber</h3>
+    <div class="col-12 mt-5">
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button fw-bold text-black fs-5" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseOne">
+              ¿Cómo se calcula la tasación?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body text-start">
+              Nuestro equipo de profesionales propio determina el valor del coche basándose tanto en factores como la
+              marca, el modelo, el equipamiento, la antigüedad y el kilometraje del vehículo como la demanda del
+              mercado.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed fw-bold text-black fs-5" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseTwo">
+              ¿Cómo pido cita?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body text-start">
+              Puedes pedir cita de manera online, en el apartado contacto y nosotros te responderemos o acudiendo a
+              cualquiera de nuestros concesionarios.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed fw-bold text-black fs-5" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseThree">
+              ¿Qué documentación necesito?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body text-start">
+              Para vender tu coche necesitas recopilar una serie de documentos necesarios en el momento de la
+              transacción, como lo son el permiso de circulación y la ficha técnica del vehículo y el DNI y el
+              justificante de titularidad del propietario. Con el objetivo de agilizar el proceso, puedes llevarlos ya
+              preparados al concesionario en el momento de la transacción. En HotCars nos encargaremos de todo el
+              papeleo y sin sobrecoste para el cliente.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+            <button class="accordion-button collapsed fw-bold text-black fs-5" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseFour">
+              ¿Cuánto tardo en recibir el dinero después de vender mi coche?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingFour">
+            <div class="accordion-body text-start">
+              Recibirás el pago en tu banco en 48/72 horas desde que se finalice el proceso de venta.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+            <button class="accordion-button collapsed fw-bold text-black fs-5" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseFive">
+              ¿Cuáles son las ventajas de vender mi coche con HotCars?
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingFive">
+            <div class="accordion-body text-start">
+              Con HotCars no tienes que poner anuncios, citarte con posibles compradores, redactar un contrato de
+              compraventa o acudir a Tráfico para el cambio de titularidad. Ese será nuestro trabajo, por lo que la
+              venta de tu coche será inmediata.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fondo mt-5">
+  <div class="container fondoContainer d-flex justify-content-center align-items-center">
+    <div class="row">
+      <h1 class="text-black fs-1 fw-bold">Vende tu coche en HotCars</h1>
+      <a (click)="scrollToSection()"><button type="button" class="btn btn-success botones mt-5 fs-5 fw-bold">Tasar mi
+          coche</button></a>
+    </div>
+  </div>
+</div>

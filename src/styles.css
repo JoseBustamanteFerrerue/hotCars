@@ -77,13 +77,12 @@ nav {
 }
 
 
-.rowFullForm {
-    margin-bottom: 5%;
-    margin-top: 1px;
+.fondo {
     background-image: url("assets/imgs/contract.jpg");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
+    height: 35vh;
 }
 
 .contactos {

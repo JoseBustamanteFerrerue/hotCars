@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VenderFormComponent } from './vender-form/vender-form.component';
 import { VenderPageComponent } from './vender-page/vender-page.component';
-import { FormsModule } from '@angular/forms';
-
-
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgbProgressbarModule,
+    ReactiveFormsModule
   ]
 })
 export class VenderModule { }
