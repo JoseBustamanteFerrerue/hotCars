@@ -63,6 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getConsultas($dbConn);
     case isset($_GET['carPorId']):
       getCarPorId($dbConn);
+    case isset($_GET['desplegableProvincia']):
+      desplegableProvincias($dbConn);
+    case isset($_GET['marcas']):
+      getMarcas($dbConn);
     default:
       filters($dbConn);
     break;
@@ -98,6 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   if ($requestUri === '/rest/post.php/reservar') {
     reservar($dbConn, $data);
+  }
+
+  if ($requestUri === '/rest/post.php/tasar') {
+    tasar($dbConn, $data);
   }
 
 }

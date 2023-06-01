@@ -105,6 +105,16 @@ function getCarPorId ($dbConn) {
      exit();
 }
 
+function getMarcas ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT nameMark, nameModel, nameVersion, cv, cilindrada FROM mark");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
 function filters ($dbConn) {
     $carName = 'mark.nameMark';
     $nameModel = 'mark.nameModel';
@@ -208,6 +218,16 @@ function desplegableCombustible ($dbConn) {
 function desplegableCarroceria ($dbConn) {
     //Mostrar lista de post
     $sql = $dbConn->prepare("SELECT carroceria FROM cars");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function desplegableProvincias ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT provincia FROM provincias");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
