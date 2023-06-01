@@ -76,6 +76,16 @@ nav {
     align-items: center;
 }
 
+
+.rowFullForm {
+    margin-bottom: 5%;
+    margin-top: 1px;
+    background-image: url("assets/imgs/contract.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
 .contactos {
     width: 100%;
     font-size: 2rem;
