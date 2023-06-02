@@ -105,9 +105,23 @@ function getCarPorId ($dbConn) {
      exit();
 }
 
-function getMarcas ($dbConn) {
+function getMarcaId ($dbConn) {
     //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT nameMark, nameModel, nameVersion, cv, cilindrada FROM mark");
+    $sql = $dbConn->prepare("SELECT id, valor FROM mark WHERE nameMark = :nameMark AND nameModel = :nameModel AND nameVersion = :nameVersion;");
+    $sql->bindValue(':nameMark', $_GET['nameMark']);
+    $sql->bindValue(':nameModel', $_GET['nameModel']);
+    $sql->bindValue(':nameVersion', $_GET['nameVersion']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function getProvinciaId ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT id FROM provincias WHERE provincia = :provincia;");
+    $sql->bindValue(':provincia', $_GET['provincia']);
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
@@ -198,6 +212,18 @@ function desplegableModelo ($dbConn) {
     //Mostrar lista de post
     $sql = $dbConn->prepare("SELECT mark.nameModel FROM cars INNER JOIN mark ON cars.carName = mark.id WHERE mark.nameMark = :nameMark;");
     $sql->bindValue(':nameMark', $_GET['nameMark']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode( $sql->fetchAll());
+    exit();
+}
+
+function desplegableVersion ($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT id, nameVersion, cv FROM mark WHERE nameMark = :nameMark AND nameModel = :nameModel;");
+    $sql->bindValue(':nameMark', $_GET['nameMark']);
+    $sql->bindValue(':nameModel', $_GET['nameModel']);
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");

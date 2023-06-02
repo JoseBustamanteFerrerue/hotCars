@@ -117,20 +117,20 @@ function reservar ($dbConn, $data) {
 }
 
 function tasar ($dbConn, $data) {
-    $sql = $dbConn->prepare("INSERT coches_tasados (idMark, idProvincia, email, name, primer_apellido, edad, anyo, km, matricula, estadoCoche)
-    VALUES (:idUser, :idCar, :idMark, :idProvincia, :email, :name, :primer_apellido, :edad, :anyo, :km, :matricula, :estadoCoche);");
-   // Realizar la preparación de la consulta a la base de datos
-   $sql->bindValue(':idMark', $data->idMark);
-   $sql->bindValue(':idProvincia', $data->idProvincia);
-   $sql->bindValue(':email', $data->email);
-   $sql->bindValue(':name', $data->name);
-   $sql->bindValue(':primer_apellido', $data->primer_apellido);
-   $sql->bindValue(':edad', $data->edad);
-   $sql->bindValue(':anyo', $data->anyo);
-   $sql->bindValue(':km', $data->km);
-   $sql->bindValue(':matricula', $data->matricula);
-   $sql->bindValue(':estadoCoche', $data->estadoCoche);
-   $sql->execute();
-   $sql->setFetchMode(PDO::FETCH_ASSOC);
-   header("HTTP/1.1 200 OK");
+    $sql = $dbConn->prepare("INSERT coches_tasados (idMark, idProvincia, email, name, primer_apellido, anyo, km, matricula, estadoCoche, fecha_nacimiento)
+    VALUES (:idMark, :idProvincia, :email, :name, :primer_apellido, :anyo, :km, :matricula, :estadoCoche, :fecha_nacimiento);");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idMark', $data->idMark);
+    $sql->bindValue(':idProvincia', $data->idProvincia);
+    $sql->bindValue(':email', $data->email);
+    $sql->bindValue(':name', $data->name);
+    $sql->bindValue(':primer_apellido', $data->primer_apellido);
+    $sql->bindValue(':anyo', $data->anyo);
+    $sql->bindValue(':km', $data->km);
+    $sql->bindValue(':matricula', $data->matricula);
+    $sql->bindValue(':estadoCoche', $data->estadoCoche);
+    $sql->bindValue(':fecha_nacimiento', $data->fecha_nacimiento);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 201 Created");
 }

@@ -65,8 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getCarPorId($dbConn);
     case isset($_GET['desplegableProvincia']):
       desplegableProvincias($dbConn);
-    case isset($_GET['marcas']):
-      getMarcas($dbConn);
+    case isset($_GET['desplegableVersion']):
+      desplegableVersion($dbConn);
+    case isset($_GET['marcaId']):
+      getMarcaId($dbConn);
+    case isset($_GET['provinciaId']):
+      getProvinciaId($dbConn);
     default:
       filters($dbConn);
     break;
