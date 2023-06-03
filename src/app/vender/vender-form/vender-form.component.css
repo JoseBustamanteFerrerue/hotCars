@@ -77,3 +77,44 @@ h1, h2, h3 {
     font-weight: bold;
     text-align: start;
 }
+
+.textoFondo p, h1 {
+    padding-left: 0;
+    padding-right: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media (max-width: 950px){
+    .textoFondo h1 {
+        font-size: 1.6rem!important;
+        
+    }
+
+    .textoFondo p {
+        font-size: 1.3rem!important;
+    }
+}
+
+@media (max-width: 770px){
+    .columnas {
+        margin-top: 5px;
+    }
+
+    .textoFondo h1 {
+        font-size: 1.4rem!important;
+    }
+
+    .textoFondo p {
+        font-size: 1.2rem!important;
+    }
+}
+
+@media (max-width: 400px){
+    .textoFondo h1 {
+        font-size: 1.2rem!important;
+    }
+
+    .textoFondo p {
+        font-size: 1rem!important;
+    }
+}

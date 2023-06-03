@@ -1,59 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px!important;">
+        <button class="navbar-toggler navbarComprar" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+            aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="sidebarMenu">
+            <div id="sidebar" class="mt-3 mt-lg-0">
+                <div class="d-flex ">
+                    <h3 class="text-black filtros col-6">
+                        Filtros
+                    </h3>
+                    <button class="col-6 buttonClean" (click)="clean()">Limpiar</button>
+                </div>
+                <hr class="text-black">
+                <div class="col textoDesplegables">
+                    <form class="d-flex formFilters" (change)="buscarFiltrando()">
+                        <label for="marca" class="text-black">Marca</label>
+                        <select name="marca" id="marca" class="form-select form-control" (change)="cambio()"
+                            [(ngModel)]="filtrar.carName" style="color: black!important;">
+                            <option class="dropdown-item" disabled selected>{{filtrar.carName}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableMarca">{{item}}</option>
+                        </select>
 
-<div id="sidebar">
-    <div class="d-flex ">
-        <h3 class="text-black filtros col-6">
-            Filtros
-        </h3>
-        <button class="col-6 buttonClean" (click)="clean()">Limpiar</button>
-    </div>
-    <hr class="text-black">
-    <div class="col">
-        <form class="d-flex formFilters" (change)="buscarFiltrando()">
-            <label for="marca" class="text-black">Marca</label>
-            <select name="marca" id="marca" class="form-select form-control" (change)="cambio()" [(ngModel)]="filtrar.carName" style="color: black!important;">
-                <option class="dropdown-item" disabled selected>{{filtrar.carName}}</option>
-                <option [value]="item" *ngFor="let item of desplegableMarca" >{{item}}</option>
-            </select>
+                        <label for="modelo" class="text-black">Modelo</label>
+                        <select name="modelo" id="modelo" class="form-select" [disabled]="hayMarca"
+                            [(ngModel)]="filtrar.nameModel">
+                            <option disabled [selected]="true">{{filtrar.nameModel}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableModelo">{{item}}</option>
+                        </select>
 
-            <label for="modelo" class="text-black">Modelo</label>
-            <select name="modelo" id="modelo" class="form-select" [disabled]="hayMarca" [(ngModel)]="filtrar.nameModel">
-                <option disabled [selected]="true">{{filtrar.nameModel}}</option>
-                <option [value]="item" *ngFor="let item of desplegableModelo" >{{item}}</option>
-            </select>
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <ng5-slider [(value)]="value" [options]="options" name="precio"
+                                (userChangeEnd)="buscarFiltrando()"></ng5-slider>
+                            <div class="precio-rango">
+                                <span class="rango-izquierdo">{{ formatCurrency(value, 'EUR') }}</span>
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                <label for="precio">Precio</label>
-                <ng5-slider [(value)]="value" [options]="options" name="precio" (userChangeEnd)="buscarFiltrando()"></ng5-slider>
-                <div class="precio-rango">
-                  <span class="rango-izquierdo">{{ formatCurrency(value, 'EUR') }}</span>
+                        <div class="form-group">
+                            <label for="precio">Kilometros</label>
+                            <ng5-slider [(value)]="valueKm" [options]="optionsKm" name="kilometros"
+                                (userChangeEnd)="buscarFiltrando()"></ng5-slider>
+                            <div class="precio-rango">
+                                <span class="rango-izquierdo">{{ valueKm | number}}</span>
+                            </div>
+                        </div>
+
+                        <label for="combustibles" class="text-black">Combustibles</label>
+                        <select name="combustibles" id="combustibles" class="form-select form-control"
+                            [(ngModel)]="filtrar.combustible" style="color: black!important;">
+                            <option class="dropdown-item" disabled selected>{{filtrar.combustible}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableCombustible">{{item}}</option>
+                        </select>
+
+                        <label for="cajaDeCambios" class="text-black">Seleccione la caja de cambios</label>
+                        <button (click)="cajaDeCambios('manual')" (click)="buscarFiltrando()">Manual</button>
+                        <button (click)="cajaDeCambios('automatico')" (click)="buscarFiltrando()">Automático</button>
+
+                        <label for="carroceria" class="text-black">Carroceria</label>
+                        <select name="carroceria" id="carroceria" class="form-select form-control"
+                            [(ngModel)]="filtrar.carroceria" style="color: black!important;">
+                            <option class="dropdown-item" disabled selected>{{filtrar.carroceria}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableCarroceria">{{item}}</option>
+                        </select>
+
+                    </form>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="precio">Kilometros</label>
-                <ng5-slider [(value)]="valueKm" [options]="optionsKm" name="kilometros" (userChangeEnd)="buscarFiltrando()"></ng5-slider>
-                <div class="precio-rango">
-                  <span class="rango-izquierdo">{{ valueKm | number}}</span>
-                </div>
-            </div>
-
-            <label for="combustibles" class="text-black">Combustibles</label>
-            <select name="combustibles" id="combustibles" class="form-select form-control" [(ngModel)]="filtrar.combustible" style="color: black!important;">
-                <option class="dropdown-item" disabled selected>{{filtrar.combustible}}</option>
-                <option [value]="item" *ngFor="let item of desplegableCombustible" >{{item}}</option>
-            </select>
-
-            <label for="cajaDeCambios" class="text-black">Seleccione la caja de cambios</label>
-            <button (click)="cajaDeCambios('manual')" (click)="buscarFiltrando()">Manual</button>
-            <button (click)="cajaDeCambios('automatico')" (click)="buscarFiltrando()">Automático</button>
-
-            <label for="carroceria" class="text-black">Carroceria</label>
-            <select name="carroceria" id="carroceria" class="form-select form-control" [(ngModel)]="filtrar.carroceria" style="color: black!important;">
-                <option class="dropdown-item" disabled selected>{{filtrar.carroceria}}</option>
-                <option [value]="item" *ngFor="let item of desplegableCarroceria" >{{item}}</option>
-            </select>
-
-        </form>           
+        </div>
     </div>
-</div>
-
+</nav>

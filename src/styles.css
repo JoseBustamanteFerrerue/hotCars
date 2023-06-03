@@ -111,6 +111,21 @@ nav {
     margin: 0;
 }
 
+.navbar-toggler {
+    background-color: brown;
+    color: black;
+    font-weight: bold;
+    box-shadow: 1px 1px 15px 1px black;
+
+}
+
+.navbarComprar {
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 100%;
+}
+
 .buscar {
     color: white;
     border-color: rgb(138, 48, 45);
@@ -409,10 +424,6 @@ footer {
 }
 
 #sidebar {
-    min-height: 100vh;
-    height: 100%;
-    color: black;
-    background-color: rgb(236, 236, 236);
 }
 
 .text-black {
@@ -523,5 +534,11 @@ footer {
     .patroFondo {
         background-image: none;
         display: none;
+    }
+}
+
+@media (max-width: 2200px){
+    .form-select {
+        font-size: 1.2rem;
     }
 }
