@@ -75,11 +75,11 @@
           <td>{{ item.name }}</td>
           <td>{{ item.primerApellido }}</td>
           <td>{{ item.segundoApellido }}</td>
-          <td>{{ item.fecha_nacimiento }}</td>
+          <td>{{ item.fecha_nacimiento | date: 'dd-MM-yyyy'}}</td>
           <td>{{ item.email }}</td>
           <td>{{ item.telefono }}</td>
           <td class="text-start">{{ item.motivo }}</td>
-          <td>{{ item.fecha_consulta }}</td>
+          <td>{{ item.fecha_consulta | date: 'dd-MM-yyyy HH:mm' }}</td>
         </tr>
       </tbody>
     </table>

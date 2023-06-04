@@ -8,7 +8,11 @@ import { HeaderServiceService } from './header-service.service';
 })
 export class HeaderComponent implements OnInit {
   textoCambiado: string = ''
-  usuario: any;
+  usuario: any = {
+    id: 0,
+    email: '',
+    rol: ''
+  };
 
   constructor (private headerService: HeaderServiceService) {}
 

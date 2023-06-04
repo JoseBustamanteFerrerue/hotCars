@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let item of currentItems" style="margin-top: 5%; position: relative;">
-    <div class="divEstrella" [ngClass]="item.esFavorito ? 'divEstrella estrella' : 'divEstrella'" (click)="anyadirFavorito(item)">
+    <div class="divEstrella" [ngClass]="item.esFavorito ? 'divEstrella estrella' : 'divEstrella'" (click)="anyadirFavorito(item)" *ngIf="usuario && usuario.rol != 'admin'">
       <i class="fas fa-thin fa-star"></i>
     </div>
+    <i *ngIf="usuario && usuario.rol == 'admin'" class="fas fa-duotone fa-trash borrar" (click)="borrarCoche(item)"></i>
     <div class="card carta" (click)="cambiarAcocheSeleccionado(item)">      
       <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div>   
       <img src="{{item.img}}" [alt]="item.nameMark" class="card-img-top" height="250">
@@ -19,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <p class="card-text">{{item.anyo}} | {{item.km | number}} km | {{item.combustible}} | {{item.caja_de_cambios}}</p>
+            <p class="card-text">{{item.anyo}} | {{item.km | number}} km | {{item.combustible}} | {{item.caja_de_cambios}}</p>           
           </div>
         </div>
       </div>

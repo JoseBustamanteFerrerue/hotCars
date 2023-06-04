@@ -9,5 +9,36 @@
 }
 
 .formFilters {
-    font-size: 1.6rem!important;
+    font-size: 1.3rem!important;
+}
+
+#sidebar {
+    background-color: rgb(226, 226, 226);
+    min-height: 165vh;
+    height: 200%;
+  }
+  
+@media (max-width: 1592px){
+    #sidebar {
+        min-height: 185vh;
+    }
+}
+
+@media (max-width: 1308px){
+    #sidebar {
+        min-height: 192vh;
+    }
+}
+
+@media (max-width: 1199px){
+    #sidebar {
+        min-height: 280vh;
+    }
+}
+
+@media (max-width: 990px){
+    #sidebar {
+        min-height: auto;
+        padding-bottom: 10px;
+    }
 }

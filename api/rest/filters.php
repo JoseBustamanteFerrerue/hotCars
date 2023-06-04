@@ -80,7 +80,7 @@ function getConcesionarios ($dbConn) {
 }
 
 function getConsultas ($dbConn) {
-    $sql = $dbConn->prepare("SELECT name, primerApellido, segundoApellido, fecha_nacimiento, email, motivo, fecha_consulta
+    $sql = $dbConn->prepare("SELECT name, primerApellido, segundoApellido, fecha_nacimiento, email, telefono, motivo, fecha_consulta
     FROM consultas INNER JOIN users ON consultas.idUser = users.id;");
     // Realizar la preparación de la consulta a la base de datos
     $sql->execute();

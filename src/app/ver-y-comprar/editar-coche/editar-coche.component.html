@@ -1,0 +1,51 @@
+<div *ngFor="let item of car" class="container contenedor">
+    <div class="row">
+        <div class="col-8">
+        <!-- Aquí ira el carrusel -->
+        <img src="{{item.img}}" [alt]="item.nameMark" class="imgCompra">
+        </div>
+        <div class="col-4">
+            <div class="row text-start">
+                <div class="col-12">
+                    <h2 class="">{{item.nameMark + ' ' + item.nameModel}}</h2>
+                    <h2 class="">{{ item.nameVersion }}</h2>
+                </div>
+            </div>
+            <div class="row text-start">
+                <div class="col-12">
+                    <h3 class="tituloCavallosVersion">{{ item.cv + ' CV ' + item.nameVersion}}</h3>
+                </div>
+            </div>
+            <div class="row text-start">
+                <div class="col-12 textInfoCar mt-3">
+                    <span class="bg-gray">{{item.anyo + ' '}}</span>
+                    <span class="bg-gray">{{item.km | number}} km </span>
+                    <span class="bg-gray">{{item.combustible + ' '}}</span>
+                    <span class="bg-gray">{{item.caja_de_cambios + ' '}}</span>
+                    <span class="bg-gray">{{item.num_plazas + ' plazas'}}</span>
+                </div>
+            </div>
+            <div class="row text-start">
+                <div class="col-12 textoPrecio mt-3">
+                    <div class="row">
+                        <div class="col-12 row precioFinancia">
+                            <div class="col-6 textoCuadrado">
+                                Precio financiado
+                                <span>{{item.price - 1000 | currency:'EUR'}}</span>
+                            </div>
+                            <div class="col-6 textoCuadrado">
+                                Precio al contado
+                                <span>{{item.price | currency:'EUR'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 row">
+                       
+                    </div>
+                    <button type="button" class="btn btn-success meInteresa col-6" >Editar</button>
+                    <button type="button" class="btn btn-success meInteresa col-6" >Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

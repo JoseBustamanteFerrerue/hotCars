@@ -11,6 +11,10 @@
     width: 90%;
 }
 
+.titulos {
+  color: rgb(25, 25, 78);
+}
+
 .login h2 {
     font-family: monospace;
     font-weight: bold;

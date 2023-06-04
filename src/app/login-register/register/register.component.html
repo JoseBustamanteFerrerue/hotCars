@@ -5,7 +5,7 @@
     </div>
     <div class="col-12 col-xs-12 col-sm-6 col-lg-6 col-xl-6">
       <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate class="row d-flex justify-content-center">
-        <h2 class="col-12">Registro de Usuario</h2>
+        <h2 class="col-12 titulos">Registro de Usuario</h2>
         <div class="form-group col-6">
           <label for="name" *ngIf="false">Nombre:</label>
           <input type="text" class="form-control mt-3" id="name" formControlName="name" required placeholder="Tú nombre">
@@ -21,8 +21,8 @@
           <div *ngIf="primerApellido?.invalid && (primerApellido?.dirty || primerApellido?.touched)"
             class="text-danger">
             <div *ngIf="primerApellido?.hasError('required')">El primer apellido es requerido.</div>
-            <div *ngIf="primerApellido?.errors?.['minlength']">El nombre debe tener al menos 4 caracteres.</div>
-            <div *ngIf="primerApellido?.errors?.['sinSignos']">El nombre no debe contener signos.</div>
+            <div *ngIf="primerApellido?.errors?.['minlength']">El primer apellido debe tener al menos 4 caracteres.</div>
+            <div *ngIf="primerApellido?.errors?.['sinSignos']">El primer apellido no debe contener signos.</div>
           </div>
         </div>
         <div class="form-group col-6">
@@ -32,6 +32,16 @@
           <div *ngIf="segundoApellido?.errors?.['sinSignos']">El nombre no debe contener signos.</div>
         </div>
         <div class="form-group col-6">
+          <label for="telefono" *ngIf="false">Teléfono:</label>
+          <input type="text" class="form-control mt-3" id="telefono" formControlName="telefono" required placeholder="Tu teléfono">
+          <div *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)"
+            class="text-danger">
+            <div *ngIf="telefono?.hasError('required')">El teléfono es requerido.</div>
+            <div *ngIf="telefono?.errors?.['minlength']">El teléfono debe tener 9 caracteres.</div>
+            <div *ngIf="telefono?.errors?.['maxlength']">El teléfono debe tener 9 caracteres.</div>
+          </div>
+        </div>
+        <div class="form-group col-8">
           <label for="fecha_nacimiento" *ngIf="false">Fecha de Nacimiento:</label>
           <input type="date" class="form-control mt-3" id="fecha_nacimiento" formControlName="fecha_nacimiento" required value="Fecha de nacimiento">
           <div *ngIf="fecha_nacimiento?.invalid && (fecha_nacimiento?.dirty || fecha_nacimiento?.touched)"

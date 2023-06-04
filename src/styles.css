@@ -423,9 +423,6 @@ footer {
     justify-content: space-around!important;
 }
 
-#sidebar {
-}
-
 .text-black {
     margin: 0px;
 }
@@ -450,7 +447,6 @@ footer {
 }
 
 .form-select {
-    font-size: 14.5px;
     font-weight: bold;
 }
 
@@ -537,8 +533,8 @@ footer {
     }
 }
 
-@media (max-width: 2200px){
+/* @media (max-width: 2200px){
     .form-select {
         font-size: 1.2rem;
     }
-}
+} */

@@ -223,7 +223,7 @@ export class VerYComprarService {
     }
     console.log(usuario.id + ' ' + item.id)
     
-    this.http.delete<any>('http://localhost/rest/post.php?idUser=' + usuario.id + '&&idCar=' + item.id).subscribe(
+    this.http.delete<any>('http://localhost/rest/post.php?favorito&&idUser=' + usuario.id + '&&idCar=' + item.id).subscribe(
       response => {
         this.api()
         return 1     
@@ -254,7 +254,7 @@ export class VerYComprarService {
     } else {
       Swal.fire({
         title: '¡Inicie sesión!',
-        text: '¡Por favor, inicie sesión para poder añadir favoritos!',
+        text: '¡Por favor, inicie sesión para poder reservar el vehículo!',
         icon: 'error',
         showConfirmButton: true,
         allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
@@ -295,6 +295,42 @@ export class VerYComprarService {
         Swal.fire({
           title: 'Algo malo ha ocurrido',
           text: 'En su reserva ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
+  }
+
+  deleteCoche (item: any) {
+    
+    this.http.delete<any>('http://localhost/rest/post.php?coche&&idCar=' + item.id).subscribe(
+      response => {
+        this.api()
+        Swal.fire({
+          title: 'Borrado exitoso',
+          text: 'El coche se ha borrado exitosamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });    
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
           icon: 'error',
           showConfirmButton: true,
           allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él

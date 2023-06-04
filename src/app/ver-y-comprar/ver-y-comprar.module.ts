@@ -12,6 +12,7 @@ import { InfoPrincipalComponent } from './info-principal/info-principal.componen
 import { DatosBasicosComponent } from './datos-basicos/datos-basicos.component';
 import { ProcesoCompraYlugarComponent } from './proceso-compra-ylugar/proceso-compra-ylugar.component';
 import { FinanciacionComponent } from './financiacion/financiacion.component';
+import { EditarCocheComponent } from './editar-coche/editar-coche.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FinanciacionComponent } from './financiacion/financiacion.component';
    InfoPrincipalComponent,
    DatosBasicosComponent,
    ProcesoCompraYlugarComponent,
-   FinanciacionComponent
+   FinanciacionComponent,
+   EditarCocheComponent
   ],
   exports: [
   VerComprarPageComponent

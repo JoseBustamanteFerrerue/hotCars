@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit{
       segundoApellido: ['', [this.sinSignosValidator, Validators.minLength(4)]],
       fecha_nacimiento: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
       password: ['', [Validators.required, Validators.minLength(6), this.passwordValidator]]
     });
 
@@ -65,5 +66,6 @@ export class RegisterComponent implements OnInit{
   get segundoApellido() { return this.userForm.get('segundoApellido'); }
   get fecha_nacimiento() { return this.userForm.get('fecha_nacimiento'); }
   get email() { return this.userForm.get('email'); }
+  get telefono() { return this.userForm.get('telefono'); }
   get password() { return this.userForm.get('password'); }
 }

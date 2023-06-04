@@ -6,14 +6,15 @@ function postRegistro($dbConn, $data) {
     // Generar el hash de la contraseña
     $passwordEncriptada = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = $dbConn->prepare("INSERT users (name, primerApellido, segundoApellido, fecha_nacimiento, email, password, rol)
-     VALUES (:name, :primerApellido, :segundoApellido, :fecha_nacimiento, :email, :password, 'user');");
+    $sql = $dbConn->prepare("INSERT users (name, primerApellido, segundoApellido, fecha_nacimiento, email, telefono, password, rol)
+     VALUES (:name, :primerApellido, :segundoApellido, :fecha_nacimiento, :email, :telefono, :password, 'user');");
     // Realizar la preparación de la consulta a la base de datos
     $sql->bindValue(':name', $data->name);
     $sql->bindValue(':primerApellido', $data->primerApellido);
     $sql->bindValue(':segundoApellido', $data->segundoApellido);
     $sql->bindValue(':fecha_nacimiento', $data->fecha_nacimiento);
     $sql->bindValue(':email', $data->email);
+    $sql->bindValue(':telefono', $data->telefono);
     $sql->bindValue(':password', $passwordEncriptada);
     $sql->execute();
     $postId = $dbConn->lastInsertId();

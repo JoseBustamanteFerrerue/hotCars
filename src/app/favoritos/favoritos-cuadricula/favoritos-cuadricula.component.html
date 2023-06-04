@@ -1,7 +1,10 @@
 <div class="row">
-    <div class="col-sm-6 col-md-6 col-lg-5 col-xl-4" *ngFor="let item of currentItems" style="margin-top: 5%;">
-    
-        <div class="card carta" (click)="cambiarAcocheSeleccionado(item)">
+    <div class="col-sm-6 col-md-6 col-lg-5 col-xl-4" *ngFor="let item of currentItems" style="margin-top: 5%; position: relative;">
+        <div class="divEstrella" [ngClass]="item.esFavorito ? 'divEstrella estrella' : 'divEstrella'" (click)="deleteFavorito(item)" *ngIf="usuario && usuario.rol != 'admin'">
+            <i class="fas fa-thin fa-star"></i>
+          </div>
+        <div class="card carta  titulos" (click)="cambiarAcocheSeleccionado(item)">
+            <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div> 
             <img src="{{item.img}}" [alt]="item.nameMark" class="card-img-top" height="250">
             <div class="card-body">
                 <div class="row">
@@ -29,7 +32,10 @@
         </div>
         </div>
     </div>
-    <div style="margin-top: 4%;">
+    <div *ngIf="currentItems.length == 0" class="titulos">
+        <h5>No tiene ningún vehiculo favorito. Si quiere puede añadirlos en el apartado comprar.</h5>
+    </div>
+    <div style="margin-top: 4%;" *ngIf="currentItems.length > 0">
         <nav aria-label="Page navigation">
             <ul class="pagination">
               <li class="page-item" [class.disabled]="page === 1">

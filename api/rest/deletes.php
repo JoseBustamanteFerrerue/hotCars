@@ -10,3 +10,12 @@ function deleteFavorito($dbConn) {
     exit();
 }
 
+function deleteCoche($dbConn) {
+    $sql = $dbConn->prepare("DELETE FROM cars WHERE id = :idCar;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idCar', $_GET['idCar']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    exit();
+}

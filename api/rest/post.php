@@ -118,8 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 {
 
-  if ($_GET['idUser']) {
+  if (isset($_GET['favorito'])) {
     deleteFavorito($dbConn);
+  }
+
+  if (isset($_GET['coche'])) {
+    deleteCoche($dbConn);
   }
 }
 

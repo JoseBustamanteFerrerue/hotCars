@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VerYComprarService } from '../ver-y-comprar.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,11 +19,19 @@ export class ResultadosComponent implements OnInit {
   plazo: number = 120;
   cuota: any;
   selectedItem: number | null = null;
+  usuario: any = {
+    id: 0,
+    email: '',
+    rol: ''
+  };
 
   constructor (private verYcomprar: VerYComprarService, private router: Router) {}
 
   ngOnInit () {
-    this.esFavorito()
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuario = JSON.parse(usuario);
+    } 
   }
   
   get currentItems() {
@@ -48,10 +57,16 @@ export class ResultadosComponent implements OnInit {
   }
   // Cambiar a ver página del coche elegido
   cambiarAcocheSeleccionado(item: any) {
-    if (item.estadoReserva > 0) {
-      return
+
+    if (this.usuario.rol == 'admin') {
+      this.router.navigate(['/editarCoche', item.id])
+    } else {
+      if (item.estadoReserva > 0) {
+        return
+      }
+      this.router.navigate(['/comprar', item.id]);
     }
-    this.router.navigate(['/comprar', item.id]);
+    
   }
 
   anyadirFavorito(item: any) {
@@ -71,8 +86,25 @@ export class ResultadosComponent implements OnInit {
     } 
   }
 
-  esFavorito () {
-
+  borrarCoche (item: any) {
+    Swal.fire({
+      title: 'Confirmar acción',
+      text: '¿Estás seguro de borrar este coche?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // El usuario ha confirmado la acción
+        this.verYcomprar.deleteCoche(item);
+        //Swal.fire('Acción confirmada', 'La acción se ha realizado correctamente', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // El usuario ha cancelado la acción
+        Swal.fire('Acción cancelada', 'La acción ha sido cancelada', 'error');
+      }
+    });
+    
   }
 
   calcularCuota(item: any, plazo: any): number {
