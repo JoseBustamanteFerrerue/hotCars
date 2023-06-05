@@ -4,6 +4,9 @@ import { VenderFormComponent } from './vender-form/vender-form.component';
 import { VenderPageComponent } from './vender-page/vender-page.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     NgbProgressbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NgxPaginationModule,
+    FontAwesomeModule
   ]
 })
 export class VenderModule { }

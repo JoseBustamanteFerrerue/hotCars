@@ -71,6 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getMarcaId($dbConn);
     case isset($_GET['provinciaId']):
       getProvinciaId($dbConn);
+    case isset($_GET['coche_tasado']):
+      getCocheTasado($dbConn);
     default:
       filters($dbConn);
     break;
@@ -124,6 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 
   if (isset($_GET['coche'])) {
     deleteCoche($dbConn);
+  }
+
+  if (isset($_GET['coche_tasado'])) {
+    deleteCocheTasado($dbConn);
   }
 }
 

@@ -1,13 +1,17 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { VenderServiceService } from '../vender.service.service';
+import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-vender-form',
   templateUrl: './vender-form.component.html',
   styleUrls: ['./vender-form.component.css']
 })
-export class VenderFormComponent implements OnInit{
+export class VenderFormComponent implements OnInit {
   myForm!: FormGroup;
   myForm2!: FormGroup;
   myForm3!: FormGroup;
@@ -20,11 +24,60 @@ export class VenderFormComponent implements OnInit{
   nameVersionValor: any
   provinciaValor: any
   anyosDesplegable: any
+  usuario: any =
+    {
+      rol: ''
+    }
+  p: number = 1;
+  faSort = faSort;
+  faSortUp = faSortUp;
+  faSortDown = faSortDown;
+  sortedColumn: string = '';
+  sortDirection: string = 'asc';
 
-  constructor (private elementRef: ElementRef, private formBuilder: FormBuilder, private venderService: VenderServiceService) {}
+  // Función para ordenar los datos
+  sortData(column: string) {
+    if (this.sortedColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortedColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    // Lógica para ordenar los datos en función de la columna y dirección de ordenamiento
+    this.cochesTasados.sort((a: any, b: any) => {
+      const valueA = a[column];
+      const valueB = b[column];
+
+      if (valueA < valueB) {
+        return this.sortDirection === 'asc' ? -1 : 1;
+      } else if (valueA > valueB) {
+        return this.sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  getSortIcon(column: string): string {
+    if (this.sortedColumn === column) {
+      return this.sortDirection === 'asc' ? 'fas fa-solid fa-arrow-up' : 'fas fa-solid fa-arrow-down';
+    } else {
+      return '';
+    }
+  }
+  constructor(private elementRef: ElementRef, private formBuilder: FormBuilder, private venderService: VenderServiceService) {
+
+  }
 
   ngOnInit() {
-    this.generarNumeros()
+
+    this.generarNumeros();
+
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuario = JSON.parse(usuario);
+    }
 
     this.myForm = this.formBuilder.group({
       matricula: ['', [Validators.required, Validators.pattern('^[A-Z0-9]{4}[A-Z]{3}$')]],
@@ -49,11 +102,12 @@ export class VenderFormComponent implements OnInit{
     });
   }
 
+
   enviarDatosForm() {
-    this.nameMarkValor      = this.myForm3.get('nameMark')!.value
-    this.nameModelValor     = this.myForm3.get('nameModel')!.value
-    this.nameVersionValor   = this.myForm3.get('nameVersion')!.value
-    this.provinciaValor     = this.myForm2.get('provincia')!.value
+    this.nameMarkValor = this.myForm3.get('nameMark')!.value
+    this.nameModelValor = this.myForm3.get('nameModel')!.value
+    this.nameVersionValor = this.myForm3.get('nameVersion')!.value
+    this.provinciaValor = this.myForm2.get('provincia')!.value
 
     this.venderService.marcaId(this.nameMarkValor, this.nameModelValor, this.nameVersionValor).subscribe(
       idMark => {
@@ -81,7 +135,7 @@ export class VenderFormComponent implements OnInit{
           }
         );
       }
-    );   
+    );
   }
 
   scrollToSection() {
@@ -112,15 +166,15 @@ export class VenderFormComponent implements OnInit{
           window.location.href = ''
         }
       });
-    } 
+    }
   }
 
-  cambiarAcontacto () {
+  cambiarAcontacto() {
     window.location.href = 'contacto'
   }
 
   generarNumeros() {
-    let numeros:any = [];
+    let numeros: any = [];
     for (let i = 2023; i >= 1999; i--) {
       if (!numeros.includes(i)) {
         numeros.push(i);
@@ -129,24 +183,77 @@ export class VenderFormComponent implements OnInit{
     this.anyosDesplegable = numeros;
   }
 
-  cambioMarca () {
+  cambioMarca() {
     this.venderService.desplegableModelos(this.myForm3.get('nameMark')!.value)
   }
 
-  cambioModelo () {
+  cambioModelo() {
     this.venderService.desplegableVersion(this.myForm3.get('nameMark')!.value, this.myForm3.get('nameModel')!.value)
   }
 
   sinSignosValidator(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
     const sinSignos = /^[a-zA-Z0-9\s]*$/;
-  
+
     if (value && !sinSignos.test(value)) {
       return { sinSignos: true };
     }
-  
+
     return null;
   }
+
+  borrarCocheTasado(item: any) {
+    Swal.fire({
+      title: 'Confirmar acción',
+      text: '¿Estás seguro de borrar este coche tasado?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // El usuario ha confirmado la acción
+        this.venderService.deleteCoche(item);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // El usuario ha cancelado la acción
+        Swal.fire('Acción cancelada', 'La acción ha sido cancelada', 'error');
+      }
+    });
+  }
+
+  exportToExcel(): void {
+    const columnasPersonalizadas: { [key: string]: string } = {
+      name: 'Nombre',
+      primer_apellido: 'Primer Apellido',
+      fecha_nacimiento: 'Fecha de Nacimiento',
+      email: 'Email',
+      nameMark: 'Marca',
+      nameModel: 'Modelo',
+      nameVersion: 'Versión',
+      valor: 'Valor',
+      provincia: 'Provincia'
+    };
+
+
+    // Mapear los datos utilizando los nombres personalizados
+    const datosMapeados = this.cochesTasados.map((item: any) => {
+      const nuevoItem: any = {};
+      Object.keys(item).forEach(key => {
+        const columnaPersonalizada = columnasPersonalizadas[key];
+        if (columnaPersonalizada) {
+          nuevoItem[columnaPersonalizada as keyof typeof nuevoItem] = item[key];
+        }
+      });
+      return nuevoItem;
+    });
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosMapeados);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+    saveAs(data, 'cochesTasados.xlsx');
+  }
+
 
   // Formulario 1
   get matricula() { return this.myForm.get('matricula'); }
@@ -165,19 +272,23 @@ export class VenderFormComponent implements OnInit{
   get nameVersion() { return this.myForm2.get('nameVersion'); }
   get estadoCoche() { return this.myForm2.get('estadoCoche'); }
 
-  get desplegableProvincias () {
+  get desplegableProvincias() {
     return this.venderService.desplegableProvincias
   }
 
-  get desplegableModelo () {
+  get desplegableModelo() {
     return this.venderService.desplegableModelo
   }
 
-  get desplegableVersion () {
+  get desplegableVersion() {
     return this.venderService.desplegableVersionCoche
   }
 
-  get desplegableMarca () {
+  get desplegableMarca() {
     return this.venderService.desplegableMarca
+  }
+
+  get cochesTasados() {
+    return this.venderService.cochesTasados
   }
 }

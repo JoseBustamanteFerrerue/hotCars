@@ -15,6 +15,7 @@ import { VenderModule } from './vender/vender.module';
 import { FavoritosModule } from './favoritos/favoritos.module';
 import { ContactoModule } from './contacto/contacto.module';
 import { LoginRegisterModule } from './login-register/login-register.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData (localeEs, 'es');
 
@@ -34,7 +35,8 @@ registerLocaleData (localeEs, 'es');
     FavoritosModule,
     LoginRegisterModule,
     FormsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: LOCALE_ID,

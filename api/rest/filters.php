@@ -90,6 +90,18 @@ function getConsultas ($dbConn) {
     exit();
 }
 
+function getCocheTasado ($dbConn) {
+    $sql = $dbConn->prepare("SELECT ct.id, name, primer_apellido, fecha_nacimiento, email, anyo, km, matricula, estadoCoche,
+    nameMark, nameModel, nameVersion, cv, cilindrada, valor, provincia
+    FROM coches_tasados AS ct INNER JOIN mark ON ct.idMark = mark.id INNER JOIN provincias ON ct.idProvincia = provincias.id;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode(  $sql->fetchAll()  );
+    exit();
+}
+
 function getCarPorId ($dbConn) {
      $sql = $dbConn->prepare("SELECT  cars.id ,mark.nameMark, mark.nameModel, mark.nameVersion, mark.cv, mark.cilindrada, cars.img, cars.carName, 
      cars.matricula, cars.km, cars.price, cars.stateCar, cars.anyo, cars.combustible, cars.distintivo_ambiental, cars.carroceria, cars.num_plazas, 

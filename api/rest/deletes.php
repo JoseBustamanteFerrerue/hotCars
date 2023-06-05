@@ -19,3 +19,13 @@ function deleteCoche($dbConn) {
     header("HTTP/1.1 200 OK");
     exit();
 }
+
+function deleteCocheTasado($dbConn) {
+    $sql = $dbConn->prepare("DELETE FROM coches_tasados WHERE id = :idTasado;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idTasado', $_GET['idTasado']);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    exit();
+}

@@ -1,7 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-
+import Swal from 'sweetalert2';
+interface CocheTasado {
+  name: string;
+  primer_apellido: string;
+  fecha_nacimiento: Date;
+  email: string;
+  nameMark: string;
+  nameModel: string;
+  nameVersion: string;
+  cv: number;
+  valor: number;
+  provincia: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +24,12 @@ export class VenderServiceService {
   desplegableVersionCoche: any
   marcaIdPropiedad: any
   provinciaIdPropiedad: any
+  cochesTasados: any
 
   constructor(private http: HttpClient) { 
     this.getDesplegableProvincias()
     this.desplegableMarcas()
+    this.getCocheTasado()
   }
 
   getDesplegableProvincias () {
@@ -129,5 +143,48 @@ export class VenderServiceService {
     }
 
     return marcaId[0].valor - restarValorAnyos - restarValorEstado - restarValorKm
+  }
+
+  getCocheTasado () {
+    this.http.get<any>('http://localhost/rest/post.php?coche_tasado')
+    .subscribe( (resp) => {
+      this.cochesTasados = resp
+    })
+  }
+
+  deleteCoche (item: any) {
+    
+    this.http.delete<any>('http://localhost/rest/post.php?coche_tasado&&idTasado=' + item.id).subscribe(
+      response => {
+        this.getCocheTasado()
+        Swal.fire({
+          title: 'Borrado exitoso',
+          text: 'El coche tasado se ha borrado exitosamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });    
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
   }
 }

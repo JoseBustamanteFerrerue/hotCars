@@ -1,4 +1,4 @@
-<div class="fondo" id="tasar">
+<div class="fondo" id="tasar" *ngIf="usuario.rol != 'admin'">
   <div class="container fondoContainer d-flex justify-content-center align-items-center">
     <div class="row textoFondo">
       <h1 class="text-white fs-1 fw-bold">Vender mi coche</h1>
@@ -8,7 +8,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="usuario.rol != 'admin'">
   <div class="row rowFullForm">
     <div class="col-12 columnas">
       <h2>¿Cuánto vale mi coche?</h2>
@@ -56,7 +56,7 @@
               <select name="anyoMatriculacion" id="anyoMatriculacion" class="form-select form-control"
                 style="color: black!important;" formControlName="anyoMatriculacion" required>
                 <option value="" disabled selected>Seleccione un año</option>
-                <option  *ngFor="let item of anyosDesplegable" value="{{ item }}">{{ item }}</option>
+                <option *ngFor="let item of anyosDesplegable" value="{{ item }}">{{ item }}</option>
               </select>
               <div *ngIf="anyoMatriculacion?.invalid && (anyoMatriculacion?.dirty || anyoMatriculacion?.touched)"
                 class="text-danger">
@@ -97,21 +97,21 @@
             </div>
             <div class="form-group col-md-6  formularioVender">
               <label for="primerApellido" class="text-black">Primer apellido</label>
-              <input type="text" class="form-control" id="primerApellido" placeholder="Su primer apellido" formControlName="primerApellido"
-              required>
+              <input type="text" class="form-control" id="primerApellido" placeholder="Su primer apellido"
+                formControlName="primerApellido" required>
               <div *ngIf="primerApellido?.invalid && (primerApellido?.dirty || primerApellido?.touched)"
                 class="text-danger">
                 <div *ngIf="primerApellido?.hasError('required')">El primer apellido es requerido.</div>
-                <div *ngIf="primerApellido?.errors?.['minlength']">El primer apellido debe tener al menos 4 caracteres.</div>
+                <div *ngIf="primerApellido?.errors?.['minlength']">El primer apellido debe tener al menos 4 caracteres.
+                </div>
                 <div *ngIf="primerApellido?.errors?.['sinSignos']">El primer apellido no debe contener signos.</div>
               </div>
-            </div>          
+            </div>
           </div>
           <div class="row">
             <div class="form-group col-md-6  formularioVender">
               <label for="email" class="text-black">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="20000" formControlName="email"
-                required>
+              <input type="email" class="form-control" id="email" placeholder="20000" formControlName="email" required>
               <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
                 <div *ngIf="email?.hasError('required')">El email es requerido.</div>
                 <div *ngIf="email?.errors?.['email']">El email debe tener un formato válido.</div>
@@ -129,12 +129,14 @@
           <div class="row">
             <div class="form-group col-12 formularioVender">
               <label for="provincia" class="text-black">Provincia</label>
-              <select name="provincia" id="provincia" class="form-select form-control"
-                style="color: black!important;" formControlName="provincia" required>
+              <select name="provincia" id="provincia" class="form-select form-control" style="color: black!important;"
+                formControlName="provincia" required>
                 <option value="" disabled selected>Seleccione una opción</option>
-                <option *ngFor="let item of desplegableProvincias" value="{{item.provincia}}">{{ item.provincia }}</option>
+                <option *ngFor="let item of desplegableProvincias" value="{{item.provincia}}">{{ item.provincia }}
+                </option>
               </select>
-              <div *ngIf="myForm2.controls?.['provincia']?.invalid && (myForm2.controls?.['provincia']?.dirty || myForm2.controls?.['provincia']?.touched)"
+              <div
+                *ngIf="myForm2.controls?.['provincia']?.invalid && (myForm2.controls?.['provincia']?.dirty || myForm2.controls?.['provincia']?.touched)"
                 class="text-danger">
                 <div *ngIf="myForm2.controls?.['provincia']?.hasError('required')">Esta opción es requerida.</div>
               </div>
@@ -150,24 +152,26 @@
           <div class="row mt-5">
             <div class="form-group col-md-6  formularioVender">
               <label for="nameMark" class="text-black">Marca del vehículo</label>
-              <select name="nameMark" id="nameMark" class="form-select form-control"
-                style="color: black!important;" formControlName="nameMark" required (change)="cambioMarca()">
+              <select name="nameMark" id="nameMark" class="form-select form-control" style="color: black!important;"
+                formControlName="nameMark" required (change)="cambioMarca()">
                 <option value="" disabled selected>Seleccione una marca</option>
                 <option *ngFor="let item of desplegableMarca" value="{{item}}">{{ item }}</option>
               </select>
-              <div *ngIf="myForm3.controls?.['nameMark']?.invalid && (myForm3.controls?.['nameMark']?.dirty || myForm3.controls?.['nameMark']?.touched)"
+              <div
+                *ngIf="myForm3.controls?.['nameMark']?.invalid && (myForm3.controls?.['nameMark']?.dirty || myForm3.controls?.['nameMark']?.touched)"
                 class="text-danger">
                 <div *ngIf="myForm3.controls?.['nameMark']?.hasError('required')">La marca es requerida.</div>
               </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
               <label for="nameModel" class="text-black">Modelo:</label>
-              <select name="nameModel" id="nameModel" class="form-select form-control"
-                style="color: black!important;" formControlName="nameModel" required (change)="cambioModelo()">
+              <select name="nameModel" id="nameModel" class="form-select form-control" style="color: black!important;"
+                formControlName="nameModel" required (change)="cambioModelo()">
                 <option value="" disabled selected>Seleccione un modelo</option>
                 <option *ngFor="let item of desplegableModelo" value="{{item}}">{{ item }}</option>
               </select>
-              <div *ngIf="myForm3.controls?.['nameModel']?.invalid && (myForm3.controls?.['nameModel']?.dirty || myForm3.controls?.['nameModel']?.touched)"
+              <div
+                *ngIf="myForm3.controls?.['nameModel']?.invalid && (myForm3.controls?.['nameModel']?.dirty || myForm3.controls?.['nameModel']?.touched)"
                 class="text-danger">
                 <div *ngIf="myForm3.controls?.['nameModel']?.hasError('required')">Esta opción es requerida.</div>
               </div>
@@ -179,9 +183,11 @@
               <select name="nameVersion" id="nameVersion" class="form-select form-control"
                 style="color: black!important;" formControlName="nameVersion" required>
                 <option value="" disabled selected>Seleccione una versión</option>
-                <option *ngFor="let item of desplegableVersion" value="{{item.nameVersion}}">{{ item.nameVersion + ' ' + item.cv }}CV</option>
+                <option *ngFor="let item of desplegableVersion" value="{{item.nameVersion}}">{{ item.nameVersion + ' ' +
+                  item.cv }}CV</option>
               </select>
-              <div *ngIf="myForm3.controls?.['nameVersion']?.invalid && (myForm3.controls?.['nameVersion']?.dirty || myForm3.controls?.['nameVersion']?.touched)"
+              <div
+                *ngIf="myForm3.controls?.['nameVersion']?.invalid && (myForm3.controls?.['nameVersion']?.dirty || myForm3.controls?.['nameVersion']?.touched)"
                 class="text-danger">
                 <div *ngIf="myForm3.controls?.['nameVersion']?.hasError('required')">Esta opción es requerida.</div>
               </div>
@@ -197,13 +203,15 @@
                 <option value="Con desperfectos">Con desperfectos</option>
                 <option value="Mal">Mal</option>
               </select>
-              <div *ngIf="myForm3.controls?.['estadoCoche']?.invalid && (myForm3.controls?.['estadoCoche']?.dirty || myForm3.controls?.['estadoCoche']?.touched)"
+              <div
+                *ngIf="myForm3.controls?.['estadoCoche']?.invalid && (myForm3.controls?.['estadoCoche']?.dirty || myForm3.controls?.['estadoCoche']?.touched)"
                 class="text-danger">
                 <div *ngIf="myForm3.controls?.['estadoCoche']?.hasError('required')">Esta opción es requerida.</div>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary botones fs-5 fw-bold" [disabled]="myForm3.invalid">Tasar tu coche</button>
+          <button type="submit" class="btn btn-primary botones fs-5 fw-bold" [disabled]="myForm3.invalid">Tasar tu
+            coche</button>
         </form>
       </div>
 
@@ -222,7 +230,9 @@
       <div class="row justify-content-center mt-5">
         <h3 class="col-12">¿Quieres vender tu coche y conseguir el mejor precio?</h3>
         <span class="col-12">Pide cita en uno de nuestros concesionarios y te compramos el coche al momento.</span>
-        <button type="button" class="btn btn-primary botones fs-5 fw-bold col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2 mt-3" (click)="cambiarAcontacto()">Pedir cita</button>
+        <button type="button"
+          class="btn btn-primary botones fs-5 fw-bold col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2 mt-3"
+          (click)="cambiarAcontacto()">Pedir cita</button>
       </div>
       <!--  -->
       <div class="row justify-content-center align-items-center mt-5">
@@ -252,7 +262,7 @@
 </div>
 
 <!--  -->
-<div class="container-fluid venderDonde">
+<div class="container-fluid venderDonde" *ngIf="usuario.rol != 'admin'">
   <div class="container">
     <div class="row mt-5 venderDondeHijo">
       <h3 class="fw-bold fs-2">¿Dónde vender mi coche?</h3>
@@ -268,7 +278,7 @@
   </div>
 </div>
 
-<div class="container-xl">
+<div class="container-xl" *ngIf="usuario.rol != 'admin'">
   <div class="row mt-5">
     <h3 class="titulos">Todo lo que necesitas saber</h3>
     <div class="col-12 mt-5">
@@ -362,12 +372,81 @@
   </div>
 </div>
 
-<div class="fondo mt-5">
+<div class="fondo mt-5" *ngIf="usuario.rol != 'admin'">
   <div class="container fondoContainer d-flex justify-content-center align-items-center">
     <div class="row">
       <h1 class="text-white fs-1 fw-bold">Vende tu coche en HotCars</h1>
       <a (click)="scrollToSection()"><button type="button" class="btn btn-success botones mt-5 fs-5 fw-bold">Tasar mi
           coche</button></a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="usuario && usuario.rol == 'admin'" class="tablasAdmin mt-5 mb-5">
+  <div class="container-xl">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr>
+            <th (click)="sortData('name')" class="columnas">
+              Nombre
+              <span [class]="getSortIcon('name')"></span>
+            </th>
+            <th (click)="sortData('primer_apellido')" class="columnas">
+              Primer Apellido
+              <span [class]="getSortIcon('primer_apellido')"></span>
+            </th>
+            <th (click)="sortData('fecha_nacimiento')" class="columnas">
+              Fecha de nacimiento
+              <span [class]="getSortIcon('fecha_nacimiento')"></span>
+            </th>
+            <th (click)="sortData('email')" class="columnas">
+              Email
+              <span [class]="getSortIcon('email')"></span>
+            </th>
+            <th (click)="sortData('nameMark')" class="columnas">
+              Marca
+              <span [class]="getSortIcon('nameMark')"></span>
+            </th>
+            <th (click)="sortData('nameModel')" class="columnas">
+              Modelo
+              <span [class]="getSortIcon('nameModel')"></span>
+            </th>
+            <th (click)="sortData('nameVersion')" class="columnas">
+              Versión
+              <span [class]="getSortIcon('nameVersion')"></span>
+            </th>
+            <th (click)="sortData('valor')" class="columnas">
+              Valor
+              <span [class]="getSortIcon('valor')"></span>
+            </th>
+            <th (click)="sortData('provincia')" class="columnas">
+              Provincia
+              <span [class]="getSortIcon('provincia')"></span>
+            </th>
+            <th (click)="exportToExcel()" class="fas fa-solid fa-file-excel excel">
+              
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cochesTasados | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.primer_apellido }}</td>
+            <td>{{ item.fecha_nacimiento | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.nameMark }}</td>
+            <td>{{ item.nameModel }}</td>
+            <td>{{ item.nameVersion + ' ' + item.cv }}CV</td>
+            <td>{{ item.valor | currency:'EUR' }}</td>
+            <td>{{ item.provincia }}</td>
+            <td class="fas fa-light fa-trash borrar" (click)="borrarCocheTasado(item)"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        <pagination-controls (pageChange)="p = $event" [maxSize]="5"  [directionLinks]="true" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>
