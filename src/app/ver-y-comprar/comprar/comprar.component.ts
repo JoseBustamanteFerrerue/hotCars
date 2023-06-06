@@ -23,6 +23,14 @@ export class ComprarComponent {
       this.verYcomprar.getCarPorId(id)
         .subscribe(resp => {
           this.car = resp;
+          this.car = this.car.map( function (item: any) {
+            if (item.rutas != null) {
+              const rutas = item.rutas.split('|')
+              item.rutas = rutas
+            }
+            
+            return item
+          })
           this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.car[0].localizacion);
           this.data = {
             item: this.car[0],

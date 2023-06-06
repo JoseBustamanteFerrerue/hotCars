@@ -57,31 +57,67 @@
 
 <div *ngIf="usuario && usuario.rol == 'admin'"  class="tablasAdmin mt-5 mb-5">
   <div class="container-xl">
-    <table class="table table-hover table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Primer Apellido</th>
-          <th>Segundo Apellido</th>
-          <th>Fecha de nacimiento</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-          <th>Motivo</th>
-          <th>Fecha Consulta</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let item of consultas">
-          <td>{{ item.name }}</td>
-          <td>{{ item.primerApellido }}</td>
-          <td>{{ item.segundoApellido }}</td>
-          <td>{{ item.fecha_nacimiento | date: 'dd-MM-yyyy'}}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.telefono }}</td>
-          <td class="text-start">{{ item.motivo }}</td>
-          <td>{{ item.fecha_consulta | date: 'dd-MM-yyyy HH:mm' }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <input type="text" class="form-control mb-3" [(ngModel)]="filtro" placeholder="Filtrar por cualquier dato">
+      <table class="table table-hover table-striped table-bordered">
+        <thead>
+          <tr>
+            <th (click)="sortData('name')" class="columnas">
+              Nombre
+              <span [class]="getSortIcon('name')"></span>
+            </th>
+            <th (click)="sortData('primerApellido')" class="columnas">
+              Primer Apellido
+              <span [class]="getSortIcon('primerApellido')"></span>
+            </th>
+            <th (click)="sortData('segundoApellido')" class="columnas">
+              Segundo Apellido
+              <span [class]="getSortIcon('segundoApellido')"></span>
+            </th>
+            <th (click)="sortData('fecha_nacimiento')" class="columnas">
+              Fecha de nacimiento
+              <span [class]="getSortIcon('fecha_nacimiento')"></span>
+            </th>
+            <th (click)="sortData('email')" class="columnas">
+              Email
+              <span [class]="getSortIcon('email')"></span>
+            </th>
+            <th (click)="sortData('telefono')" class="columnas">
+              Teléfono
+              <span [class]="getSortIcon('telefono')"></span>
+            </th>
+            <th (click)="sortData('motivo')" class="columnas">
+              Motivo
+              <span [class]="getSortIcon('motivo')"></span>
+            </th>
+            <th (click)="sortData('fecha_consulta')" class="columnas">
+              Fecha Consulta
+              <span [class]="getSortIcon('fecha_consulta')"></span>
+            </th>
+            
+            <th (click)="exportToExcel()" class="fas fa-solid fa-file-excel excel">
+                
+            </th>
+              
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let item of consultas | filter: filtro | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.primerApellido }}</td>
+            <td>{{ item.segundoApellido }}</td>
+            <td>{{ item.fecha_nacimiento | date: 'dd-MM-yyyy'}}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.telefono }}</td>
+            <td class="text-start" style="min-width: 200px;">{{ item.motivo }}</td>
+            <td>{{ item.fecha_consulta | date: 'dd-MM-yyyy HH:mm' }}</td>
+            <td class="fas fa-light fa-trash borrar" (click)="borrarConsulta(item)"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        <pagination-controls (pageChange)="p = $event" [maxSize]="5"  [directionLinks]="true" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+      </div>
+    </div>
   </div>
 </div>

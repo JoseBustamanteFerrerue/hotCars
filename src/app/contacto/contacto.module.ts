@@ -7,7 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContactoPageComponent } from './contacto-page/contacto-page.component';
 import { ContactoFormComponent } from './contacto-form/contacto-form.component';
 import { LoginRegisterModule } from '../login-register/login-register.module';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './contacto-form//filter.pipe';
 
 
 
@@ -15,6 +16,7 @@ import { LoginRegisterModule } from '../login-register/login-register.module';
   declarations: [
     ContactoPageComponent,
     ContactoFormComponent,
+    FilterPipe
   ],
   exports: [
     ContactoPageComponent
@@ -25,6 +27,7 @@ import { LoginRegisterModule } from '../login-register/login-register.module';
     ReactiveFormsModule,
     HttpClientModule,
     LoginRegisterModule,
+    NgxPaginationModule
   ]
 })
 export class ContactoModule { }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
 
 import { VerComponent } from './ver/ver.component';
@@ -34,7 +34,8 @@ import { EditarCocheComponent } from './editar-coche/editar-coche.component';
   imports: [
     CommonModule,
     FormsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    ReactiveFormsModule
   ]
 })
 export class VerYComprarModule { }

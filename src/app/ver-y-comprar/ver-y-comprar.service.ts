@@ -28,6 +28,14 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php')
       .subscribe( (resp) => {
         this.resp = resp
+        this.resp = this.resp.map( function (item: any) {
+          if (item.rutas != null) {
+            const rutas = item.rutas.split('|')
+            item.rutas = rutas
+          }
+          
+          return item
+        })
         this.conseguirFavoritos();
       })
   }
@@ -157,6 +165,14 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)
       .subscribe( (resp) => {
           this.resp = resp
+          this.resp = this.resp.map( function (item: any) {
+            if (item.rutas != null) {
+              const rutas = item.rutas.split('|')
+              item.rutas = rutas
+            }
+            
+            return item
+          })
           this.conseguirFavoritos();
       })
       
@@ -342,5 +358,80 @@ export class VerYComprarService {
           return 0
         });
       })
+  }
+
+  editarCoche (item:any) {
+    const paramsObject = {
+      idCar: item.id,
+      anyo: item.anyo,
+      km: item.km,
+      stateCar: item.stateCar,
+      price: item.price,
+      combustible: item.combustible,
+      caja_de_cambios: item.caja_de_cambios,
+      distintivo_ambiental: item.distintivo_ambiental,
+      peso: item.peso,
+      deposito: item.deposito,
+      maletero: item.maletero,
+      medida_ancho: item.medida_ancho,
+      medida_altura: item.medida_altura,
+      medida_largo: item.medida_largo,
+      carroceria: item.carroceria,
+      num_plazas: item.num_plazas,
+      bastidor: item.bastidor,
+      matricula: item.matricula,
+      estadoReserva: item.estadoReserva,
+      extras: item.extras
+    }
+
+    const params = JSON.stringify(paramsObject);
+    console.log(params)
+    this.http.post<any>('http://localhost/rest/post.php/editarCoche', params).subscribe(
+      response => {
+        this.api() 
+        Swal.fire({
+          title: '¡Ha editado el vehículo con exito!',
+          text: 'El vehículo se ha editado correctamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = 'ver'
+          }
+          return 0
+        });   
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'Al editar ha habido un error, por favor inténtelo más tarde o consulte con el departamento IT.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
+  }
+
+  subirFotoCoche (selectedFile: File, item: any) {
+    const formData = new FormData();
+      formData.append('imagen', selectedFile, selectedFile.name);
+      formData.append('idCar', item.id);
+      // Realizar la solicitud HTTP al servidor
+      this.http.post('http://localhost/rest/post.php/subirFoto', formData).subscribe(
+        (response) => {
+          console.log(response)
+        },
+        (error) => {
+          console.log(error)
+        }
+      );
   }
 }

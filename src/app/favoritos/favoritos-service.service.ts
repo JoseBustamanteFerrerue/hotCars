@@ -21,6 +21,10 @@ export class FavoritosServiceService {
         console.log(resp)
         this.resp = this.resp.map( function (item) {
           item.esFavorito = true;
+          if (item.rutas != null) {
+            const rutas = item.rutas.split('|')
+            item.rutas = rutas
+          }
           return item
         })
       })

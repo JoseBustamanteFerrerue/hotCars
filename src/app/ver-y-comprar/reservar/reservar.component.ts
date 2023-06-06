@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReservarComponent implements OnInit{
   car: any;
-
+  ruta: any;
   constructor (private verYcomprar: VerYComprarService, private route: ActivatedRoute ) {}
 
   ngOnInit(): void {
@@ -18,6 +18,15 @@ export class ReservarComponent implements OnInit{
       this.verYcomprar.getCarPorId(id)
         .subscribe(resp => {
           this.car = resp;
+          this.car = this.car.map( function (item: any) {
+            if (item.rutas != null) {
+              const rutas = item.rutas.split('|')
+              item.rutas = rutas
+            }
+            
+            return item
+          })
+          this.ruta = this.car[0].rutas[0]
         });
     });
   }

@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-info-principal',
   templateUrl: './info-principal.component.html',

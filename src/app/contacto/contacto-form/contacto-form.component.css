@@ -153,3 +153,40 @@
     float: none;
   }
   
+  .borrar {
+    width: 100%; 
+    height: 65px;
+    color: red!important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.borrar:hover {
+    color: brown!important;
+}
+
+.columnas {
+    cursor: pointer;
+}
+
+.excel {
+    color: green;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.excel:hover {
+    color: rgb(2, 49, 2);
+}
+
+@media (max-width: 1028px){
+  .borrar {
+      height: 90px;
+      
+  }
+}

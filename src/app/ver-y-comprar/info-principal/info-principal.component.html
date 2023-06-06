@@ -1,8 +1,35 @@
-<div class="col-8">
+<div class="col-8 d-flex justify-content-center align-items-center">
     <!-- Aquí ira el carrusel -->
-    <img src="{{item.img}}" [alt]="item.nameMark" class="imgCompra">
+   <!--  <div class="" *ngFor="let img of item.rutas">
+        <img [src]="'http://localhost/' + img" [alt]="item.nameMark" class="imgCompra">
+    </div> -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let img of item.rutas; let i = index" [class.active]="i === 0">
+                <img [src]="'http://localhost/rest/' + img" class="d-block w-100" alt="Slide" style="border-radius: 20px; padding: 10px;">
+              </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="fas fa-chevron-left fs-1" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="fas fa-chevron-right fs-1" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+
+
 </div>
-<div class="col-4">
+<div class="col-4 mt-5">
     <div class="row text-start">
         <div class="col-12">
             <h2 class="">{{item.nameMark + ' ' + item.nameModel}}</h2>

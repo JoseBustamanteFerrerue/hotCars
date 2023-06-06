@@ -44,7 +44,7 @@ nav {
 /* Portada */
 
 #portada {
-    background-image: url("assets/imgs/portada.jpg");
+    background-image: url("assets/imgs/portada.webp");
     height: 700px;
     background-size: cover;
     background-position: bottom;
@@ -58,7 +58,7 @@ nav {
 
 .fondoLogin {
     margin-top: 1px;
-    background-image: url("assets/imgs/portada.jpg");
+    background-image: url("assets/imgs/portada.webp");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@ nav {
 
 .fondoContacto {
     margin-top: 1px;
-    background-image: url("assets/imgs/portada.jpg");
+    background-image: url("assets/imgs/portada.webp");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -94,7 +94,7 @@ nav {
 
 .fondoContactoEncuentra {
     margin-top: 1px;
-    background-image: url("assets/imgs/portada.jpg");
+    background-image: url("assets/imgs/portada.webp");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -122,8 +122,6 @@ nav {
 
 .navbarComprar {
     margin-top: 1%;
-    margin-left: 2%;
-    margin-right: 2%;
     width: 100%;
 }
 
@@ -514,7 +512,6 @@ footer {
 
   .card {
     border: 1px solid #808080; /* Borde gris de la tarjeta */
-    padding: 20px;
   }
   
   .star-icon {

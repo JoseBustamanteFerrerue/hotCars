@@ -114,6 +114,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     tasar($dbConn, $data);
   }
 
+  if ($requestUri === '/rest/post.php/editarCoche') {
+    editarCoche($dbConn, $data);
+  }
+
+  if ($requestUri === '/rest/post.php/subirFoto') {
+    subirFotoCoche($dbConn);
+  }
+
 }
 
 //Borrar
@@ -130,6 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 
   if (isset($_GET['coche_tasado'])) {
     deleteCocheTasado($dbConn);
+  }
+
+  if (isset($_GET['consultas'])) {
+    deleteConsulta($dbConn);
   }
 }
 

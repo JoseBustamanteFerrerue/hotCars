@@ -57,6 +57,43 @@ export class ContactoServiceService {
     this.http.get<any>('http://localhost/rest/post.php?consultas')
       .subscribe( (resp) => {
         this.resp = resp
+        console.log(resp)
+      })
+  }
+
+  deleteConsulta (item: any) {
+    
+    this.http.delete<any>('http://localhost/rest/post.php?consultas&&idConsulta=' + item.id).subscribe(
+      response => {
+        this.getConsultas()
+        Swal.fire({
+          title: 'Borrado exitoso',
+          text: 'La consulta se ha borrado exitosamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });    
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
       })
   }
 }

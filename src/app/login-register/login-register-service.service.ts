@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -59,8 +60,18 @@ export class LoginRegisterServiceService {
         window.location.href = '';
       },
       error => {
-        // Maneja los errores en caso de falla
-        console.error('Los datos no son correctos');
+        Swal.fire({
+          title: 'Datos incorrectos',
+          text: 'Los datos introducidos son incorrectos.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });    
       })
   }
 }

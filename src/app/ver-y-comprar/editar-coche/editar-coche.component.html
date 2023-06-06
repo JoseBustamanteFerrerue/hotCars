@@ -1,50 +1,165 @@
-<div *ngFor="let item of car" class="container contenedor">
-    <div class="row">
-        <div class="col-8">
-        <!-- Aquí ira el carrusel -->
-        <img src="{{item.img}}" [alt]="item.nameMark" class="imgCompra">
-        </div>
-        <div class="col-4">
-            <div class="row text-start">
-                <div class="col-12">
-                    <h2 class="">{{item.nameMark + ' ' + item.nameModel}}</h2>
-                    <h2 class="">{{ item.nameVersion }}</h2>
-                </div>
-            </div>
-            <div class="row text-start">
-                <div class="col-12">
-                    <h3 class="tituloCavallosVersion">{{ item.cv + ' CV ' + item.nameVersion}}</h3>
-                </div>
-            </div>
-            <div class="row text-start">
-                <div class="col-12 textInfoCar mt-3">
-                    <span class="bg-gray">{{item.anyo + ' '}}</span>
-                    <span class="bg-gray">{{item.km | number}} km </span>
-                    <span class="bg-gray">{{item.combustible + ' '}}</span>
-                    <span class="bg-gray">{{item.caja_de_cambios + ' '}}</span>
-                    <span class="bg-gray">{{item.num_plazas + ' plazas'}}</span>
-                </div>
-            </div>
-            <div class="row text-start">
-                <div class="col-12 textoPrecio mt-3">
-                    <div class="row">
-                        <div class="col-12 row precioFinancia">
-                            <div class="col-6 textoCuadrado">
-                                Precio financiado
-                                <span>{{item.price - 1000 | currency:'EUR'}}</span>
-                            </div>
-                            <div class="col-6 textoCuadrado">
-                                Precio al contado
-                                <span>{{item.price | currency:'EUR'}}</span>
-                            </div>
+<div *ngFor="let item of car">
+    <div class="container-xl mt-5 mb-5">
+        <div class="row align-items-center editar">
+            <!--           <div class="col-12 col-xs-12 col-sm-6 col-lg-6 col-xl-6">
+            <img src="{{item.img}}" alt="logo" class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
+          </div> -->
+            <div class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
+                <form (ngSubmit)="onSubmit(item)" novalidate class="ng-touched">
+                    <h2>Editar el coche</h2>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="anyo">Año:</label>
+                            <input type="number" class="form-control" id="anyo" name="anyo" [(ngModel)]="item.anyo"
+                                required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="km">Kilómetros:</label>
+                            <input type="number" class="form-control" id="km" name="km" [(ngModel)]="item.km" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="stateitem">Estado del coche:</label>
+                            <input type="text" class="form-control" id="stateitem" name="stateitem"
+                                [(ngModel)]="item.stateCar" required>
                         </div>
                     </div>
-                    <div class="col-12 mt-3 row">
-                       
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="price">Precio:</label>
+                            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="item.price"
+                                required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="combustible">Combustible:</label>
+                            <select class="form-control" id="combustible" name="combustible"
+                                [(ngModel)]="item.combustible" required>
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="Gasolina">Gasolina</option>
+                                <option value="Diésel">Diésel</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="caja_de_cambios">Caja de cambios:</label>
+                            <select class="form-control" id="caja_de_cambios" name="caja_de_cambios"
+                                [(ngModel)]="item.caja_de_cambios" required>
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="Manual">Manual</option>
+                                <option value="Automático">Automático</option>
+                            </select>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-success meInteresa col-6" >Editar</button>
-                    <button type="button" class="btn btn-success meInteresa col-6" >Cancelar</button>
-                </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="distintivo_ambiental">Distintivo ambiental:</label>
+                            <select class="form-control" id="distintivo_ambiental" name="distintivo_ambiental"
+                                [(ngModel)]="item.distintivo_ambiental" required>
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="Etiqueta CERO">Etiqueta CERO</option>
+                                <option value="Etiqueta ECO">Etiqueta ECO</option>
+                                <option value="Etiqueta C">Etiqueta C</option>
+                                <option value="Etiqueta B">Etiqueta B</option>
+                                <option value="Sin etiqueta">Sin etiqueta</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="peso">Peso:</label>
+                            <input type="number" class="form-control" id="peso" name="peso" [(ngModel)]="item.peso"
+                                required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="deposito">Depósito:</label>
+                            <input type="number" class="form-control" id="deposito" name="deposito"
+                                [(ngModel)]="item.deposito" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="maletero">Maletero:</label>
+                            <input type="number" class="form-control" id="maletero" name="maletero"
+                                [(ngModel)]="item.maletero" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="medida_ancho">Medida de ancho:</label>
+                            <input type="number" class="form-control" id="medida_ancho" name="medida_ancho"
+                                [(ngModel)]="item.medida_ancho" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="medida_altura">Medida de altura:</label>
+                            <input type="number" class="form-control" id="medida_altura" name="medida_altura"
+                                [(ngModel)]="item.medida_altura" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="medida_largo">Medida de largo:</label>
+                            <input type="number" class="form-control" id="medida_largo" name="medida_largo"
+                                [(ngModel)]="item.medida_largo" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="carroceria">Carrocería:</label>
+                            <input type="text" class="form-control" id="carroceria" name="carroceria"
+                                [(ngModel)]="item.carroceria" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="num_plazas">Número de plazas:</label>
+                            <input type="number" class="form-control" id="num_plazas" name="num_plazas"
+                                [(ngModel)]="item.num_plazas" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 mb-3">
+                            <label for="bastidor">Bastidor:</label>
+                            <input type="text" class="form-control" id="bastidor" name="bastidor"
+                                [(ngModel)]="item.bastidor" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="matricula">Matrícula:</label>
+                            <input type="text" class="form-control" id="matricula" name="matricula"
+                                [(ngModel)]="item.matricula" required>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="estadoReserva">Estado de reserva:</label>
+                            <select class="form-control" id="estadoReserva" name="estadoReserva"
+                                [(ngModel)]="item.estadoReserva" required>
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="1">Reservado</option>
+                                <option value="0">No reservado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 mb-3">
+                            <label for="extras">Extras:</label>
+                            <textarea class="form-control" id="extras" name="extras" [(ngModel)]="item.extras"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="imagen" class="form-label">Nueva imagen del coche:</label>
+                            <div class="input-group">
+                              <input type="file" class="form-control" id="imagen" (change)="onFileSelected($event)">
+                              <label class="input-group-text" for="imagen">
+                                <i class="fas fa-upload"></i> Seleccionar imagen
+                              </label>
+                            </div>
+                          </div>
+                          
+                    </div>
+                    <a href="ver"><button type="button" class="btn btn-primary mt-4">Cancelar</button></a>
+                    <button type="submit" class="btn btn-primary mt-4">Editar</button>
+                </form>
             </div>
         </div>
     </div>

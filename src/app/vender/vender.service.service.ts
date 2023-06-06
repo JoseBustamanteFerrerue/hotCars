@@ -149,6 +149,7 @@ export class VenderServiceService {
     this.http.get<any>('http://localhost/rest/post.php?coche_tasado')
     .subscribe( (resp) => {
       this.cochesTasados = resp
+      console.log(this.cochesTasados)
     })
   }
 

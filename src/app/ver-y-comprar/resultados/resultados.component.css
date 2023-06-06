@@ -34,11 +34,22 @@
 .borrar {
     position: absolute;
     color: red;
-    top: 86%;
-    left: 85%;
+    top: 88%;
+    left: 82%;
     z-index: 1;
 }
 
 .borrar:hover {
     color: brown;
+}
+
+.textInfoCar {
+    color: black;
+}
+
+.textInfoCar span {
+    background-color: rgb(226, 226, 226);
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 10px;
 }

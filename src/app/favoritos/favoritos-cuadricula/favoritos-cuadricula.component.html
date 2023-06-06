@@ -5,7 +5,13 @@
           </div>
         <div class="card carta  titulos" (click)="cambiarAcocheSeleccionado(item)">
             <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div> 
-            <img src="{{item.img}}" [alt]="item.nameMark" class="card-img-top" height="250">
+            <div *ngIf="item.rutas">
+                <img [src]="'http://localhost/rest/' + item.rutas[0]" [alt]="item.nameMark" class="card-img-top" height="250">
+              </div>
+        
+              <div *ngIf="!item.rutas">
+                <img [src]="" [alt]="item.nameMark" class="card-img-top" height="250">
+              </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">

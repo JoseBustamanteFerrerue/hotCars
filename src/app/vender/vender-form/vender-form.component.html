@@ -111,10 +111,19 @@
           <div class="row">
             <div class="form-group col-md-6  formularioVender">
               <label for="email" class="text-black">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="20000" formControlName="email" required>
+              <input type="email" class="form-control" id="email" placeholder="tuCorreo@gmail.com" formControlName="email" required>
               <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
                 <div *ngIf="email?.hasError('required')">El email es requerido.</div>
                 <div *ngIf="email?.errors?.['email']">El email debe tener un formato válido.</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6  formularioVender">
+              <label for="telefono" class="text-black">Teléfono:</label>
+              <input type="number" class="form-control" id="telefono" formControlName="telefono" required placeholder="Tu teléfono">
+              <div *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)"
+                class="text-danger">
+                <div *ngIf="telefono?.hasError('required')">El teléfono es requerido.</div>
+                <div *ngIf="telefono?.errors?.['phoneLength']">El teléfono debe tener 9 caracteres.</div>
               </div>
             </div>
             <div class="form-group col-md-6  formularioVender">
@@ -261,7 +270,6 @@
   </div>
 </div>
 
-<!--  -->
 <div class="container-fluid venderDonde" *ngIf="usuario.rol != 'admin'">
   <div class="container">
     <div class="row mt-5 venderDondeHijo">
@@ -385,6 +393,8 @@
 <div *ngIf="usuario && usuario.rol == 'admin'" class="tablasAdmin mt-5 mb-5">
   <div class="container-xl">
     <div class="table-responsive">
+      <input type="text" class="form-control mb-3" [(ngModel)]="filtro" placeholder="Filtrar por cualquier campo">
+
       <table class="table table-hover table-striped table-bordered">
         <thead>
           <tr>
@@ -404,6 +414,10 @@
               Email
               <span [class]="getSortIcon('email')"></span>
             </th>
+            <th (click)="sortData('telefono')" class="columnas">
+              Teléfono
+              <span [class]="getSortIcon('telefono')"></span>
+            </th>
             <th (click)="sortData('nameMark')" class="columnas">
               Marca
               <span [class]="getSortIcon('nameMark')"></span>
@@ -415,6 +429,10 @@
             <th (click)="sortData('nameVersion')" class="columnas">
               Versión
               <span [class]="getSortIcon('nameVersion')"></span>
+            </th>
+            <th (click)="sortData('valor_tasado')" class="columnas">
+              Valor Tasado
+              <span [class]="getSortIcon('valor_tasado')"></span>
             </th>
             <th (click)="sortData('valor')" class="columnas">
               Valor
@@ -430,14 +448,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of cochesTasados | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr *ngFor="let item of cochesTasados | filter:filtro | paginate: { itemsPerPage: 10, currentPage: p }">
             <td>{{ item.name }}</td>
             <td>{{ item.primer_apellido }}</td>
             <td>{{ item.fecha_nacimiento | date: 'dd-MM-yyyy' }}</td>
             <td>{{ item.email }}</td>
+            <td>{{ item.telefono }}</td>
             <td>{{ item.nameMark }}</td>
             <td>{{ item.nameModel }}</td>
             <td>{{ item.nameVersion + ' ' + item.cv }}CV</td>
+            <td>{{ item.valor_tasado | currency:'EUR' }}</td>
             <td>{{ item.valor | currency:'EUR' }}</td>
             <td>{{ item.provincia }}</td>
             <td class="fas fa-light fa-trash borrar" (click)="borrarCocheTasado(item)"></td>

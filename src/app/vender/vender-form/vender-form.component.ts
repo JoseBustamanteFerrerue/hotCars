@@ -2,10 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { VenderServiceService } from '../vender.service.service';
-import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
-
+import { FilterPipe } from './filter.pipe';
 @Component({
   selector: 'app-vender-form',
   templateUrl: './vender-form.component.html',
@@ -15,6 +14,7 @@ export class VenderFormComponent implements OnInit {
   myForm!: FormGroup;
   myForm2!: FormGroup;
   myForm3!: FormGroup;
+  filtro: string = '';
   mostrarForms: number = 1;
   progress = 33;
   type = 'success';
@@ -29,12 +29,56 @@ export class VenderFormComponent implements OnInit {
       rol: ''
     }
   p: number = 1;
-  faSort = faSort;
-  faSortUp = faSortUp;
-  faSortDown = faSortDown;
   sortedColumn: string = '';
   sortDirection: string = 'asc';
+  
 
+  ngOnInit() {
+
+    this.generarNumeros();
+
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      this.usuario = JSON.parse(usuario);
+    }
+
+    this.myForm = this.formBuilder.group({
+      matricula: ['', [Validators.required, Validators.pattern('^[A-Z0-9]{4}[A-Z]{3}$')]],
+      kilometros: ['', [Validators.required]],
+      anyoMatriculacion: ['', [Validators.required]],
+      siniestroTotal: ['', [Validators.required]],
+    });
+
+    this.myForm2 = this.formBuilder.group({
+      name: ['', [Validators.required, this.sinSignosValidator, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, this.phoneLengthValidator]],
+      primerApellido: ['', [Validators.required, this.sinSignosValidator, Validators.minLength(4)]],
+      fecha_nacimiento: ['', [Validators.required]],
+      provincia: ['', [Validators.required]]
+    });
+
+    this.myForm3 = this.formBuilder.group({
+      nameMark: ['', [Validators.required]],
+      nameModel: ['', [Validators.required]],
+      nameVersion: ['', [Validators.required]],
+      estadoCoche: ['', [Validators.required]],
+    });
+  }
+
+  phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+    const phone = control.value as number;
+    const minLength = 9;
+    const maxLength = 9;
+  
+    if (phone.toString().length < minLength || phone.toString().length > maxLength) {
+      return { phoneLength: true };
+    }
+  
+    return null;
+  }
+
+  
   // Función para ordenar los datos
   sortData(column: string) {
     if (this.sortedColumn === column) {
@@ -70,38 +114,6 @@ export class VenderFormComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-
-    this.generarNumeros();
-
-    const usuario = localStorage.getItem('usuario');
-    if (usuario) {
-      this.usuario = JSON.parse(usuario);
-    }
-
-    this.myForm = this.formBuilder.group({
-      matricula: ['', [Validators.required, Validators.pattern('^[A-Z0-9]{4}[A-Z]{3}$')]],
-      kilometros: ['', [Validators.required]],
-      anyoMatriculacion: ['', [Validators.required]],
-      siniestroTotal: ['', [Validators.required]],
-    });
-
-    this.myForm2 = this.formBuilder.group({
-      name: ['', [Validators.required, this.sinSignosValidator, Validators.minLength(4)]],
-      email: ['', [Validators.required, Validators.email]],
-      primerApellido: ['', [Validators.required, this.sinSignosValidator, Validators.minLength(4)]],
-      fecha_nacimiento: ['', [Validators.required]],
-      provincia: ['', [Validators.required]]
-    });
-
-    this.myForm3 = this.formBuilder.group({
-      nameMark: ['', [Validators.required]],
-      nameModel: ['', [Validators.required]],
-      nameVersion: ['', [Validators.required]],
-      estadoCoche: ['', [Validators.required]],
-    });
-  }
-
 
   enviarDatosForm() {
     this.nameMarkValor = this.myForm3.get('nameMark')!.value
@@ -120,17 +132,21 @@ export class VenderFormComponent implements OnInit {
               idMark: marcaId[0].id,
               idProvincia: provinciaId[0].id,
               email: this.myForm2.get('email')!.value,
+              telefono: this.myForm2.get('telefono')!.value,
               name: this.myForm2.get('name')!.value,
               primer_apellido: this.myForm2.get('primerApellido')!.value,
               fecha_nacimiento: this.myForm2.get('fecha_nacimiento')!.value,
               anyo: this.myForm.get('anyoMatriculacion')!.value,
               km: this.myForm.get('kilometros')!.value,
               matricula: this.myForm.get('matricula')!.value,
-              estadoCoche: this.myForm3.get('estadoCoche')!.value
+              estadoCoche: this.myForm3.get('estadoCoche')!.value,
+              valorTasado: ''
+              
             }
-            console.log(cocheTasado)
-            this.venderService.guadarCocheTasado(cocheTasado)
             this.valorCoche = this.venderService.tasarCoche(cocheTasado, marcaId)
+            cocheTasado.valorTasado = this.valorCoche;
+            this.venderService.guadarCocheTasado(cocheTasado)
+            
             this.mostrarForms = 0
           }
         );
@@ -227,9 +243,11 @@ export class VenderFormComponent implements OnInit {
       primer_apellido: 'Primer Apellido',
       fecha_nacimiento: 'Fecha de Nacimiento',
       email: 'Email',
+      telefono: 'Teléfono',
       nameMark: 'Marca',
       nameModel: 'Modelo',
       nameVersion: 'Versión',
+      valor_tasado: 'Valor Tasado',
       valor: 'Valor',
       provincia: 'Provincia'
     };
@@ -263,6 +281,7 @@ export class VenderFormComponent implements OnInit {
   // Formulario 2
   get name() { return this.myForm2.get('name'); }
   get email() { return this.myForm2.get('email'); }
+  get telefono() { return this.myForm2.get('telefono'); }
   get primerApellido() { return this.myForm2.get('primerApellido'); }
   get fecha_nacimiento() { return this.myForm2.get('fecha_nacimiento'); }
   get provincia() { return this.myForm2.get('provincia'); }

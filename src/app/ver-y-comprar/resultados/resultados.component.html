@@ -1,26 +1,39 @@
-<div class="row">
+
+<div class="row" style="margin-left: 10px;">
   <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4" *ngFor="let item of currentItems" style="margin-top: 5%; position: relative;">
     <div class="divEstrella" [ngClass]="item.esFavorito ? 'divEstrella estrella' : 'divEstrella'" (click)="anyadirFavorito(item)" *ngIf="usuario && usuario.rol != 'admin'">
       <i class="fas fa-thin fa-star"></i>
     </div>
     <i *ngIf="usuario && usuario.rol == 'admin'" class="fas fa-duotone fa-trash borrar" (click)="borrarCoche(item)"></i>
-    <div class="card carta" (click)="cambiarAcocheSeleccionado(item)">      
-      <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div>   
-      <img src="{{item.img}}" [alt]="item.nameMark" class="card-img-top" height="250">
+    <div class="card carta" (click)="cambiarAcocheSeleccionado(item)" style=" min-height: 428px;">      
+      <div class="reservado" *ngIf="item.estadoReserva > 0">Reservado</div>
+
+      <div *ngIf="item.rutas">
+        <img [src]="'http://localhost/rest/' + item.rutas[0]" [alt]="item.nameMark" class="card-img-top" height="300">
+      </div>
+
+      <div *ngIf="!item.rutas">
+        <img [src]="" [alt]="item.nameMark" class="card-img-top" height="300">
+      </div>
+      
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <h5 class="card-title">{{item.nameMark + ' ' + item.nameModel}}</h5>
-            <p class="card-text">{{item.nameVersion}}</p>
+          <div class="col-sm-12 row">
+            <h4 class="card-title col-12 text-start" style="color: rgb(24, 42, 94);">{{item.nameMark + ' ' + item.nameModel}}</h4>
+            <h5 class="card-text col-12 text-start" style="color: gray;">{{item.nameVersion}}</h5>
+                   
           </div>
-          <div class="col-sm-6">
-            <h5 class="card-text precio">{{item.price | currency:'EUR'}}</h5>
-            <p class="card-text"><small>{{ calcularCuota(item.price - 1000, plazo)| currency:'EUR' }}/mes</small></p>
+          <div class="col-sm-12 row mt-3">
+            <h5 class="card-text precio col-7 text-start" style="color: rgb(24, 42, 94);">{{item.price | currency:'EUR'}} <small style="font-size: 14px;">/contado</small></h5>   
+            <p class="card-text col-5"  style="color: rgb(40, 58, 110);">{{ calcularCuota(item.price - 1000, plazo)| currency:'EUR' }}/mes</p>
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
-            <p class="card-text">{{item.anyo}} | {{item.km | number}} km | {{item.combustible}} | {{item.caja_de_cambios}}</p>           
+          <div class="col-12 textInfoCar mt-3 text-start">
+              <span class="bg-gray">{{item.anyo + ' '}}</span>
+              <span class="bg-gray">{{item.km | number}} km </span>
+              <span class="bg-gray">{{item.combustible + ' '}}</span>
+              <span class="bg-gray">{{item.caja_de_cambios + ' '}}</span>  
           </div>
         </div>
       </div>

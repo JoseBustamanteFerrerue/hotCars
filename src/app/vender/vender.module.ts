@@ -7,11 +7,13 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FilterPipe } from './vender-form/filter.pipe';
 
 @NgModule({
   declarations: [
     VenderFormComponent,
-    VenderPageComponent
+    VenderPageComponent,
+    FilterPipe
   ],
   exports: [
     VenderPageComponent
