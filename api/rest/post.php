@@ -73,6 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       getProvinciaId($dbConn);
     case isset($_GET['coche_tasado']):
       getCocheTasado($dbConn);
+    case isset($_GET['reservas']):
+      getReservas($dbConn);
     default:
       filters($dbConn);
     break;
@@ -122,6 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     subirFotoCoche($dbConn);
   }
 
+  if ($requestUri === '/rest/post.php/nuevoCoche') {
+    nuevoCoche($dbConn, $data);
+  }
+
 }
 
 //Borrar
@@ -142,6 +148,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 
   if (isset($_GET['consultas'])) {
     deleteConsulta($dbConn);
+  }
+
+  if (isset($_GET['borrarReserva'])) {
+    deleteReserva($dbConn);
   }
 }
 

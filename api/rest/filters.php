@@ -163,6 +163,23 @@ function getProvinciaId($dbConn)
     exit();
 }
 
+function getReservas($dbConn) {
+    //Mostrar lista de post
+    $sql = $dbConn->prepare("SELECT reservas.id as idReservas, u.name as nombreUsuario, u.primerApellido, u.segundoApellido, u.fecha_nacimiento, u.email, u.telefono,
+    reservas.fecha_reserva, cars.id as idCar, nameMark, nameModel, nameVersion, cv, anyo, km, stateCar, price, combustible, caja_de_cambios, distintivo_ambiental,
+    peso, deposito, maletero, medida_ancho, medida_altura, medida_largo, carroceria, num_plazas, extras, concesionarios.name as nombreConcesionario
+    FROM reservas 
+    INNER JOIN users AS u ON reservas.idUser = u.id 
+    INNER JOIN cars ON cars.id = reservas.idCar
+    INNER JOIN mark ON cars.carName = mark.id
+    INNER JOIN concesionarios ON cars.idConcesionario = concesionarios.id;");
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    echo json_encode($sql->fetchAll());
+    exit();
+}
+
 function filters($dbConn)
 {
     $carName = 'mark.nameMark';

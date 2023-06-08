@@ -232,3 +232,37 @@ function guardarRuta($dbConn, $rutaImagen) {
     exit();
   }
   
+  function nuevoCoche ($dbConn, $data) {
+    $sql = $dbConn->prepare("INSERT INTO cars (carName, anyo, km, stateCar, price, combustible, caja_de_cambios, distintivo_ambiental, 
+    peso, deposito, maletero, medida_ancho, medida_altura, medida_largo, carroceria, num_plazas, bastidor, matricula, 
+    extras, estadoReserva) 
+    VALUES (
+    :carName, :anyo, :km, :stateCar, :price, :combustible, :caja_de_cambios, :distintivo_ambiental, :peso, :deposito, 
+    :maletero, :medida_ancho, :medida_altura, :medida_largo, :carroceria, :num_plazas, :bastidor, :matricula, 
+    :extras, :estadoReserva)");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':carName', $data->idMark);
+    $sql->bindValue(':anyo', $data->anyo);
+    $sql->bindValue(':km', $data->km);
+    $sql->bindValue(':stateCar', $data->stateCar);
+    $sql->bindValue(':price', $data->price);
+    $sql->bindValue(':combustible', $data->combustible);
+    $sql->bindValue(':caja_de_cambios', $data->caja_de_cambios);
+    $sql->bindValue(':distintivo_ambiental', $data->distintivo_ambiental);
+    $sql->bindValue(':peso', $data->peso);
+    $sql->bindValue(':deposito', $data->deposito);
+    $sql->bindValue(':maletero', $data->maletero);
+    $sql->bindValue(':medida_ancho', $data->medida_ancho);
+    $sql->bindValue(':medida_altura', $data->medida_altura);
+    $sql->bindValue(':medida_largo', $data->medida_largo);
+    $sql->bindValue(':carroceria', $data->carroceria);
+    $sql->bindValue(':num_plazas', $data->num_plazas);
+    $sql->bindValue(':bastidor', $data->bastidor);
+    $sql->bindValue(':matricula', $data->matricula);
+    $sql->bindValue(':extras', $data->extras);
+    $sql->bindValue(':estadoReserva', $data->estadoReserva);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+    exit();
+}
