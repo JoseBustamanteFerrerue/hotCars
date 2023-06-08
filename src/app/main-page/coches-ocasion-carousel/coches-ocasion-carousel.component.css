@@ -1,0 +1,35 @@
+.reservado {
+    background-color: gray;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 40%;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.borrar {
+    position: absolute;
+    color: red;
+    top: 88%;
+    left: 82%;
+    z-index: 1;
+}
+
+.borrar:hover {
+    color: brown;
+}
+
+.textInfoCar {
+    color: black;
+}
+
+.textInfoCar span {
+    background-color: rgb(226, 226, 226);
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}

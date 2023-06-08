@@ -13,7 +13,10 @@ import { DatosBasicosComponent } from './datos-basicos/datos-basicos.component';
 import { ProcesoCompraYlugarComponent } from './proceso-compra-ylugar/proceso-compra-ylugar.component';
 import { FinanciacionComponent } from './financiacion/financiacion.component';
 import { EditarCocheComponent } from './editar-coche/editar-coche.component';
-
+import { ReservasComponent } from './reservas/reservas.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './reservas/filter.pipe';
+import { NuevoCocheComponent } from './nuevo-coche/nuevo-coche.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { EditarCocheComponent } from './editar-coche/editar-coche.component';
    DatosBasicosComponent,
    ProcesoCompraYlugarComponent,
    FinanciacionComponent,
-   EditarCocheComponent
+   EditarCocheComponent,
+   ReservasComponent,
+   FilterPipe,
+   NuevoCocheComponent
   ],
   exports: [
   VerComprarPageComponent
@@ -35,7 +41,8 @@ import { EditarCocheComponent } from './editar-coche/editar-coche.component';
     CommonModule,
     FormsModule,
     Ng5SliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class VerYComprarModule { }

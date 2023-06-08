@@ -8,6 +8,8 @@ import { ContactoPageComponent } from './contacto/contacto-page/contacto-page.co
 import { ComprarComponent } from './ver-y-comprar/comprar/comprar.component';
 import { ReservarComponent } from './ver-y-comprar/reservar/reservar.component';
 import { EditarCocheComponent } from './ver-y-comprar/editar-coche/editar-coche.component';
+import { ReservasComponent } from './ver-y-comprar/reservas/reservas.component';
+import { NuevoCocheComponent } from './ver-y-comprar/nuevo-coche/nuevo-coche.component';
 
 
 const routes: Routes = [
@@ -48,6 +50,14 @@ const routes: Routes = [
     path: 'editarCoche/:id',
     component: EditarCocheComponent,
   },     
+  {
+    path: 'reservas',
+    component: ReservasComponent,
+  },
+  {
+    path: 'nuevoCoche',
+    component: NuevoCocheComponent,
+  },       
 
 ];
 

@@ -41,6 +41,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="favoritos" *ngIf="usuario.rol != 'admin'">Favoritos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reservas" *ngIf="usuario.rol == 'admin'">Reservas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="nuevoCoche" *ngIf="usuario.rol == 'admin'">Nuevo coche</a>
+            </li>
             <li class="nav-item" *ngIf="usuario.rol == 'user' || usuario.rol == 'admin'">
                 <a class="nav-link cerrarSesion" (click)="cerrarSesion()">Cerrar sesión</a>
             </li>

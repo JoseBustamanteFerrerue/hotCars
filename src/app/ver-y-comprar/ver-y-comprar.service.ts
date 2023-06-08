@@ -13,12 +13,14 @@ export class VerYComprarService {
   public desplegableCombustible: any[] = []
   public desplegableCarroceria: any[] = []
   public carPorId: any[] = []
-
+  cochesReservados: any;
+  desplegableVersionCoche: any;
   constructor (private http: HttpClient) {
     this.api(); 
     this.desplegableMarcas();
     this.desplegableCombustibles();
-    this.desplegableCarrocerias();   
+    this.desplegableCarrocerias();
+    this.getReservas();   
   }
 
   ngOnInit(): void {
@@ -37,6 +39,13 @@ export class VerYComprarService {
           return item
         })
         this.conseguirFavoritos();
+      })
+  }
+
+  getReservas():any {
+    this.http.get<any>('http://localhost/rest/post.php?reservas')
+      .subscribe( (resp) => {
+        this.cochesReservados = resp
       })
   }
 
@@ -433,5 +442,92 @@ export class VerYComprarService {
           console.log(error)
         }
       );
+  }
+
+  deleteReserva (item: any) {
+    
+    this.http.delete<any>('http://localhost/rest/post.php?borrarReserva&&idCar=' + item.idCar + '&&idReservas=' + item.idReservas).subscribe(
+      response => {
+        this.getReservas()
+        Swal.fire({
+          title: 'Borrado exitoso',
+          text: 'La reserva se ha borrado exitosamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });    
+        
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido',
+          text: 'En su consulta ha habido un error, por favor inténtelo más tarde.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
+  }
+
+  desplegableVersion (nameMark: any, nameModel:any) {
+    this.http.get<any>('http://localhost/rest/post.php?desplegableVersion&&nameMark=' + nameMark + '&&nameModel=' + nameModel)
+      .subscribe( (resp) => {
+        this.desplegableVersionCoche = resp
+        console.log(this.desplegableVersionCoche)
+      })
+  }
+
+  marcaId(nameMark: any, nameModel: any, nameVersion: any): Observable<any> {
+    return this.http.get<any>('http://localhost/rest/post.php?marcaId&&nameMark=' + nameMark + '&&nameModel=' 
+      + nameModel + '&&nameVersion=' + nameVersion)
+  }
+
+  nuevoCoche (item:any , idMark: any) {
+    item.idMark = idMark
+    console.log(idMark)
+    const params = JSON.stringify(item);
+    console.log(params)
+    this.http.post<any>('http://localhost/rest/post.php/nuevoCoche', params).subscribe(
+      response => {
+        Swal.fire({
+          title: '¡Ha creado el vehículo con exito!',
+          text: 'El vehículo se ha creado correctamente.',
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = 'ver'
+          }
+          return 0
+        });   
+      },
+      error => {
+        Swal.fire({
+          title: 'Algo malo ha ocurrido o has dejado un campo vacío',
+          text: 'Al añadir un nuevo coche ha habido un error, por favor inténtelo más tarde o consulte con el departamento IT.',
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+          allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(error)
+          }
+          return 0
+        });
+      })
   }
 }

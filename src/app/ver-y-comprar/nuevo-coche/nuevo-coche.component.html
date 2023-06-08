@@ -1,0 +1,191 @@
+<div class="container-xl mt-5 mb-5">
+    <div class="row align-cars-center editar">
+        <!--           <div class="col-12 col-xs-12 col-sm-6 col-lg-6 col-xl-6">
+        <img src="{{car.img}}" alt="logo" class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
+        </div> -->
+        <div class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
+            <form (ngSubmit)="onSubmit()" novalidate class="ng-touched">
+                <h2>Editar el coche</h2>
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="marca" class="text-black">Marca</label>
+                        <select name="marca" id="marca" class="form-select form-control" (change)="cambio()"
+                            [(ngModel)]="car.carName" style="color: black!important;">
+                            <option class="dropdown-item" disabled selected>{{car.carName}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableMarca">{{item}}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <label for="modelo" class="text-black">Modelo</label>
+                        <select name="modelo" id="modelo" class="form-select" [disabled]="hayMarca"  (change)="cambioVersion()"
+                            [(ngModel)]="car.nameModel">
+                            <option disabled [selected]="true">{{car.nameModel}}</option>
+                            <option [value]="item" *ngFor="let item of desplegableModelo">{{item}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="nameVersion" class="text-black">Versión</label>
+                        <select name="nameVersion" id="nameVersion" class="form-select" [disabled]="hayVersion"
+                            [(ngModel)]="car.nameVersion">
+                            <option disabled [selected]="true">{{car.nameVersion}}</option>
+                            <option [value]="item.nameVersion" *ngFor="let item of desplegableVersion">{{item.nameVersion}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="anyo">Año:</label>
+                        <input type="number" class="form-control" id="anyo" name="anyo" [(ngModel)]="car.anyo"
+                            required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="km">Kilómetros:</label>
+                        <input type="number" class="form-control" id="km" name="km" [(ngModel)]="car.km" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="statecar">Estado del coche:</label>
+                        <input type="text" class="form-control" id="statecar" name="statecar"
+                            [(ngModel)]="car.stateCar" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="price">Precio:</label>
+                        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="car.price"
+                            required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="combustible">Combustible:</label>
+                        <select class="form-control form-select" id="combustible" name="combustible"
+                            [(ngModel)]="car.combustible" required>
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option value="Gasolina">Gasolina</option>
+                            <option value="Diésel">Diésel</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="caja_de_cambios">Caja de cambios:</label>
+                        <select class="form-control form-select" id="caja_de_cambios" name="caja_de_cambios"
+                            [(ngModel)]="car.caja_de_cambios" required>
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automático">Automático</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="distintivo_ambiental">Distintivo ambiental:</label>
+                        <select class="form-control form-select" id="distintivo_ambiental" name="distintivo_ambiental"
+                            [(ngModel)]="car.distintivo_ambiental" required>
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option value="Etiqueta CERO">Etiqueta CERO</option>
+                            <option value="Etiqueta ECO">Etiqueta ECO</option>
+                            <option value="Etiqueta C">Etiqueta C</option>
+                            <option value="Etiqueta B">Etiqueta B</option>
+                            <option value="Sin etiqueta">Sin etiqueta</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="peso">Peso:</label>
+                        <input type="number" class="form-control" id="peso" name="peso" [(ngModel)]="car.peso"
+                            required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="deposito">Depósito:</label>
+                        <input type="number" class="form-control" id="deposito" name="deposito"
+                            [(ngModel)]="car.deposito" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="maletero">Maletero:</label>
+                        <input type="number" class="form-control" id="maletero" name="maletero"
+                            [(ngModel)]="car.maletero" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="medida_ancho">Medida de ancho:</label>
+                        <input type="number" class="form-control" id="medida_ancho" name="medida_ancho"
+                            [(ngModel)]="car.medida_ancho" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="medida_altura">Medida de altura:</label>
+                        <input type="number" class="form-control" id="medida_altura" name="medida_altura"
+                            [(ngModel)]="car.medida_altura" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="medida_largo">Medida de largo:</label>
+                        <input type="number" class="form-control" id="medida_largo" name="medida_largo"
+                            [(ngModel)]="car.medida_largo" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="carroceria">Carrocería:</label>
+                        <input type="text" class="form-control" id="carroceria" name="carroceria"
+                            [(ngModel)]="car.carroceria" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="num_plazas">Número de plazas:</label>
+                        <input type="number" class="form-control" id="num_plazas" name="num_plazas"
+                            [(ngModel)]="car.num_plazas" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4 mb-3">
+                        <label for="bastidor">Bastidor:</label>
+                        <input type="text" class="form-control" id="bastidor" name="bastidor"
+                            [(ngModel)]="car.bastidor" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="matricula">Matrícula:</label>
+                        <input type="text" class="form-control" id="matricula" name="matricula"
+                            [(ngModel)]="car.matricula" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="estadoReserva">Estado de reserva:</label>
+                        <select class="form-control form-select" id="estadoReserva" name="estadoReserva"
+                            [(ngModel)]="car.estadoReserva" required>
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option value="1">Reservado</option>
+                            <option value="0">No reservado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 mb-3">
+                        <label for="extras">Extras:</label>
+                        <textarea class="form-control" id="extras" name="extras" [(ngModel)]="car.extras"></textarea>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="imagen" class="form-label">Nueva imagen del coche:</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="imagen" (change)="onFileSelected($event)">
+                            <label class="input-group-text" for="imagen">
+                            <i class="fas fa-upload"></i> Seleccionar imagen
+                            </label>
+                        </div>
+                        </div>
+                        
+                </div>
+                <a href="ver"><button type="button" class="btn btn-primary mt-4">Cancelar</button></a>
+                <button type="submit" class="btn btn-primary mt-4">Nuevo coche</button>
+            </form>
+        </div>
+    </div>
+</div>

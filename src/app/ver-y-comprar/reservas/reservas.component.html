@@ -1,0 +1,161 @@
+<div *ngIf="usuario && usuario.rol == 'admin'" class="tablasAdmin mt-5 mb-5">
+    <div class="container-xl">
+      <div class="table-responsive">
+        <input type="text" class="form-control mb-3" [(ngModel)]="filtro" placeholder="Filtrar por cualquier campo">
+  
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th (click)="sortData('nombreUsuario')" class="columnas">
+                Nombre del usuario
+                <span [class]="getSortIcon('nombreUsuario')"></span>
+              </th>
+              <th (click)="sortData('primerApellido')" class="columnas">
+                Primer Apellido
+                <span [class]="getSortIcon('primerApellido')"></span>
+              </th>
+              <th (click)="sortData('segundoApellido')" class="columnas">
+                Segundo Apellido
+                <span [class]="getSortIcon('segundoApellido')"></span>
+              </th>
+              <th (click)="sortData('fecha_nacimiento')" class="columnas">
+                Fecha de nacimiento
+                <span [class]="getSortIcon('fecha_nacimiento')"></span>
+              </th>
+              <th (click)="sortData('email')" class="columnas">
+                Email
+                <span [class]="getSortIcon('email')"></span>
+              </th>
+              <th (click)="sortData('telefono')" class="columnas">
+                Teléfono
+                <span [class]="getSortIcon('telefono')"></span>
+              </th>
+              <th (click)="sortData('fecha_reserva')" class="columnas">
+                Fecha de reserva
+                <span [class]="getSortIcon('fecha_reserva')"></span>
+              </th>
+              <th (click)="sortData('nameMark')" class="columnas">
+                Marca
+                <span [class]="getSortIcon('nameMark')"></span>
+              </th>
+              <th (click)="sortData('nameModel')" class="columnas">
+                Modelo
+                <span [class]="getSortIcon('nameModel')"></span>
+              </th>
+              <th (click)="sortData('nameVersion')" class="columnas">
+                Versión
+                <span [class]="getSortIcon('nameVersion')"></span>
+              </th>
+              <th (click)="sortData('anyo')" class="columnas">
+                Año del vehículo
+                <span [class]="getSortIcon('anyo')"></span>
+              </th>
+              <th (click)="sortData('km')" class="columnas">
+                Kilómetros
+                <span [class]="getSortIcon('km')"></span>
+              </th>
+              <th (click)="sortData('stateCar')" class="columnas">
+                Estado del coche
+                <span [class]="getSortIcon('stateCar')"></span>
+              </th>
+              <th (click)="sortData('price')" class="columnas">
+                Precio
+                <span [class]="getSortIcon('price')"></span>
+              </th>
+              <th (click)="sortData('combustible')" class="columnas">
+                Combustible
+                <span [class]="getSortIcon('combustible')"></span>
+              </th>
+              <th (click)="sortData('caja_de_cambios')" class="columnas">
+                Caja de cambios
+                <span [class]="getSortIcon('caja_de_cambios')"></span>
+              </th>
+              <th (click)="sortData('distintivo_ambiental')" class="columnas">
+                Distintivo ambiental
+                <span [class]="getSortIcon('distintivo_ambiental')"></span>
+              </th>
+              <th (click)="sortData('peso')" class="columnas">
+                Peso
+                <span [class]="getSortIcon('peso')"></span>
+              </th>
+              <th (click)="sortData('deposito')" class="columnas">
+                Deposito
+                <span [class]="getSortIcon('deposito')"></span>
+              </th>
+              <th (click)="sortData('maletero')" class="columnas">
+                Maletero
+                <span [class]="getSortIcon('maletero')"></span>
+              </th>
+              <th (click)="sortData('medida_ancho')" class="columnas">
+                Medida ancho
+                <span [class]="getSortIcon('medida_ancho')"></span>
+              </th>
+              <th (click)="sortData('medida_altura')" class="columnas">
+                Medida altura
+                <span [class]="getSortIcon('medida_altura')"></span>
+              </th>
+              <th (click)="sortData('medida_largo')" class="columnas">
+                Medida largo
+                <span [class]="getSortIcon('medida_largo')"></span>
+              </th>
+              <th (click)="sortData('carroceria')" class="columnas">
+                Carroceria
+                <span [class]="getSortIcon('carroceria')"></span>
+              </th>
+              <th (click)="sortData('num_plazas')" class="columnas">
+                Número de plazas
+                <span [class]="getSortIcon('num_plazas')"></span>
+              </th>
+              <th (click)="sortData('extras')" class="columnas">
+                Extras
+                <span [class]="getSortIcon('extras')"></span>
+              </th>
+              <th (click)="sortData('nombreConcesionario')" class="columnas">
+                Nombre del Concesionario
+                <span [class]="getSortIcon('nombreConcesionario')"></span>
+              </th>
+              
+              <th (click)="exportToExcel()" class="fas fa-solid fa-file-excel excel">
+                
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cochesReservados | filter:filtro | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{ item.nombreUsuario }}</td>
+              <td>{{ item.primerApellido }}</td>
+              <td>{{ item.segundoApellido }}</td>
+              <td>{{ item.fecha_nacimiento | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.telefono }}</td>
+              <td>{{ item.fecha_reserva | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.nameMark }}</td>
+              <td>{{ item.nameModel }}</td>
+              <td>{{ item.nameVersion }}</td>
+              <td>{{ item.anyo }}</td>
+              <td>{{ item.km }}</td> 
+              <td>{{ item.stateCar }}</td>  
+              <td>{{ item.price | currency:'EUR' }}</td>
+              <td>{{ item.combustible }}</td>
+              <td>{{ item.caja_de_cambios }}</td>
+              <td>{{ item.distintivo_ambiental }}</td>
+              <td>{{ item.peso }}</td>
+              <td>{{ item.deposito }}</td>
+              <td>{{ item.maletero }}</td>
+              <td>{{ item.medida_ancho }}</td>
+              <td>{{ item.medida_altura }}</td>
+              <td>{{ item.medida_largo }}</td>
+              <td>{{ item.carroceria }}</td>
+              <td>{{ item.num_plazas }}</td>
+              <td>{{ item.extras }}</td>
+              <td>{{ item.nombreConcesionario }}</td>
+              <td class="fas fa-light fa-trash borrar" (click)="eliminarReserva(item)"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination-container">
+          <pagination-controls (pageChange)="p = $event" [maxSize]="5"  [directionLinks]="true" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
