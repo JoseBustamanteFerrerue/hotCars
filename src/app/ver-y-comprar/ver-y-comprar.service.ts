@@ -15,12 +15,14 @@ export class VerYComprarService {
   public carPorId: any[] = []
   cochesReservados: any;
   desplegableVersionCoche: any;
+  desplegableConcesionarios: any;
   constructor (private http: HttpClient) {
     this.api(); 
     this.desplegableMarcas();
     this.desplegableCombustibles();
     this.desplegableCarrocerias();
     this.getReservas();   
+    this.desplegableConcesionario();
   }
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php?reservas')
       .subscribe( (resp) => {
         this.cochesReservados = resp
+        console.log(this.cochesReservados)
       })
   }
 
@@ -75,6 +78,13 @@ export class VerYComprarService {
           } 
         }
         this.desplegableModelo = array
+      })
+  }
+
+  desplegableConcesionario () {
+    this.http.get<any>('http://localhost/rest/post.php?desplegableConcesionarios')
+      .subscribe( (resp) => {
+        this.desplegableConcesionarios = resp
       })
   }
 
@@ -410,7 +420,7 @@ export class VerYComprarService {
           allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = 'ver'
+            // window.location.href = 'ver'
           }
           return 0
         });   

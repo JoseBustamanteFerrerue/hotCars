@@ -32,10 +32,6 @@ export class NuevoCocheComponent {
     this.verYcomprar.desplegableVersion(this.car.carName, this.car.nameModel)
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-  }
-
   get desplegableModelo() {
     return this.verYcomprar.desplegableModelo
   }
@@ -46,6 +42,10 @@ export class NuevoCocheComponent {
 
   get desplegableMarca() {
     return this.verYcomprar.desplegableMarca
+  }
+
+  get desplegableConcesionario () {
+    return this.verYcomprar.desplegableConcesionarios;
   }
 
 }

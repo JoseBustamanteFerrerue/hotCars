@@ -67,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       desplegableProvincias($dbConn);
     case isset($_GET['desplegableVersion']):
       desplegableVersion($dbConn);
+    case isset($_GET['desplegableConcesionarios']):
+      desplegableConcesionario($dbConn);
     case isset($_GET['marcaId']):
       getMarcaId($dbConn);
     case isset($_GET['provinciaId']):

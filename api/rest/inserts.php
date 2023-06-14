@@ -171,7 +171,36 @@ function editarCoche ($dbConn, $data) {
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
-    exit();
+    actualizarReservados($dbConn, $data);
+    
+}
+
+function actualizarReservados ($dbConn, $data) {
+  
+  if ($data->estadoReserva == 1) {
+    $sql = $dbConn->prepare("SELECT COUNT(*) as count FROM reservas WHERE idCar = :idCar;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idCar', $data->idCar);
+    $sql->execute();
+    $esReservado = $sql->fetchAll();
+    if ($esReservado[0]['count'] == 0) {
+      $sql = $dbConn->prepare("INSERT reservas (idCar, fecha_reserva)
+      VALUES (:idCar, NOW());");
+      // Realizar la preparación de la consulta a la base de datos
+      $sql->bindValue(':idCar', $data->idCar);
+      $sql->execute();
+      $sql->setFetchMode(PDO::FETCH_ASSOC);
+      header("HTTP/1.1 200 OK");
+    } 
+  } else {
+    $sql = $dbConn->prepare("DELETE FROM reservas WHERE idCar = :idCar;");
+    // Realizar la preparación de la consulta a la base de datos
+    $sql->bindValue(':idCar', $data->idCar);
+    $sql->execute();
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    header("HTTP/1.1 200 OK");
+  }
+  exit();
 }
 
 function subirFotoCoche ($dbConn) {
@@ -233,15 +262,16 @@ function guardarRuta($dbConn, $rutaImagen) {
   }
   
   function nuevoCoche ($dbConn, $data) {
-    $sql = $dbConn->prepare("INSERT INTO cars (carName, anyo, km, stateCar, price, combustible, caja_de_cambios, distintivo_ambiental, 
+    $sql = $dbConn->prepare("INSERT INTO cars (carName, idConcesionario, anyo, km, stateCar, price, combustible, caja_de_cambios, distintivo_ambiental, 
     peso, deposito, maletero, medida_ancho, medida_altura, medida_largo, carroceria, num_plazas, bastidor, matricula, 
     extras, estadoReserva) 
     VALUES (
-    :carName, :anyo, :km, :stateCar, :price, :combustible, :caja_de_cambios, :distintivo_ambiental, :peso, :deposito, 
+    :carName, :idConcesionario, :anyo, :km, :stateCar, :price, :combustible, :caja_de_cambios, :distintivo_ambiental, :peso, :deposito, 
     :maletero, :medida_ancho, :medida_altura, :medida_largo, :carroceria, :num_plazas, :bastidor, :matricula, 
-    :extras, :estadoReserva)");
+    :extras, 0)");
     // Realizar la preparación de la consulta a la base de datos
     $sql->bindValue(':carName', $data->idMark);
+    $sql->bindValue(':idConcesionario', $data->idConcesionario);
     $sql->bindValue(':anyo', $data->anyo);
     $sql->bindValue(':km', $data->km);
     $sql->bindValue(':stateCar', $data->stateCar);
@@ -260,7 +290,6 @@ function guardarRuta($dbConn, $rutaImagen) {
     $sql->bindValue(':bastidor', $data->bastidor);
     $sql->bindValue(':matricula', $data->matricula);
     $sql->bindValue(':extras', $data->extras);
-    $sql->bindValue(':estadoReserva', $data->estadoReserva);
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");

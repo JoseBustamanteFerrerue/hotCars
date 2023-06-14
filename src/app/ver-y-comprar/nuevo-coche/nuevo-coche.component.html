@@ -158,30 +158,19 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="estadoReserva">Estado de reserva:</label>
-                        <select class="form-control form-select" id="estadoReserva" name="estadoReserva"
-                            [(ngModel)]="car.estadoReserva" required>
-                            <option value="" disabled>Selecciona una opción</option>
-                            <option value="1">Reservado</option>
-                            <option value="0">No reservado</option>
+                        <label for="concesionario" class="text-black">Concesionario</label>
+                        <select name="concesionario" id="concesionario" class="form-select form-control"
+                            [(ngModel)]="car.idConcesionario" style="color: black!important;">
+                            <option class="dropdown-item" disabled selected>{{car.concesionario}}</option>
+                            <option [value]="item.id" *ngFor="let item of desplegableConcesionario">{{item.name}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-md-6 mb-3">
+                <div class="form-grouo row">
+                    <div class="col-md-8 mb-3">
                         <label for="extras">Extras:</label>
                         <textarea class="form-control" id="extras" name="extras" [(ngModel)]="car.extras"></textarea>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="imagen" class="form-label">Nueva imagen del coche:</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="imagen" (change)="onFileSelected($event)">
-                            <label class="input-group-text" for="imagen">
-                            <i class="fas fa-upload"></i> Seleccionar imagen
-                            </label>
-                        </div>
-                        </div>
-                        
+                    </div>                     
                 </div>
                 <a href="ver"><button type="button" class="btn btn-primary mt-4">Cancelar</button></a>
                 <button type="submit" class="btn btn-primary mt-4">Nuevo coche</button>

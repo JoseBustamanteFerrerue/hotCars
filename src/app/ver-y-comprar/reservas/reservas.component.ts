@@ -62,12 +62,27 @@ export class ReservasComponent implements OnInit{
       fecha_nacimiento: 'Fecha de Nacimiento',
       email: 'Email',
       telefono: 'Teléfono',
+      fecha_reserva: 'Fecha de Reserva',
       nameMark: 'Marca',
       nameModel: 'Modelo',
       nameVersion: 'Versión',
-      valor_tasado: 'Valor Tasado',
-      valor: 'Valor',
-      provincia: 'Provincia'
+      anyo: 'Año del vehículo',
+      km: 'Kilómetros',
+      stateCar: 'Estado del coche',
+      price: 'Precio',
+      combustible: 'Combustible',
+      caja_de_cambios: 'Caja de cambios',
+      distintivo_ambiental: 'Distintivo ambiental',
+      peso: 'Peso',
+      deposito: 'Deposito',
+      maletero: 'Maletero',
+      medida_ancho: 'Medida ancho',
+      medida_altura: 'Medida altura',
+      medida_largo: 'Medida largo',
+      carroceria: 'Carroceria',
+      num_plazas: 'Número de plazas',
+      extras: 'Extras',
+      nombreConcesionario: 'Nombre del concesionario'
     };
 
 
