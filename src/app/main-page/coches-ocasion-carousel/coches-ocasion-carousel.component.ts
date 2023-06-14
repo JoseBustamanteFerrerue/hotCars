@@ -34,4 +34,8 @@ export class CochesOcasionCarouselComponent {
     this.cuota = cuota
     return cuota;
   } 
+
+  cochePulsado(id: any) {
+    window.location.href = 'coche/' + id
+  }
 }

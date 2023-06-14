@@ -1,8 +1,5 @@
-<div class="col-8 d-flex justify-content-center align-items-center">
-    <!-- Aquí ira el carrusel -->
-   <!--  <div class="" *ngFor="let img of item.rutas">
-        <img [src]="'http://localhost/' + img" [alt]="item.nameMark" class="imgCompra">
-    </div> -->
+<div class="row">
+<div class="col-12 col-lg-8 d-flex justify-content-center align-items-center">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -29,7 +26,7 @@
 
 
 </div>
-<div class="col-4 mt-5">
+<div class="col-12 col-lg-4 mt-5">
     <div class="row text-start">
         <div class="col-12">
             <h2 class="">{{item.nameMark + ' ' + item.nameModel}}</h2>
@@ -56,7 +53,7 @@
                 <div class="col-6 precioFinanciado row">
                     <div class="textoCuadrado col-12">
                         Desde
-                        <p class="precioFinanciaSpan">{{calcularCuota(item.price - 1000, plazo) |
+                        <p class="precioFinanciaSpan infoBasica">{{calcularCuota(item.price - 1000, plazo) |
                             currency:'EUR'}}</p>
                     </div>
                     <div class="textoCuadrado col-12">
@@ -68,11 +65,11 @@
                 <div class="col-6 row precioFinancia">
                     <div class="col-12 textoCuadrado">
                         Precio financiado
-                        <span>{{item.price - 1000 | currency:'EUR'}}</span>
+                        <span class="infoBasica">{{item.price - 1000 | currency:'EUR'}}</span>
                     </div>
                     <div class="col-12 textoCuadrado">
                         Precio al contado
-                        <span>{{item.price | currency:'EUR'}}</span>
+                        <span class="infoBasica">{{item.price | currency:'EUR'}}</span>
                     </div>
                 </div>
             </div>
@@ -133,4 +130,5 @@
             <button type="button" class="btn btn-success meInteresa col-12" (click)="reservar(item.id)">Me interesa</button>
         </div>
     </div>
+</div>
 </div>

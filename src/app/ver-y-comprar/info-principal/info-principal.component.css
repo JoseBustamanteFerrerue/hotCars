@@ -316,3 +316,9 @@
   color: red; /* Cambia el color del texto a blanco */
 
 }
+
+@media (max-width: 300px) {
+    .infoBasica{
+        font-size: 18px!important;
+    }
+}

@@ -58,7 +58,14 @@ const routes: Routes = [
     path: 'nuevoCoche',
     component: NuevoCocheComponent,
   },       
-
+  {
+    path: 'carroceria/:nombre',
+    component: VerComprarPageComponent,
+  },
+  {
+    path: 'coche/:id',
+    component: VerComprarPageComponent,
+  },      
 ];
 
 @NgModule({

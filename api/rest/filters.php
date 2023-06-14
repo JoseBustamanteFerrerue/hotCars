@@ -182,6 +182,7 @@ function getReservas($dbConn) {
 
 function filters($dbConn)
 {
+    $id = 'cars.id';
     $carName = 'mark.nameMark';
     $nameModel = 'mark.nameModel';
     $nameVersion = 'mark.nameVersion';
@@ -191,6 +192,7 @@ function filters($dbConn)
     $anyo = 'cars.anyo';
     $combustible = 'cars.combustible';
     $caja = 'cars.caja_de_cambios';
+    $carroceria = 'cars.carroceria';
     $consulta = '';
     $gets = number_format(count($_GET));
     $i = 1;
@@ -229,7 +231,12 @@ function filters($dbConn)
             case $key == 'caja':
                 $consulta .= $caja . "=" . ":$key" . $hayVarios;
                 break;
-
+            case $key == 'carroceria':
+                $consulta .= $carroceria . "=" . ":$key" . $hayVarios;
+                break;
+            case $key == 'id':
+                $consulta .= $id . "=" . ":$key" . $hayVarios;
+                break;
         }
         $i++;
     }

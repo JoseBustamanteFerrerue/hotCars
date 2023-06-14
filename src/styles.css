@@ -531,10 +531,14 @@ footer {
     }
 }
 
-/* @media (max-width: 2200px){
-    .form-select {
-        font-size: 1.2rem;
+@media (max-width: 450px) {
+    #portada {
+        height: 110vh;
     }
-} */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
+
+@media (max-width: 290px) {
+    #portada {
+        height: 140vh;
+    }
+}

@@ -4,19 +4,26 @@
 </div>
 <div *ngIf="usuario && usuario.rol == 'user'"  class="fondoContacto">
   <div class="contactos">
-    <h1>Contacto</h1>
+    <h1 class="fs-1 fw-bold">Contacto</h1>
     <p>En HotCars contamos con 30 concesionarios a nivel nacional. 
-      En todos ellos, nuestro equipo de profesionales estará a tu lado para todo lo que necesites</p>
+      En todos ellos, nuestro equipo de profesionales 
+      </p>
+      <span class="mt-5">estará a tu lado para todo lo que necesites</span>
   </div>
 </div>
 <main class="container-xl login" *ngIf="usuario && usuario.rol == 'user'">
     
   <div class="row align-items-center">
       <div class="col-12 col-xs-12 col-sm-4 col-lg-4 col-xl-4 informacionContacto">
-        <div class="text-black">
-          <h1>Contacto</h1>
-          <p>En HotCars contamos con 30 concesionarios a nivel nacional. 
-            En todos ellos, nuestro equipo de profesionales estará a tu lado para todo lo que necesites</p>
+        <div class="text-black row">
+          <h1 class="fs-2 fw-bold text-start titulo">Atención al cliente</h1>
+          <span class="col-12 text-start">Teléfono: <span class="text-danger">948 402 573</span></span>
+          <span class="col-12 text-start">Email: <span class="text-danger">hotCarsContacto@hotCars.com</span></span>
+          <span class="col-12 text-start">Web: <a href="" class="text-danger">www.hrmotor.com</a></span>
+        </div>
+        <div class="text-black row">
+          <h1 class="fs-2 fw-bold text-start titulo mt-3">Preguntanos</h1>
+          <span class="col-12 text-start">¿Qué necesitas saber? <span class="text-danger">Preguntanos y te responderemos lo más pronto posible</span></span>
         </div>
       </div>
       <div class="col-12 col-xs-12 col-sm-8 col-lg-8 col-xl-8">
@@ -50,7 +57,7 @@
 </main>
 <div *ngIf="usuario && usuario.rol == 'user'"  class="fondoContactoEncuentra">
   <div class="contactos">
-    <h1>Hot Cars: Cerca de ti</h1>
+    <h1 class="fs-1 fw-bold">Hot Cars: Cerca de ti</h1>
     <button class="btn mt-4" onclick="window.location.href='ver'">Encuentra tu vehiculo</button>
   </div>
 </div>

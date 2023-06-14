@@ -169,6 +169,9 @@ export class VerYComprarService {
       consulta += 'carroceria='+ item.carroceria + '&&'
     }
     
+    if (item.id != 0) {
+      consulta += 'id='+ item.id + '&&'
+    }
 
     console.log(consulta)
     this.http.get<any>('http://localhost/rest/post.php?' + consulta)

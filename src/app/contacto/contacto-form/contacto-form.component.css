@@ -184,6 +184,10 @@
     color: rgb(2, 49, 2);
 }
 
+.titulo {
+  color:#2c2a55;
+}
+
 @media (max-width: 1028px){
   .borrar {
       height: 90px;

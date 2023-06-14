@@ -1,61 +1,61 @@
 <div class="container-xl mt-5 mb-5" *ngFor="let item of car">
     <div class="row">
-        <div class="col-7">
+        <div class="col-12 col-md-12 col-lg-7">
             <h1 class="text-start titulos">Tu coche solo está a cuatro pasos de ti</h1>
             <div class="row mt-3">
-                <div class="col-1 numbers">
+                <div class="col-2 col-md-1 numbers">
                     <span class="">1</span>
                 </div>
-                <div class="col-11 d-flex align-items-center">
+                <div class="col-10 col-md-11 d-flex align-items-center">
                     <span class="spanNumbers">Realiza la reserva del vehículo.</span>
-                </div>            
+                </div>
             </div>
             <div class="row mt-3">
-                <div class="col-1 numbers">
+                <div class="col-2 col-md-1 numbers">
                     <span class="">2</span>
                 </div>
-                <div class="col-11 d-flex align-items-center">
+                <div class="col-10 col-md-11 d-flex align-items-center">
                     <span class="spanNumbers">Un comercial se pondrá en contacto contigo para acompañarte en el proceso de compra.</span>
-                </div>            
+                </div>
             </div>
             <div class="row mt-3">
-                <div class="col-1 numbers">
+                <div class="col-2 col-md-1 numbers">
                     <span class="">3</span>
                 </div>
-                <div class="col-11 d-flex align-items-center">
+                <div class="col-10 col-md-11 d-flex align-items-center">
                     <span class="spanNumbers">Tú decides cómo quieres pagar y dónde quieres recibir el vehículo.</span>
-                </div>            
+                </div>
             </div>
             <div class="row mt-3">
-                <div class="col-1 numbers">
+                <div class="col-2 col-md-1 numbers">
                     <span class="">4</span>
                 </div>
-                <div class="col-11 d-flex align-items-center">
+                <div class="col-10 col-md-11 d-flex align-items-center">
                     <span class="spanNumbers">¡Ya puedes disfrutar de tu nuevo coche!</span>
-                </div>            
+                </div>
             </div>
-
+        
             <p class="mt-5 text-start">Si has reservado un vehículo pero no se adapta a ti, no te preocupes. Puedes utilizar el importe abonado
                 en otro coche.</p>
             <p>Tienes alguna duda? No te preocupes y consultanos <a href="contacto" class="text-danger">aquí</a></p>
-
+        
             <h2 class="text-start titulos">Ventajas de comprar en HotCars</h2>
             <p class="text-start">Comprar un coche en HotCars es sinónimo de confianza. Así lo demuestran todos nuestros clientes.
                 Realizamos una verificación de 250 puntos en todo nuestro stock, te damos
                 un periodo de prueba de 15 días o 1.000 kilómetros y disfrutarás de un año de garantía.
             </p>
-            <div class="row mt-5">
-                <div class="col-6 d-flex justify-content-start">
+            <div class="col-12 row mt-5">
+                <div class="col-12 col-md-6 d-flex justify-content-start">
                     <button type="button" class="btn btn-success botones" (click)="reservar(item)">Quiero reservar</button>
                 </div>
-                <div class="col-6 d-flex justify-content-start">
+                <div class="col-12 col-md-6 d-flex justify-content-start mt-3">
                     <button type="button" class="btn btn-success botones" (click)="consulta()">Necesito más información</button>
                 </div>
-                
             </div>
         </div>
+        
         <!--  -->
-        <div class="col-5 borderIzquierda">           
+        <div class="col-5 borderIzquierda d-none d-md-none d-lg-flex d-xl-flex">           
             <div class="row">
                 <h3 class="text-start">Tu próximo coche</h3>
                 <div class="col-12">
