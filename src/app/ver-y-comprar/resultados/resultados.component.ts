@@ -71,11 +71,14 @@ export class ResultadosComponent implements OnInit {
 
   anyadirFavorito(item: any) {
     let yaExiste = false
-    for (const it of item.idCar) {
+    if (item.idCar) {
+      for (const it of item.idCar) {
         if (it.idCar == item.id) {
           yaExiste = true;
         }
     }
+    }
+
 
     if (yaExiste) {
       this.verYcomprar.deleteFavorito(item)
