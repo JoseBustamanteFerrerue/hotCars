@@ -48,7 +48,6 @@ export class VerYComprarService {
     this.http.get<any>('http://localhost/rest/post.php?reservas')
       .subscribe( (resp) => {
         this.cochesReservados = resp
-        console.log(this.cochesReservados)
       })
   }
 
@@ -420,7 +419,7 @@ export class VerYComprarService {
           allowEscapeKey: false // Evita que el usuario cierre el modal presionando la tecla Escape
         }).then((result) => {
           if (result.isConfirmed) {
-            // window.location.href = 'ver'
+            window.location.href = 'ver'
           }
           return 0
         });   

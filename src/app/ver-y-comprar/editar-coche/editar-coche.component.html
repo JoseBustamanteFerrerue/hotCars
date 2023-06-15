@@ -1,9 +1,8 @@
-<div *ngFor="let item of car">
-    <div class="container-xl mt-5 mb-5">
+<section *ngFor="let item of car">
+    <h1 *ngIf="false">Editar coche</h1>
+    <article class="container-xl mt-5 mb-5">
+        <h2 *ngIf="false">Editar coche</h2>
         <div class="row align-items-center editar">
-            <!--           <div class="col-12 col-xs-12 col-sm-6 col-lg-6 col-xl-6">
-            <img src="{{item.img}}" alt="logo" class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
-          </div> -->
             <div class="col-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
                 <form (ngSubmit)="onSubmit(item)" novalidate class="ng-touched">
                     <h2>Editar el coche</h2>
@@ -162,5 +161,5 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
+    </article>
+</section>

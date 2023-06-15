@@ -33,12 +33,11 @@
         </div>
         <div class="form-group col-6">
           <label for="telefono" *ngIf="false">Teléfono:</label>
-          <input type="text" class="form-control mt-3" id="telefono" formControlName="telefono" required placeholder="Tu teléfono">
+          <input type="number" class="form-control mt-3" id="telefono" formControlName="telefono" required placeholder="Tu teléfono">
           <div *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)"
             class="text-danger">
             <div *ngIf="telefono?.hasError('required')">El teléfono es requerido.</div>
-            <div *ngIf="telefono?.errors?.['minlength']">El teléfono debe tener 9 caracteres.</div>
-            <div *ngIf="telefono?.errors?.['maxlength']">El teléfono debe tener 9 caracteres.</div>
+            <div *ngIf="telefono?.errors?.['phoneLength']">El teléfono debe tener 9 caracteres.</div>
           </div>
         </div>
         <div class="form-group col-8">

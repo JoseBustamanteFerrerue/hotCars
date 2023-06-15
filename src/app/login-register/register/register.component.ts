@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit{
       segundoApellido: ['', [this.sinSignosValidator, Validators.minLength(4)]],
       fecha_nacimiento: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+      telefono: ['', [Validators.required, this.phoneLengthValidator]],
       password: ['', [Validators.required, Validators.minLength(6), this.passwordValidator]]
     });
 
@@ -35,6 +35,18 @@ export class RegisterComponent implements OnInit{
 
     console.log(this.userForm.value);
     this.loginService.comprobarEmail(this.userForm.value)
+  }
+  
+  phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+    const phone = control.value as number;
+    const minLength = 9;
+    const maxLength = 9;
+  
+    if (phone.toString().length < minLength || phone.toString().length > maxLength) {
+      return { phoneLength: true };
+    }
+  
+    return null;
   }
 
   sinSignosValidator(control: AbstractControl): ValidationErrors | null {

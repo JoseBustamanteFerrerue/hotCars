@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2023 a las 21:15:03
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 15-06-2023 a las 12:21:08
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hotcars`
 --
-
+CREATE DATABASE hotcars;
+USE hotcars;
 -- --------------------------------------------------------
 
 --
@@ -57,15 +58,15 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`id`, `carName`, `anyo`, `km`, `stateCar`, `price`, `combustible`, `caja_de_cambios`, `distintivo_ambiental`, `peso`, `deposito`, `maletero`, `medida_ancho`, `medida_altura`, `medida_largo`, `carroceria`, `num_plazas`, `bastidor`, `matricula`, `extras`, `estadoReserva`, `idConcesionario`) VALUES
-(66, 111, 2010, 100000, 'Buen estado', 6000, 'Gasolina', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Compacto', 5, 'VSSZZZ6JZ8R115426', '3456JHD', 'Climatizador, control de velocidad', 0, 1),
-(67, 112, 2015, 80000, 'Muy buen estado', 10000, 'Diésel', 'Manual', 'Etiqueta C', 1500, 50, 500, 1.7, 1.8, 4.5, 'Berlina', 5, 'WVWZZZ1KZDW135096', '2345RTD', 'Asientos de cuero, navegador', 0, 1),
+(66, 111, 2010, 100000, 'Buen estado', 15600.56, 'Gasolina', 'Manual', 'Etiqueta ECO', 1500, 50, 500, 1.8, 1.8, 4.5, 'Compacto', 5, 'VSSZZZ6JZ8R115426', '3456JHD', 'Climatizador, control de velocidad', 0, 3),
+(67, 112, 2015, 80000, 'Muy buen estado', 14500, 'Diésel', 'Manual', 'Etiqueta C', 1500, 50, 500, 1.7, 1.8, 4.5, 'Berlina', 5, 'WVWZZZ1KZDW135096', '2345RTD', 'Asientos de cuero, navegador', 0, 1),
 (69, 114, 2018, 50000, 'Perfecto estado', 15000, 'Diésel', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'JTNBZ29J005055978', '6457JMN', 'Navegador, asientos calefactables', 0, 1),
 (72, 117, 2014, 100000, 'Buen estado', 7000, 'Gasolina', 'Manual', 'Sin etiqueta', 1500, 50, 500, 1.8, 1.8, 4.5, 'Compacto', 5, 'VF3YBRFSC9J511644', '2457MKL', 'Aire acondicionado, elevalunas eléctricos', 0, 1),
 (73, 118, 2017, 60000, 'Perfecto estado', 12000, 'Diésel', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'SUV', 5, 'WDDGF8AB1EA981365', '3456NGB', 'Asientos de cuero, navegador, techo solar', 0, 1),
 (75, 121, 2017, 50000, 'Buen estado', 13500, 'Gasolina', 'Manual', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'WDD1760431J510259', '2058 HMD', 'Asientos de cuero', 0, 1),
 (76, 122, 2018, 40000, 'Perfecto estado', 20000, 'Gasolina', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Cabrio', 4, 'WDDPK3JA1GF119106', '2589 JNR', 'Asientos calefactables', 0, 1),
 (77, 123, 2016, 80000, 'Buen estado', 9500, 'Diésel', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'VF1BZRJ0F28428460', '1812 DTP', 'Navegador GPS', 0, 1),
-(78, 124, 2018, 30000, 'Perfecto estado', 22000, 'Gasolina', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'WBA2J310X0J367162', '5432 JKM', 'Asientos deportivos', 1, 1),
+(78, 124, 2018, 30000, 'Perfecto estado', 22000, 'Gasolina', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'WBA2J310X0J367162', '5432 JKM', 'Asientos deportivos', 0, 1),
 (79, 125, 2017, 60000, 'Buen estado', 12500, 'Diésel', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'WBA1F31090VX51276', '1890 FKH', 'Techo solar', 0, 1),
 (80, 126, 2019, 20000, 'Perfecto estado', 25000, 'Gasolina', 'Automático', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'SUV', 5, 'SALVA2AN4EH900562', '2564 JMF', 'Sistema de sonido BOSE', 0, 1),
 (81, 127, 2016, 80000, 'Buen estado', 9500, 'Diésel', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Familiar', 5, 'VF1GJEJ0A53305194', '2995 FHT', 'Control de crucero', 0, 1),
@@ -125,8 +126,7 @@ INSERT INTO `cars` (`id`, `carName`, `anyo`, `km`, `stateCar`, `price`, `combust
 (136, 186, 2015, 74000, 'perfecto estado', 14900, 'Gasolina', 'Manual', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Berlina', 5, 'VF3XUHFXFJ3453686', '1286 DKB', 'Climatizador bizona, Llantas de aleación', 0, 1),
 (137, 187, 2014, 86000, 'buen estado', 8990, 'Diésel', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'SUV', 5, 'WVWZZZ1KZAM693281', '3818 HBL', 'Control de crucero, Bluetooth', 0, 1),
 (138, 188, 2016, 69000, 'muy buen estado', 17900, 'Gasolina', 'Manual', 'Etiqueta C', 1500, 50, 500, 1.8, 1.8, 4.5, 'Cabrio', 2, 'W0L0AHL0886010971', '9688 KNS', 'Asientos calefactados, Navegador', 0, 1),
-(139, 189, 2013, 98000, 'buen estado', 11900, 'Gasolina', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Monovolumen', 7, 'WAUZZZ4LZBD100269', '8277 JNN', 'Techo panorámico, Sensores de aparcamiento', 0, 1),
-(144, 144, 2009, 42344, 'Buen estado', 7800, 'Gasolina', 'Manual', 'Etiqueta B', 1300, 50, 500, 1.9, 2, 4.6, 'Compacto', 5, 'FASAFADSFATRVVVGH', '0295HLX', 'fsdfsdfsdf', 0, 1);
+(139, 189, 2013, 98000, 'buen estado', 11900, 'Gasolina', 'Manual', 'Etiqueta B', 1500, 50, 500, 1.8, 1.8, 4.5, 'Monovolumen', 7, 'WAUZZZ4LZBD100269', '8277 JNN', 'Techo panorámico, Sensores de aparcamiento', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,6 @@ CREATE TABLE `coches_tasados` (
 INSERT INTO `coches_tasados` (`id`, `idMark`, `idProvincia`, `email`, `telefono`, `name`, `primer_apellido`, `fecha_nacimiento`, `anyo`, `km`, `matricula`, `estadoCoche`, `valor_tasado`) VALUES
 (4, 112, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-29', 2022, 45345, '0295HLJ', 'Bien', 0),
 (7, 134, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-09', 2022, 53453, '0295HLJ', 'Perfecto', 0),
-(8, 134, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-09', 2022, 53453, '0295HLJ', 'Perfecto', 0),
 (9, 126, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-16', 2022, 4234, '0295HLJ', 'Regular', 0),
 (11, 171, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-23', 2022, 5435, '0295HLJ', 'Perfecto', 0),
 (12, 172, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-29', 2022, 5435345, '0295HLJ', 'Perfecto', 0),
@@ -171,7 +170,9 @@ INSERT INTO `coches_tasados` (`id`, `idMark`, `idProvincia`, `email`, `telefono`
 (20, 123, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-29', 2022, 2147483647, '0295HLJ', 'Mal', 0),
 (21, 137, 1, 'bustamantito@busta.com', 0, 'Joselito', 'Bustamante', '2023-06-29', 2022, 564564566, '0295HLJ', 'Mal', 0),
 (23, 122, 2, 'unemail@gmail.com', 0, 'Cesar', 'Garcia', '2023-06-14', 2014, 4234234, '1234HBH', 'Perfecto', 5750),
-(24, 134, 2, 'asdasd@asda.com3', 678987567, 'dasdads', 'asdasd asdasda', '2023-06-22', 2020, 4234234, '0295HLX', 'Bien', 6850);
+(24, 134, 2, 'asdasd@asda.com3', 678987567, 'dasdads', 'asdasd asdasda', '2023-06-22', 2020, 4234234, '0295HLX', 'Bien', 6850),
+(25, 114, 1, 'juan@juan.com', 687987654, 'Juan', 'Garcia', '2002-09-04', 2016, 56789, '1234HLJ', 'Perfecto', 6850),
+(26, 131, 1, 'usuario@usuario.com', 434523452, 'usuario', 'usuario', '2023-06-23', 2016, 56000, '2561HBG', 'Bien', 6450);
 
 -- --------------------------------------------------------
 
@@ -182,8 +183,8 @@ INSERT INTO `coches_tasados` (`id`, `idMark`, `idProvincia`, `email`, `telefono`
 CREATE TABLE `concesionarios` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `localizacion` varchar(255) NOT NULL,
-  `localizacionLink` varchar(255) NOT NULL
+  `localizacion` varchar(500) NOT NULL,
+  `localizacionLink` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -191,7 +192,8 @@ CREATE TABLE `concesionarios` (
 --
 
 INSERT INTO `concesionarios` (`id`, `name`, `localizacion`, `localizacionLink`) VALUES
-(1, 'Manises', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12315.296868168307!2d-0.4596732!3d39.4958837!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd605aa8bcd5d113%3A0x4a5221dec2c184c9!2sManises!5e0!3m2!1ses!2ses!4v1685554254341!5m2!1ses!2ses', 'https://goo.gl/maps/TMEG5HJgM9VWBj2k6');
+(1, 'Manises', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12315.296868168307!2d-0.4596732!3d39.4958837!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd605aa8bcd5d113%3A0x4a5221dec2c184c9!2sManises!5e0!3m2!1ses!2ses!4v1685554254341!5m2!1ses!2ses', 'https://goo.gl/maps/TMEG5HJgM9VWBj2k6'),
+(3, 'Quart de Poblet', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.4866506878825!2d-0.44456242347980907!3d39.480924512062536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604ff9ed62fe1f%3A0xc5ace22eaa666d85!2sQuart%20de%20Poblet!5e0!3m2!1ses!2ses!4v1686823255793!5m2!1ses!2ses', 'https://goo.gl/maps/DNs1mZJB1NUTxf3o8');
 
 -- --------------------------------------------------------
 
@@ -211,8 +213,7 @@ CREATE TABLE `consultas` (
 --
 
 INSERT INTO `consultas` (`id`, `idUser`, `motivo`, `fecha_consulta`) VALUES
-(46, 16, 'Mi motivo es el siguiente, no sé', '2023-05-25 04:51:57'),
-(48, 16, 'holadas', '2023-05-31 19:39:10');
+(49, 18, 'El mótivo es el de comprar un coche.', '2023-06-15 12:07:32');
 
 -- --------------------------------------------------------
 
@@ -231,12 +232,10 @@ CREATE TABLE `favoritos` (
 --
 
 INSERT INTO `favoritos` (`id`, `idUser`, `idCar`) VALUES
-(1, 1, 118),
-(2, 1, 113),
-(3, 1, 121),
-(19, 16, 66),
-(22, 16, 69),
-(23, 16, 67);
+(27, 18, 66),
+(28, 18, 67),
+(29, 18, 73),
+(30, 18, 76);
 
 -- --------------------------------------------------------
 
@@ -367,17 +366,10 @@ INSERT INTO `provincias` (`id`, `provincia`) VALUES
 
 CREATE TABLE `reservas` (
   `id` int(11) NOT NULL,
-  `idUser` int(11) NOT NULL,
+  `idUser` int(11) DEFAULT NULL,
   `idCar` int(11) NOT NULL,
   `fecha_reserva` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `reservas`
---
-
-INSERT INTO `reservas` (`id`, `idUser`, `idCar`, `fecha_reserva`) VALUES
-(6, 16, 78, '2023-06-06 12:08:52');
 
 -- --------------------------------------------------------
 
@@ -405,7 +397,8 @@ INSERT INTO `rutas_imgs` (`id`, `idCar`, `ruta`) VALUES
 (9, 73, 'carsImgs/73/647eb8d3ad984.jpg'),
 (10, 75, 'carsImgs/75/647eb91c6f90a.jpeg'),
 (11, 76, 'carsImgs/76/647eb9ff3a5c9.jpg'),
-(12, 78, 'carsImgs/78/647eba5ed374c.jpg');
+(12, 78, 'carsImgs/78/647eba5ed374c.jpg'),
+(13, 67, 'carsImgs/67/648ae01282e13.jpg');
 
 -- --------------------------------------------------------
 
@@ -430,10 +423,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `primerApellido`, `segundoApellido`, `fecha_nacimiento`, `email`, `Telefono`, `password`, `rol`) VALUES
-(1, 'Jose', 'Bustamante', 'Ferreruela', '2002-09-04', 'busta@gmail.com', 0, '1234', 'admin'),
-(15, 'Joselito', 'Bustamante', '', '2023-05-25', 'bustamantito@busta.com', 0, '$2y$10$D0YKfaFliE6jfpdfsdR/sexE/rstrvnj0309MiIbucc9RL2zrnXUa', 'admin'),
-(16, 'Joselito', 'Joselito', 'fasfafas', '2023-05-12', 'bustamantito@busta.co', 679656345, '$2y$10$l/0QDN.kHgbMkFVE8lesdu5cJhb2E71uHhb0mPge3pQlI99L03U4S', 'user'),
-(17, 'Cesar', 'Busta', 'fasf', '2023-06-09', 'fasfasfasf@asf.com', 959595959, '$2y$10$F0/Gd.ztFFadTkNAHOe9EO.7DJ/pJ6g8Eyop/d0UosDLPz6QfzR6m', 'user');
+(18, 'Usuario', 'Usuario', 'Usuario', '2023-06-16', 'usuario@usuario.com', 569542548, '$2y$10$JpGD6VuUh18JkpVY/HbMR.BZHSIjnUH0r/at69N83xwi5VOp6mENK', 'user'),
+(19, 'admin', 'admin', 'admin', '2023-06-16', 'admin@admin.com', 564156654, '$2y$10$FFEit6B9wKux9B/PD0erD.6NgnlFT5GJQ12GeJ7d1aM..d.fE6cau', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -517,31 +508,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de la tabla `coches_tasados`
 --
 ALTER TABLE `coches_tasados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `concesionarios`
 --
 ALTER TABLE `concesionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `mark`
@@ -559,19 +550,19 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `rutas_imgs`
 --
 ALTER TABLE `rutas_imgs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas

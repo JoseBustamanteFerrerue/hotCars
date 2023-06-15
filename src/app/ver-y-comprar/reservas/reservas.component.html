@@ -1,5 +1,7 @@
-<div *ngIf="usuario && usuario.rol == 'admin'" class="tablasAdmin mt-5 mb-5">
-    <div class="container-xl">
+<section *ngIf="usuario && usuario.rol == 'admin'" class="tablasAdmin mt-5 mb-5">
+  <h1 *ngIf="false">Reservas coche</h1>
+    <article class="container-xl">
+      <h2 *ngIf="false">Reservar coche</h2>
       <div class="table-responsive">
         <input type="text" class="form-control mb-3" [(ngModel)]="filtro" placeholder="Filtrar por cualquier campo">
   
@@ -157,5 +159,5 @@
           <pagination-controls (pageChange)="p = $event" [maxSize]="5"  [directionLinks]="true" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
         </div>
       </div>
-    </div>
-  </div>
+    </article>
+  </section>

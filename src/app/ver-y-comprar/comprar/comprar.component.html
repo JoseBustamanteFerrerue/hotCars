@@ -1,8 +1,21 @@
 <div class="container-xl">
-    <div class=" mt-3 mb-5" *ngFor="let item of car">
-        <app-info-principal [item]="item"></app-info-principal>
-        <app-datos-basicos [item]="item"></app-datos-basicos>
-        <app-financiacion [item]="item"></app-financiacion>
-        <app-proceso-compra-ylugar [item]="data"></app-proceso-compra-ylugar>
-    </div>
+    <section class=" mt-3 mb-5" *ngFor="let item of car">
+        <h1 *ngIf="false">Ver vehículo</h1>
+        <article>
+            <h2 *ngIf="false">Información principal</h2>
+            <app-info-principal [item]="item"></app-info-principal>
+        </article>
+        <article>
+            <h2 *ngIf="false">Datos básicos</h2>
+            <app-datos-basicos [item]="item"></app-datos-basicos>
+        </article>
+        <article>
+            <h2 *ngIf="false">Financiación</h2>
+            <app-financiacion [item]="item"></app-financiacion>
+        </article>
+        <article>
+            <h2 *ngIf="false">Proceso de compra y lugar</h2>
+            <app-proceso-compra-ylugar [item]="data"></app-proceso-compra-ylugar>
+        </article>
+    </section>
 </div>
