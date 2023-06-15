@@ -8,8 +8,12 @@ First 'npm install' in Visualt Studio Code with a Terminal.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 ## Spanish
+Instalar node.js 16
+Instalar Angular 15.2.4
+Ejecutar npm install en la terminal del Visual Studio Code.
 La carpeta api, dentro tiene otra carpeta llamada rest. Copiar rest al htdocs de XAMPP.
 Dentro de api está el script SQL de la base de datos, importarla.
+Ejecutar ng serve --o
 
 ## English
 The api folder, inside it has another folder called rest. Copy rest to XAMPP htdocs.
